@@ -117,6 +117,10 @@ public class Principal {
 		instancia.cerrar();
 
 	}
+	
+	
+	
+	
 
 	/**
 	 * Funcion que devuelve un numero decimal escrito por teclado. Si se introduce
