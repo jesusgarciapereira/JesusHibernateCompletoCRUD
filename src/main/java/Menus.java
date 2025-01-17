@@ -18,6 +18,9 @@ public class Menus {
 		System.out.println("Escriba una opción: ");
 	}
 	
+	/**
+	 * Submenu Obtener Persona
+	 */
 	static void submenuObtener() {
 		System.out.println("Obtener Persona:");
 		System.out.println("===============");
@@ -29,6 +32,9 @@ public class Menus {
 		System.out.println("Escriba una opción: ");
 	}
 	
+	/**
+	 * Submenu Obtener Persona (Por Nombre)
+	 */
 	static void submenuObtenerPersonaPorNombre() {
 		System.out.println("Operador para Obtener Persona (Por Nombre):");
 		System.out.println("===========================================");
@@ -39,6 +45,9 @@ public class Menus {
 		System.out.println("Escriba una opción: ");
 	}
 	
+	/**
+	 * Submenu Obtener Persona (Por Saldo)
+	 */
 	static void submenuObtenerPersonaPorSaldo() {
 		System.out.println("Operador para Obtener Persona (Por Saldo):");
 		System.out.println("===========================================");
