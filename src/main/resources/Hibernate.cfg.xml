@@ -19,10 +19,7 @@
   <property name="current_session_context_class">thread</property>
   <property name="hbm2ddl.auto">update</property>
   
+  <mapping class="EntidadPersona"/>
 
-
-  <mapping class="Alumnado"/>
-  <mapping class="Direccion"/>
-  <mapping class="Email"/>
  </session-factory>
 </hibernate-configuration>

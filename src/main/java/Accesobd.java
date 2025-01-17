@@ -10,7 +10,20 @@ public class Accesobd {
     private Session sesion;
     private Transaction transaction;
     
-    protected void setUp() {
+    
+ 
+    
+    public Session getSesion() {
+		return sesion;
+	}
+
+// Creo que esto no hace falta
+	public Transaction getTransaction() {
+		return transaction;
+	}
+
+
+	protected void setUp() {
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // por defecto: hibernate.cfg.xml
                 .build();
@@ -40,4 +53,6 @@ public class Accesobd {
     public Object guardar(Object cosa) {
         return sesion.save(cosa);
     }
+    
+    
 }
