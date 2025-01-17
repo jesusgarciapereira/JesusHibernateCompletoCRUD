@@ -15,8 +15,9 @@ public class Principal {
 
 		// ejemploGuardar1Persona();
 		// ejemploLeer1PersonaPorId();
-		ejemploLeer1PersonaPorNombre();
-		ejemploLeer1PersonaPorSaldo();
+		//ejemploLeer1PersonaPorNombre();
+		//ejemploLeer1PersonaPorSaldo();
+		ejemploActualizar1Persona();
 	}
 
 	private static void ejemploGuardar1Persona() throws Exception {
@@ -38,6 +39,10 @@ public class Principal {
 	private static void ejemploLeer1PersonaPorSaldo() throws Exception {
 		leer(1, ">=");
 
+	}
+	
+	private static void ejemploActualizar1Persona() throws Exception{
+		actualizar(1, "Jesús García", 6754.9);
 	}
 
 	private static void guardar(Object cosa) throws Exception {
@@ -118,7 +123,36 @@ public class Principal {
 
 	}
 	
+	// Antes mostrarlos todos en el CRUD
+	private static void actualizar(long id,String nombre, double saldo) throws Exception {
+        instancia.abrir();
+        EntidadPersona persona = instancia.getSesion().get(EntidadPersona.class, id);
+        if(persona != null) {
+            persona.setNombre(nombre);
+            persona.setSaldo(saldo);
+            // session.saveOrUpdate(persona);       // session.merge(persona);
+            instancia.getSesion().update(persona);
+        }
+        else {
+        	System.out.println("No existe ninguna Persona con el id = " + id);
+        }
+
+        instancia.cerrar();
+    }
 	
+	/*
+	 * private static void actualizar(int id,String nombre, String tipo) throws Exception {
+        session = instancia.abrir();
+        Transaction transaction = session.beginTransaction();
+        PersonasEntity persona = session.get(PersonasEntity.class,id);
+        persona.setNombre(nombre);
+        persona.setTipo(tipo);
+       // session.saveOrUpdate(persona);       // session.merge(persona);
+        session.update(persona);
+        transaction.commit();
+        instancia.cerrar();
+    }
+	 */
 	
 	
 

@@ -47,6 +47,7 @@ public class Accesobd {
         }catch(Exception e){
             transaction.rollback();
         }
+        // Quizá debería ser un finally
         sf.close();
     }
 
