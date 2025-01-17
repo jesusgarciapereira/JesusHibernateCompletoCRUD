@@ -29,5 +29,28 @@ public class Menus {
 		System.out.println("Escriba una opción: ");
 	}
 	
+	static void submenuObtenerPersonaPorNombre() {
+		System.out.println("Operador para Obtener Persona (Por Nombre):");
+		System.out.println("===========================================");
+		System.out.println("1. =");
+		System.out.println("2. LIKE");
+		System.out.println("0. Volver al Menú anterior.");
+		System.out.println();
+		System.out.println("Escriba una opción: ");
+	}
+	
+	static void submenuObtenerPersonaPorSaldo() {
+		System.out.println("Operador para Obtener Persona (Por Saldo):");
+		System.out.println("===========================================");
+		System.out.println("1. =");
+		System.out.println("2. >");
+		System.out.println("3. <");
+		System.out.println("4. >=");
+		System.out.println("5. <=");
+		System.out.println("0. Volver al Menú anterior.");
+		System.out.println();
+		System.out.println("Escriba una opción: ");
+	}
+	
 
 }

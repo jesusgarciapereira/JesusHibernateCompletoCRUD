@@ -11,45 +11,158 @@ public class Principal {
 	public static void main(String[] args) throws Exception {
 		sc.useLocale(Locale.US);
 		instancia = new Accesobd();
-		
-		
+
 		int id;
 		String nombre = "";
 		double saldo;
-		
+		String filtro = "";
+
 		EntidadPersona persona;
 
 		int opcion;
 		int opcionSubmenuA;
+		int opcionSubmenuB;
 
 		do {
+			// Creo que estos cuatro no harán falta
+			id = 0;
+			nombre = "";
+			saldo = 0.0;
+			filtro = "";
+
 			Menus.menuPrincipal();
 			opcion = leeInt(sc);
 			System.out.println();
 
 			switch (opcion) {
 			case 1:
-				System.out.println("Indique el nombre de la Persona");
-				nombre = sc.nextLine();
-				System.out.println("Indique el saldo de la Persona (si tiene decimales, use punto \".\")");
-				saldo = leeDouble(sc);
-				
+				nombre = pideYAsignaNombre();
+				saldo = pideYAsignaSaldo();
+
 				persona = new EntidadPersona(nombre, saldo);
-				
+
 				guardar(persona);
 
 				break;
-				
+
 			case 2:
-				
+
 				do {
 					Menus.submenuObtener();
 					opcionSubmenuA = leeInt(sc);
-					
+					System.out.println();
+
+					switch (opcionSubmenuA) {
+					case 1:
+						id = pideYAsignaID();
+						leer(id);
+
+						opcionSubmenuA = 0;
+						break;
+					case 2:
+						do {
+							Menus.submenuObtenerPersonaPorNombre();
+							opcionSubmenuB = leeInt(sc);
+							System.out.println();
+
+							switch (opcionSubmenuB) {
+							case 1:
+								filtro = "=";
+								break;
+							case 2:
+								filtro = "LIKE";
+								break;
+							case 0:
+								break;
+							default:
+								System.out.println("Opción no disponible, elija del 0 al 2");
+								System.out.println();
+								break;
+							}
+							
+							if (opcionSubmenuB >= 1 && opcionSubmenuB <= 2) {
+								nombre = pideYAsignaNombre();
+								leer(nombre, filtro);
+								opcionSubmenuB = 0;
+								opcionSubmenuA = 0;
+							}
+
+						} while (opcionSubmenuB != 0);
+
+						break;
+
+					case 3:
+						do {
+							Menus.submenuObtenerPersonaPorSaldo();
+							opcionSubmenuB = leeInt(sc);
+							System.out.println();
+
+							switch (opcionSubmenuB) {
+							case 1:
+								filtro = "=";
+								break;
+							case 2:
+								filtro = ">";
+								break;
+							case 3:
+								filtro = "<";
+								break;
+							case 4:
+								filtro = ">=";
+								break;
+							case 5:
+								filtro = "<=";
+								break;
+							case 0:
+								break;
+
+							default:
+								System.out.println("Opción no disponible, elija del 0 al 5");
+								System.out.println();
+								break;
+							}
+
+							if (opcionSubmenuB >= 1 && opcionSubmenuB <= 5) {
+								saldo = pideYAsignaSaldo();
+								leer(saldo, filtro);
+								opcionSubmenuB = 0;
+								opcionSubmenuA = 0;
+							}
+
+						} while (opcionSubmenuB != 0);
+
+						break;
+					case 0:
+						break;
+					default:
+						System.out.println("Opción no disponible, elija del 0 al 3");
+						System.out.println();
+						break;
+					}
+
 				} while (opcionSubmenuA != 0);
-				
+				break;
+			case 3:
+				muestraTodo();
+				System.out.println("Indique el ID de la Persona que desea actualizar");
+				id = leeInt(sc);
+				nombre = pideYAsignaNombre();
+				saldo = pideYAsignaSaldo();
+				actualizar(id, nombre, saldo);
+				break;
+			case 4:
+				muestraTodo();
+				System.out.println("Indique el ID de la Persona que desea borrar");
+				id = leeInt(sc);
+				borrar(id);
+				break;
+
+			case 0:
+				break;
 
 			default:
+				System.out.println("Opción no disponible, elija del 0 al 4");
+				System.out.println();
 				break;
 			}
 
@@ -59,49 +172,33 @@ public class Principal {
 
 		sc.close();
 
-		// ejemploGuardar1Persona();
-		// ejemploLeer1PersonaPorId();
-		// ejemploLeer1PersonaPorNombre();
-		// ejemploLeer1PersonaPorSaldo();
-		// ejemploActualizar1Persona();
-		// ejemploBorrarr1Persona();
 	}
 
-	private static void ejemploGuardar1Persona() throws Exception {
-		EntidadPersona persona1 = new EntidadPersona("Jesús García Pereira", 1000);
-		EntidadPersona persona2 = new EntidadPersona("Anselmo", 567);
-		guardar(persona1);
-		guardar(persona2);
-
+	private static double pideYAsignaSaldo() {
+		double saldo;
+		System.out.println("Indique el saldo de la Persona (si tiene decimales, use punto \".\")");
+		saldo = leeDouble(sc);
+		return saldo;
 	}
 
-	private static void ejemploLeer1PersonaPorId() throws Exception {
-		leer(4);
-
+	private static String pideYAsignaNombre() {
+		String nombre;
+		System.out.println("Indique el nombre de la Persona");
+		nombre = sc.nextLine();
+		return nombre;
 	}
 
-	private static void ejemploLeer1PersonaPorNombre() throws Exception {
-		leer("e", "LIKE");
-
-	}
-
-	private static void ejemploLeer1PersonaPorSaldo() throws Exception {
-		leer(1, ">=");
-
-	}
-
-	private static void ejemploActualizar1Persona() throws Exception {
-		actualizar(1, "Jesús García", 6754.9);
-	}
-
-	private static void ejemploBorrarr1Persona() throws Exception {
-		borrar(1);
+	private static int pideYAsignaID() {
+		int id;
+		System.out.println("Indique el ID de la Persona");
+		id = leeInt(sc);
+		return id;
 	}
 
 	private static void guardar(Object cosa) throws Exception {
 		instancia.abrir();
-		
-		if ((((EntidadPersona) cosa).getSaldo()) >= 0){
+
+		if ((((EntidadPersona) cosa).getSaldo()) >= 0) {
 			instancia.guardar(cosa);
 			System.out.println("----------------");
 			System.out.println("Persona guardada");
@@ -109,11 +206,10 @@ public class Principal {
 			System.out.println("idPersona: " + ((EntidadPersona) cosa).getIdPersona());
 			System.out.println("nombre: " + ((EntidadPersona) cosa).getNombre());
 			System.out.println("saldo: " + ((EntidadPersona) cosa).getSaldo());
-		}
-		else {
+		} else {
 			System.out.println("Saldo incorrecto, no se ha podido guardar");
 		}
-		
+
 		instancia.cerrar();
 	}
 
@@ -212,6 +308,28 @@ public class Principal {
 			System.out.println("No existe ninguna Persona con el id = " + id);
 		}
 		instancia.cerrar();
+	}
+
+	private static void muestraTodo() throws Exception {
+		String consultaSQL = "SELECT * FROM Personas";
+
+		instancia.abrir();
+		List<EntidadPersona> personas = instancia.getSesion().createNativeQuery(consultaSQL, EntidadPersona.class)
+				.getResultList();
+
+		if (personas.size() > 0) {
+			for (EntidadPersona persona : personas) {
+				System.out.println("-----------------------------");
+				System.out.println("idPersona: " + persona.getIdPersona());
+				System.out.println("nombre: " + persona.getNombre());
+				System.out.println("saldo: " + persona.getSaldo());
+			}
+		} else {
+			System.out.println("No existe ningún elemento en la tabla Persona");
+		}
+
+		instancia.cerrar();
+
 	}
 
 	/**
