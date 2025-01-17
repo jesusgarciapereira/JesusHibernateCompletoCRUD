@@ -13,8 +13,9 @@ public class Menus {
 		System.out.println("2. Obtener Persona.");
 		System.out.println("3. Actualizar Persona.");
 		System.out.println("4. Borrar Persona.");
+		System.out.println("0. Salir del Programa");
 		System.out.println();
-		System.out.print("Escriba una opción: ");
+		System.out.println("Escriba una opción: ");
 	}
 	
     /* Elija la opción que quiera realizar

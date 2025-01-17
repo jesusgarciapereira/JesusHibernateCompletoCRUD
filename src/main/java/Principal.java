@@ -9,20 +9,58 @@ public class Principal {
 	public static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) throws Exception {
-		instancia = new Accesobd();
-
 		sc.useLocale(Locale.US);
+		instancia = new Accesobd();
+		
+		
+		int id;
+		String nombre = "";
+		double saldo;
+		
+		EntidadPersona persona;
+
+		int opcion = -1;
+
+		do {
+			Menus.menuPrincipal();
+			opcion = leeInt(sc);
+
+			switch (opcion) {
+			case 1:
+				System.out.println("Indique el nombre de la Persona");
+				nombre = sc.nextLine();
+				System.out.println("Indique el saldo de la Persona (si tiene decimales, use punto \".\")");
+				saldo = leeDouble(sc);
+				
+				persona = new EntidadPersona(nombre, saldo);
+				
+				guardar(persona);
+
+				break;
+
+			default:
+				break;
+			}
+
+		} while (opcion != 0);
+
+		System.out.println("Saliendo del programa...");
+
+		sc.close();
 
 		// ejemploGuardar1Persona();
 		// ejemploLeer1PersonaPorId();
-		//ejemploLeer1PersonaPorNombre();
-		//ejemploLeer1PersonaPorSaldo();
-		ejemploActualizar1Persona();
+		// ejemploLeer1PersonaPorNombre();
+		// ejemploLeer1PersonaPorSaldo();
+		// ejemploActualizar1Persona();
+		// ejemploBorrarr1Persona();
 	}
 
 	private static void ejemploGuardar1Persona() throws Exception {
-		EntidadPersona persona = new EntidadPersona("Anselmo", 567);
-		guardar(persona);
+		EntidadPersona persona1 = new EntidadPersona("Jesús García Pereira", 1000);
+		EntidadPersona persona2 = new EntidadPersona("Anselmo", 567);
+		guardar(persona1);
+		guardar(persona2);
 
 	}
 
@@ -35,20 +73,36 @@ public class Principal {
 		leer("e", "LIKE");
 
 	}
-	
+
 	private static void ejemploLeer1PersonaPorSaldo() throws Exception {
 		leer(1, ">=");
 
 	}
-	
-	private static void ejemploActualizar1Persona() throws Exception{
+
+	private static void ejemploActualizar1Persona() throws Exception {
 		actualizar(1, "Jesús García", 6754.9);
+	}
+
+	private static void ejemploBorrarr1Persona() throws Exception {
+		borrar(1);
 	}
 
 	private static void guardar(Object cosa) throws Exception {
 		instancia.abrir();
-		long id = (long) instancia.guardar(cosa);
-		System.out.println(id);
+		
+		if ((((EntidadPersona) cosa).getSaldo()) >= 0){
+			instancia.guardar(cosa);
+			System.out.println("----------------");
+			System.out.println("Persona guardada");
+			System.out.println("-----------------------------");
+			System.out.println("idPersona: " + ((EntidadPersona) cosa).getIdPersona());
+			System.out.println("nombre: " + ((EntidadPersona) cosa).getNombre());
+			System.out.println("saldo: " + ((EntidadPersona) cosa).getSaldo());
+		}
+		else {
+			System.out.println("Saldo incorrecto, no se ha podido guardar");
+		}
+		
 		instancia.cerrar();
 	}
 
@@ -73,14 +127,13 @@ public class Principal {
 
 	private static void leer(String nombre, String filtro) throws Exception {
 		String consultaSQL = "";
-		
+
 		if (filtro.equals("=")) {
 			consultaSQL += "SELECT * FROM Personas WHERE nombre " + filtro + " '" + nombre + "'";
 		} else {
 			consultaSQL += "SELECT * FROM Personas WHERE nombre " + filtro + " '%" + nombre + "%'";
 		}
-		
-		
+
 		instancia.abrir();
 		List<EntidadPersona> personas = instancia.getSesion().createNativeQuery(consultaSQL, EntidadPersona.class)
 				.getResultList();
@@ -102,7 +155,7 @@ public class Principal {
 
 	private static void leer(double saldo, String filtro) throws Exception {
 
-		String consultaSQL = "SELECT * FROM Personas WHERE saldo " + filtro + " " +  saldo;
+		String consultaSQL = "SELECT * FROM Personas WHERE saldo " + filtro + " " + saldo;
 
 		instancia.abrir();
 		List<EntidadPersona> personas = instancia.getSesion().createNativeQuery(consultaSQL, EntidadPersona.class)
@@ -122,39 +175,60 @@ public class Principal {
 		instancia.cerrar();
 
 	}
-	
-	// Antes mostrarlos todos en el CRUD
-	private static void actualizar(long id,String nombre, double saldo) throws Exception {
-        instancia.abrir();
-        EntidadPersona persona = instancia.getSesion().get(EntidadPersona.class, id);
-        if(persona != null) {
-            persona.setNombre(nombre);
-            persona.setSaldo(saldo);
-            // session.saveOrUpdate(persona);       // session.merge(persona);
-            instancia.getSesion().update(persona);
-        }
-        else {
-        	System.out.println("No existe ninguna Persona con el id = " + id);
-        }
 
-        instancia.cerrar();
-    }
-	
-	/*
-	 * private static void actualizar(int id,String nombre, String tipo) throws Exception {
-        session = instancia.abrir();
-        Transaction transaction = session.beginTransaction();
-        PersonasEntity persona = session.get(PersonasEntity.class,id);
-        persona.setNombre(nombre);
-        persona.setTipo(tipo);
-       // session.saveOrUpdate(persona);       // session.merge(persona);
-        session.update(persona);
-        transaction.commit();
-        instancia.cerrar();
-    }
+	// Antes mostrarlos todos en el CRUD
+	private static void actualizar(long id, String nombre, double saldo) throws Exception {
+		instancia.abrir();
+		EntidadPersona persona = instancia.getSesion().get(EntidadPersona.class, id);
+		if (persona != null) {
+			persona.setNombre(nombre);
+			persona.setSaldo(saldo);
+			// session.saveOrUpdate(persona); // session.merge(persona);
+			instancia.getSesion().update(persona);
+		} else {
+			System.out.println("No existe ninguna Persona con el id = " + id);
+		}
+
+		instancia.cerrar();
+	}
+
+	private static void borrar(long id) throws Exception {
+		instancia.abrir();
+		EntidadPersona persona = instancia.getSesion().get(EntidadPersona.class, id);
+		if (persona != null) {
+			instancia.getSesion().delete(persona);
+		} else {
+			System.out.println("No existe ninguna Persona con el id = " + id);
+		}
+		instancia.cerrar();
+	}
+
+	/**
+	 * Funcion que devuelve el numero entero escrito por teclado
+	 * 
+	 * @param sc Objeto de tipo Scanner que leera
+	 * @return Valor del numero entero escrito
 	 */
-	
-	
+	private static int leeInt(Scanner sc) {
+		// Numero decimal que devolverá la funcion, inicializado en -1
+		int intDevuelto = -1;
+
+		try {
+			// Le asignamos el int escrito por teclado
+			intDevuelto = sc.nextInt();
+
+			// Si se produce un InputMismatchException
+		} catch (InputMismatchException e) {
+			// Mostrará este mensaje
+			System.out.println("El valor introducido no es un número entero");
+		} finally {
+			// Siempre limpiamos el buffer
+			sc.nextLine();
+		}
+
+		// Devolverá el valor escrito por teclado, o -1 si no es del tipo correcto
+		return intDevuelto;
+	}
 
 	/**
 	 * Funcion que devuelve un numero decimal escrito por teclado. Si se introduce
@@ -175,7 +249,6 @@ public class Principal {
 			// Si se produce un InputMismatchException.
 		} catch (InputMismatchException e) {
 			// Mostrará este mensaje en caso de error.
-			System.out.print("\u001B[91mError: \u001B[0m"); // Color personalizado para el "error".
 			System.out
 					.println("El valor introducido no es un número o no ha usado punto \".\" como separador decimal.");
 		} finally {
