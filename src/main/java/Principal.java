@@ -37,6 +37,9 @@ public class Principal {
 				guardar(persona);
 
 				break;
+				
+			case 2:
+				
 
 			default:
 				break;

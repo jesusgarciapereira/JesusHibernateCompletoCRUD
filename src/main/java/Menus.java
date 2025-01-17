@@ -18,10 +18,16 @@ public class Menus {
 		System.out.println("Escriba una opción: ");
 	}
 	
-    /* Elija la opción que quiera realizar
-     * 1. Guardar Persona
-     * 2. Obtener Persona
-     * 3. Actualizar Persona
-     * 4. Borrar Persona
-     * */
+	static void submenuObtener() {
+		System.out.println("Obtener Persona:");
+		System.out.println("===============");
+		System.out.println("1. Por ID.");
+		System.out.println("2. Por nombre.");
+		System.out.println("3. Por saldo.");
+		System.out.println("0. Volver al Menú anterior.");
+		System.out.println();
+		System.out.println("Escriba una opción: ");
+	}
+	
+
 }
