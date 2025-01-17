@@ -19,11 +19,13 @@ public class Principal {
 		
 		EntidadPersona persona;
 
-		int opcion = -1;
+		int opcion;
+		int opcionSubmenuA;
 
 		do {
 			Menus.menuPrincipal();
 			opcion = leeInt(sc);
+			System.out.println();
 
 			switch (opcion) {
 			case 1:
@@ -39,6 +41,12 @@ public class Principal {
 				break;
 				
 			case 2:
+				
+				do {
+					Menus.submenuObtener();
+					opcionSubmenuA = leeInt(sc);
+					
+				} while (opcionSubmenuA != 0);
 				
 
 			default:
