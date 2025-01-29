@@ -20,10 +20,14 @@
 		<property name="current_session_context_class">thread</property>
 		<property name="hbm2ddl.auto">update</property>
 
-		<mapping class="EntidadPersona" />
 
+		<!-- Cuidado con esto, si no pones nada busca en el paquete por defecto -->
+		<!-- Debes poner SOLO las entidades que existan -->
 		<mapping class="AlumnoEntity" />
 		<mapping class="MatriculaEntity" />
 		<mapping class="ProfesorEntity" />
+		
+		<!-- Si estubiera en un paquete, debes poner su nombre -->
+		<!-- <mapping class="entity.AlumnoEntity" /> -->
 	</session-factory>
 </hibernate-configuration>
