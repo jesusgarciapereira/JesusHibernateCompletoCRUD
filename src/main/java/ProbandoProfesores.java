@@ -8,7 +8,7 @@ public class ProbandoProfesores {
 		
 		try {
 			FuncionesProfesores.leerTodos();
-			FuncionesProfesores.leerPorApellidos("hernández", "=");;
+			FuncionesProfesores.leerPorApellidos("Hernández", "=");;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
