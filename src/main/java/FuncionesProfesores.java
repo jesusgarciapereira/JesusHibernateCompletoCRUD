@@ -47,7 +47,7 @@ public class FuncionesProfesores {
 				System.out.println("antiguedad: " + profesor.getAntiguedad());
 			}
 		} else {
-			System.out.println("No existe ningún Profesor");
+			System.out.println("No existe ningún elemento en la tabla Profesor");
 		}
 
 		instancia.cerrar();
@@ -202,5 +202,23 @@ public class FuncionesProfesores {
 		instancia.cerrar();
 
 	}
+	
+//	static void actualizar(long id, String nombre, double saldo) throws Exception {
+//		instancia.abrir();
+//
+//		// Busca la persona por su ID
+//		EntidadPersona persona = instancia.getSesion().get(EntidadPersona.class, id);
+//
+//		if (persona != null) {
+//			// Actualiza los datos de la persona
+//			persona.setNombre(nombre);
+//			persona.setSaldo(saldo);
+//			instancia.getSesion().update(persona); // Actualiza la persona en la base de datos
+//		} else {
+//			System.out.println("No existe ninguna Persona con el id = " + id);
+//		}
+//
+//		instancia.cerrar();
+//	}
 
 }
