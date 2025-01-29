@@ -6,14 +6,35 @@ public class ProbandoProfesores {
 	public static void main(String[] args) {
 
 		
+		// MOSTRAR PROFESORES POR ANTIGUEDAD
 		try {
 			FuncionesProfesores.leerTodos();
-			FuncionesProfesores.leerPorApellidos("Hernández", "=");;
+			FuncionesProfesores.leerPorAntiguedad(140, ">");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("No se puede mostrar");
 		} 
+		
+		// MOSTRAR PROFESORES POR FECHANACIMIENTO
+//		try {
+//			FuncionesProfesores.leerTodos();
+//			FuncionesProfesores.leerPorFechaNacimiento(LocalDate.parse("1970-03-27"), "=");
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			System.out.println("No se puede mostrar");
+//		} 
+		
+		// MOSTRAR PROFESORES POR NOMBRE O APELLIDOS
+//		try {
+//			FuncionesProfesores.leerTodos();
+//			FuncionesProfesores.leerPorApellidos("Hernández", "=");
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			System.out.println("No se puede mostrar");
+//		} 
 		
 		
 		// MOSTRAR PROFESORES POR ID
