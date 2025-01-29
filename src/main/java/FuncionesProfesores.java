@@ -79,7 +79,7 @@ public class FuncionesProfesores {
 
 	}
 
-	static void leerPornombre(String nombre, String filtro) throws Exception {
+	static void leerPorNombre(String nombre, String filtro) throws Exception {
 		String consultaSQL;
 		
 		// Construye la consulta SQL según el filtro
@@ -107,6 +107,40 @@ public class FuncionesProfesores {
 			}
 		} else {
 			System.out.println("No existe ningún Profesor con el nombre " + filtro + " " + nombre);
+		}
+
+		instancia.cerrar();
+
+	}
+	
+	static void leerPorApellidos(String apellidos, String filtro) throws Exception {
+		String consultaSQL;
+		
+		// Construye la consulta SQL según el filtro
+		if (filtro.equals("=")) {
+			consultaSQL = "SELECT * FROM Profesores WHERE apellidos " + filtro + " '" + apellidos + "'";
+		} else {
+			consultaSQL = "SELECT * FROM Profesores WHERE apellidos " + filtro + " '%" + apellidos + "%'";
+		}
+
+		instancia.abrir();
+
+		List<ProfesorEntity> profesores = instancia.getSesion().createNativeQuery(consultaSQL, ProfesorEntity.class)
+				.getResultList();
+
+		if (!profesores.isEmpty()) {
+			for (ProfesorEntity profesor : profesores) {
+				System.out.println("-----------------------------");
+				System.out.println("idProfesor: " + profesor.getIdProfesor());
+				System.out.println("nombre: " + profesor.getNombre());
+				System.out.println("apellidos: " + profesor.getApellidos());
+				// Para que se vea en ese formato
+				System.out.println("fechaNacimiento: "
+						+ profesor.getFechaNacimiento().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+				System.out.println("antiguedad: " + profesor.getAntiguedad());
+			}
+		} else {
+			System.out.println("No existe ningún Profesor con apellidos " + filtro + " " + apellidos);
 		}
 
 		instancia.cerrar();
