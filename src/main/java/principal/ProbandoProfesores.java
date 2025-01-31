@@ -5,13 +5,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 import entidades.ProfesorEntity;
 import funciones.FuncionesProfesores;
 
 public class ProbandoProfesores {
 
-	// LOGICA:
+	public static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
 
@@ -22,27 +23,57 @@ public class ProbandoProfesores {
 //			e.printStackTrace();
 //		}
 
-		// ACTUALIZAR 
+		// ACTUALIZAR
 		List<Long> idsProfesores = new ArrayList<>();
 		// SI NO HAY NADIE
 //		String nombreColumna = "fechaNacimiento";
 //		String dato = "1988-01-01";
 		// SI SOLO HAY UNO
-		String nombreColumna = "nombre";
-		String dato = "Ana";
-		String columnaCambiada = "antiguedad";
-		String datoCambiado = "15";
+//		String nombreColumna = "nombre";
+//		String dato = "Ana";
+//		String columnaCambiada = "antiguedad";
+//		String datoCambiado = "15";
+
+		// SI HAY MAS DE UNO
+		String nombreColumna = "apellidos";
+		String dato = "Martínez";
+		String columnaCambiada = "apellidos";
+		String datoCambiado = "Cerezo";
+		Long idDeCambio;
 
 		try {
 			idsProfesores = FuncionesProfesores.buscaIDsPorColumna(nombreColumna, dato);
-			if (idsProfesores.size() == 0) {
+			if (idsProfesores.size() >= 1) {
+				idDeCambio = idsProfesores.get(0);
+				
+				if (idsProfesores.size() > 1) {
+					
+					switch (nombreColumna) {
+					case "nombre":
+						FuncionesProfesores.leerPorNombre(dato, "=");	
+						break;
+						
+					case "apellidos":
+						FuncionesProfesores.leerPorApellidos(dato, "=");	
+						break;
+
+					default:
+						break;
+					}
+					
+					System.out.println("Hay varios Profesores con " + nombreColumna + " = " + dato);
+					System.out.println("Escriba el id del Profesor que desea modificar:");
+					idDeCambio = sc.nextLong();
+				}
+				
+				FuncionesProfesores.actualizarPorId(idDeCambio, columnaCambiada, datoCambiado);
+				System.out.println("Profesor con " + nombreColumna + " = " + dato + " tiene ahora "
+						+ columnaCambiada + " = " + datoCambiado);
+			}else {
 				System.out.println("No existe ningún Profesor con " + nombreColumna + " = " + dato);
-			} else {
-				System.out.println(idsProfesores.get(0));  
-				FuncionesProfesores.actualizarPorId(idsProfesores.get(0), columnaCambiada, datoCambiado);
-				System.out.println(
-						"Profesor con " + nombreColumna + " = " + dato + " tiene ahora " + columnaCambiada + " = " + datoCambiado);
 			}
+
+			
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
