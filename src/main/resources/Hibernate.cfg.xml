@@ -23,9 +23,9 @@
 
 		<!-- Cuidado con esto, si no pones nada busca en el paquete por defecto -->
 		<!-- Debes poner SOLO las entidades que existan -->
-		<mapping class="AlumnoEntity" />
-		<mapping class="MatriculaEntity" />
-		<mapping class="ProfesorEntity" />
+		<mapping class="entidades.AlumnoEntity" />
+		<mapping class="entidades.MatriculaEntity" />
+		<mapping class="entidades.ProfesorEntity" />
 		
 		<!-- Si estubiera en un paquete, debes poner su nombre -->
 		<!-- <mapping class="entity.AlumnoEntity" /> -->

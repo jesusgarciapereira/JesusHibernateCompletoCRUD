@@ -1,11 +1,17 @@
+package funciones;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+
+import accesodb.Accesobd;
+import entidades.ProfesorEntity;
 
 public class FuncionesProfesores {
 	static Accesobd instancia = new Accesobd();
 
-	static void guardar(Object cosa) throws Exception {
+	public static void guardar(Object cosa) throws Exception {
 
 		ProfesorEntity profesor = (ProfesorEntity) cosa;
 
@@ -27,7 +33,7 @@ public class FuncionesProfesores {
 		instancia.cerrar();
 	}
 
-	static void leerTodos() throws Exception {
+	public static void leerTodos() throws Exception {
 		String consultaSQL = "SELECT * FROM Profesores";
 
 		instancia.abrir();
@@ -53,7 +59,7 @@ public class FuncionesProfesores {
 		instancia.cerrar();
 	}
 
-	static void leerPorId(long idProfesor, String filtro) throws Exception {
+	public static void leerPorId(long idProfesor, String filtro) throws Exception {
 		String consultaSQL = "SELECT * FROM Profesores WHERE idProfesor " + filtro + " " + idProfesor;
 
 		instancia.abrir();
@@ -80,7 +86,7 @@ public class FuncionesProfesores {
 
 	}
 
-	static void leerPorNombre(String nombre, String filtro) throws Exception {
+	public static void leerPorNombre(String nombre, String filtro) throws Exception {
 		String consultaSQL;
 
 		// Construye la consulta SQL según el filtro
@@ -114,7 +120,7 @@ public class FuncionesProfesores {
 
 	}
 
-	static void leerPorApellidos(String apellidos, String filtro) throws Exception {
+	public static void leerPorApellidos(String apellidos, String filtro) throws Exception {
 
 		String consultaSQL;
 
@@ -149,7 +155,7 @@ public class FuncionesProfesores {
 
 	}
 
-	static void leerPorFechaNacimiento(LocalDate fechaNacimiento, String filtro) throws Exception {
+	public static void leerPorFechaNacimiento(LocalDate fechaNacimiento, String filtro) throws Exception {
 		String consultaSQL = "SELECT * FROM Profesores WHERE fechaNacimiento " + filtro + " '" + fechaNacimiento + "'";
 
 		instancia.abrir();
@@ -175,8 +181,8 @@ public class FuncionesProfesores {
 		instancia.cerrar();
 
 	}
-	
-	static void leerPorAntiguedad(int antiguedad, String filtro) throws Exception {
+
+	public static void leerPorAntiguedad(int antiguedad, String filtro) throws Exception {
 		String consultaSQL = "SELECT * FROM Profesores WHERE antiguedad " + filtro + " " + antiguedad;
 
 		instancia.abrir();
@@ -202,23 +208,79 @@ public class FuncionesProfesores {
 		instancia.cerrar();
 
 	}
-	
-//	static void actualizar(long id, String nombre, double saldo) throws Exception {
-//		instancia.abrir();
-//
-//		// Busca la persona por su ID
-//		EntidadPersona persona = instancia.getSesion().get(EntidadPersona.class, id);
-//
-//		if (persona != null) {
-//			// Actualiza los datos de la persona
-//			persona.setNombre(nombre);
-//			persona.setSaldo(saldo);
-//			instancia.getSesion().update(persona); // Actualiza la persona en la base de datos
-//		} else {
-//			System.out.println("No existe ninguna Persona con el id = " + id);
-//		}
-//
-//		instancia.cerrar();
-//	}
 
+	public static List<Long> buscaIDsPorColumna(String nombreColumna, String dato) throws Exception {
+		
+		String hql = "";
+		instancia.abrir();
+		
+		List<Long> idsProfesores = new ArrayList<>();
+		
+		switch (nombreColumna) {
+		case "nombre":
+			hql = "SELECT p.id FROM ProfesorEntity p WHERE p.nombre = :nombre";
+			idsProfesores = instancia.getSesion().createQuery(hql, Long.class).setParameter("nombre", dato)
+					.getResultList();
+			break;
+		case "apellidos":
+			hql = "SELECT p.id FROM ProfesorEntity p WHERE p.apellidos = :apellidos";
+			idsProfesores = instancia.getSesion().createQuery(hql, Long.class).setParameter("apellidos", dato)
+					.getResultList();
+			break;
+		case "fechaNacimiento":
+			hql = "SELECT p.id FROM ProfesorEntity p WHERE p.fechaNacimiento = :fechaNacimiento";
+			idsProfesores = instancia.getSesion().createQuery(hql, Long.class).setParameter("fechaNacimiento", LocalDate.parse(dato))
+					.getResultList();
+			break;
+		case "antiguedad":
+			hql = "SELECT p.id FROM ProfesorEntity p WHERE p.antiguedad = :antiguedad";
+			idsProfesores = instancia.getSesion().createQuery(hql, Long.class).setParameter("antiguedad", Integer.valueOf(dato))
+					.getResultList();
+			break;
+
+		default:
+			break;
+		}
+		
+		instancia.cerrar();
+		
+		return idsProfesores;
+	}
+
+	public static void actualizarPorId(long id, String columnaCambiada, String datoCambiado) throws Exception {
+		instancia.abrir();
+
+		// Busca el Profesor por su id
+		ProfesorEntity profesor = instancia.getSesion().get(ProfesorEntity.class, id);
+
+		if (profesor != null) {
+			// Actualiza el dato elegido
+			switch (columnaCambiada) {
+			case "apellidos":
+				profesor.setApellidos(datoCambiado);
+				break;
+			case "fechaNacimiento":
+				profesor.setFechaNacimiento(LocalDate.parse(datoCambiado));
+				break;
+			case "antiguedad":
+				profesor.setAntiguedad(Integer.valueOf(datoCambiado));
+				break;
+
+			default:
+				break;
+			}
+
+			instancia.getSesion().update(profesor); // Actualiza el profesor en la base de datos
+			System.out.println(
+					"Profesor con id = " + id + " tiene ahora " + columnaCambiada + " = " + datoCambiado);
+		}
+		// Creo que esto no hace falta, lo pondre en el main
+		else {
+			System.out.println("No existe ninguna Persona con el id = " + id);
+		}
+
+		instancia.cerrar();
+	}
+
+	
 }

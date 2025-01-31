@@ -1,3 +1,4 @@
+package entidades;
 import java.io.Serializable;
 import java.time.LocalDate;
 
