@@ -113,7 +113,7 @@ public class FuncionesProfesores {
 				System.out.println("antiguedad: " + profesor.getAntiguedad());
 			}
 		} else {
-			System.out.println("No existe ningún Profesor con el nombre " + filtro + " " + nombre);
+			System.out.println("No existe ningún Profesor con nombre " + filtro + " " + nombre);
 		}
 
 		instancia.cerrar();
@@ -271,12 +271,13 @@ public class FuncionesProfesores {
 			}
 
 			instancia.getSesion().update(profesor); // Actualiza el profesor en la base de datos
+			// Esto quizas lo quite
 			System.out.println(
 					"Profesor con id = " + id + " tiene ahora " + columnaCambiada + " = " + datoCambiado);
 		}
 		// Creo que esto no hace falta, lo pondre en el main
 		else {
-			System.out.println("No existe ninguna Persona con el id = " + id);
+			System.out.println("No existe ningún Profesor con id = " + id);
 		}
 
 		instancia.cerrar();

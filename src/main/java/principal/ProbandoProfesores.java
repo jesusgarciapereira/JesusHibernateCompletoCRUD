@@ -15,19 +15,53 @@ public class ProbandoProfesores {
 
 	public static void main(String[] args) {
 
-		// ACTUALIZAR SI SOLO HAY UNO
-		List<Long> idsProfesores = new ArrayList<>(); 
-		
+//		try {
+//			FuncionesProfesores.leerTodos();
+//		} catch (Exception e) {
+//			System.out.println("No se puede mostrar");
+//			e.printStackTrace();
+//		}
+
+		// ACTUALIZAR 
+		List<Long> idsProfesores = new ArrayList<>();
+		// SI NO HAY NADIE
+//		String nombreColumna = "fechaNacimiento";
+//		String dato = "1988-01-01";
+		// SI SOLO HAY UNO
+		String nombreColumna = "nombre";
+		String dato = "Ana";
+		String columnaCambiada = "antiguedad";
+		String datoCambiado = "15";
+
 		try {
-			idsProfesores = FuncionesProfesores.buscaIDsPorColumna("nombre", "Ana");
-			System.out.println(idsProfesores.get(0));
-		//	FuncionesProfesores.leerTodos();
-			FuncionesProfesores.actualizarPorId(idsProfesores.get(0), "antiguedad", "15");
+			idsProfesores = FuncionesProfesores.buscaIDsPorColumna(nombreColumna, dato);
+			if (idsProfesores.size() == 0) {
+				System.out.println("No existe ningún Profesor con " + nombreColumna + " = " + dato);
+			} else {
+				System.out.println(idsProfesores.get(0));  
+				FuncionesProfesores.actualizarPorId(idsProfesores.get(0), columnaCambiada, datoCambiado);
+				System.out.println(
+						"Profesor con " + nombreColumna + " = " + dato + " tiene ahora " + columnaCambiada + " = " + datoCambiado);
+			}
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("No se puede mostrar");
 		}
+
+		// ACTUALIZAR SI SOLO HAY UNO
+//		List<Long> idsProfesores = new ArrayList<>(); 
+//		
+//		try {
+//			idsProfesores = FuncionesProfesores.buscaIDsPorColumna("nombre", "Ana");
+//			System.out.println(idsProfesores.get(0));
+//			FuncionesProfesores.actualizarPorId(idsProfesores.get(0), "antiguedad", "15");
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			System.out.println("No se puede mostrar");
+//		}
 
 		// MOSTRAR PROFESORES POR ANTIGUEDAD
 //		try {
