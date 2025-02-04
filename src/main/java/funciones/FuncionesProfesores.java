@@ -11,6 +11,7 @@ import entidades.ProfesorEntity;
 public class FuncionesProfesores {
 	static Accesobd instancia = new Accesobd();
 
+	// GUARDAR
 	public static void guardar(Object cosa) throws Exception {
 
 		ProfesorEntity profesor = (ProfesorEntity) cosa;
@@ -26,13 +27,13 @@ public class FuncionesProfesores {
 		System.out.println("nombre: " + profesor.getNombre());
 		System.out.println("apellidos: " + profesor.getApellidos());
 		// Para que se vea en ese formato
-		System.out.println("fechaNacimiento (dd-MM-aaaa): "
-				+ profesor.getFechaNacimiento().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+		System.out.println("fechaNacimiento (aaaa-mm-dd): " + profesor.getFechaNacimiento());
 		System.out.println("antiguedad: " + profesor.getAntiguedad());
 
 		instancia.cerrar();
 	}
 
+	// LEER
 	public static void leerTodos() throws Exception {
 		String consultaSQL = "SELECT * FROM Profesores";
 
@@ -48,8 +49,7 @@ public class FuncionesProfesores {
 				System.out.println("nombre: " + profesor.getNombre());
 				System.out.println("apellidos: " + profesor.getApellidos());
 				// Para que se vea en ese formato
-				System.out.println("fechaNacimiento (dd-MM-aaaa): "
-						+ profesor.getFechaNacimiento().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+				System.out.println("fechaNacimiento (aaaa-mm-dd): " + profesor.getFechaNacimiento());
 				System.out.println("antiguedad: " + profesor.getAntiguedad());
 			}
 		} else {
@@ -74,8 +74,7 @@ public class FuncionesProfesores {
 				System.out.println("nombre: " + profesor.getNombre());
 				System.out.println("apellidos: " + profesor.getApellidos());
 				// Para que se vea en ese formato
-				System.out.println("fechaNacimiento (dd-MM-aaaa): "
-						+ profesor.getFechaNacimiento().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+				System.out.println("fechaNacimiento (aaaa-mm-dd): " + profesor.getFechaNacimiento());
 				System.out.println("antiguedad: " + profesor.getAntiguedad());
 			}
 		} else {
@@ -108,8 +107,7 @@ public class FuncionesProfesores {
 				System.out.println("nombre: " + profesor.getNombre());
 				System.out.println("apellidos: " + profesor.getApellidos());
 				// Para que se vea en ese formato
-				System.out.println("fechaNacimiento (dd-MM-aaaa): "
-						+ profesor.getFechaNacimiento().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+				System.out.println("fechaNacimiento (aaaa-mm-dd): " + profesor.getFechaNacimiento());
 				System.out.println("antiguedad: " + profesor.getAntiguedad());
 			}
 		} else {
@@ -143,8 +141,7 @@ public class FuncionesProfesores {
 				System.out.println("nombre: " + profesor.getNombre());
 				System.out.println("apellidos: " + profesor.getApellidos());
 				// Para que se vea en ese formato
-				System.out.println("fechaNacimiento (dd-MM-aaaa): "
-						+ profesor.getFechaNacimiento().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+				System.out.println("fechaNacimiento (aaaa-mm-dd): " + profesor.getFechaNacimiento());
 				System.out.println("antiguedad: " + profesor.getAntiguedad());
 			}
 		} else {
@@ -170,8 +167,7 @@ public class FuncionesProfesores {
 				System.out.println("nombre: " + profesor.getNombre());
 				System.out.println("apellidos: " + profesor.getApellidos());
 				// Para que se vea en ese formato
-				System.out.println("fechaNacimiento (dd-MM-aaaa): "
-						+ profesor.getFechaNacimiento().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+				System.out.println("fechaNacimiento (aaaa-mm-dd): " + profesor.getFechaNacimiento());
 				System.out.println("antiguedad: " + profesor.getAntiguedad());
 			}
 		} else {
@@ -197,8 +193,7 @@ public class FuncionesProfesores {
 				System.out.println("nombre: " + profesor.getNombre());
 				System.out.println("apellidos: " + profesor.getApellidos());
 				// Para que se vea en ese formato
-				System.out.println("fechaNacimiento (dd-MM-aaaa): "
-						+ profesor.getFechaNacimiento().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+				System.out.println("fechaNacimiento (aaaa-mm-dd): " + profesor.getFechaNacimiento());
 				System.out.println("antiguedad: " + profesor.getAntiguedad());
 			}
 		} else {
@@ -210,12 +205,12 @@ public class FuncionesProfesores {
 	}
 
 	public static List<Long> buscaIDsPorColumna(String nombreColumna, String dato) throws Exception {
-		
+
 		String hql = "";
 		instancia.abrir();
-		
+
 		List<Long> idsProfesores = new ArrayList<>();
-		
+
 		switch (nombreColumna) {
 		case "nombre":
 			hql = "SELECT p.id FROM ProfesorEntity p WHERE p.nombre = :nombre";
@@ -229,25 +224,27 @@ public class FuncionesProfesores {
 			break;
 		case "fechaNacimiento":
 			hql = "SELECT p.id FROM ProfesorEntity p WHERE p.fechaNacimiento = :fechaNacimiento";
-			idsProfesores = instancia.getSesion().createQuery(hql, Long.class).setParameter("fechaNacimiento", LocalDate.parse(dato))
-					.getResultList();
+			idsProfesores = instancia.getSesion().createQuery(hql, Long.class)
+					.setParameter("fechaNacimiento", LocalDate.parse(dato)).getResultList();
 			break;
 		case "antiguedad":
 			hql = "SELECT p.id FROM ProfesorEntity p WHERE p.antiguedad = :antiguedad";
-			idsProfesores = instancia.getSesion().createQuery(hql, Long.class).setParameter("antiguedad", Integer.valueOf(dato))
-					.getResultList();
+			idsProfesores = instancia.getSesion().createQuery(hql, Long.class)
+					.setParameter("antiguedad", Integer.valueOf(dato)).getResultList();
 			break;
 
 		default:
 			break;
 		}
-		
+
 		instancia.cerrar();
-		
+
 		return idsProfesores;
 	}
 
-	public static void actualizarPorId(long id, String columnaCambiada, String datoCambiado) throws Exception {
+	public static boolean actualizarPorId(long id, String columnaCambiada, String datoCambiado) throws Exception {
+		boolean hecho = false;
+
 		instancia.abrir();
 
 		// Busca el Profesor por su id
@@ -256,6 +253,9 @@ public class FuncionesProfesores {
 		if (profesor != null) {
 			// Actualiza el dato elegido
 			switch (columnaCambiada) {
+			case "nombre":
+				profesor.setNombre(datoCambiado);
+				break;
 			case "apellidos":
 				profesor.setApellidos(datoCambiado);
 				break;
@@ -271,17 +271,12 @@ public class FuncionesProfesores {
 			}
 
 			instancia.getSesion().update(profesor); // Actualiza el profesor en la base de datos
-			// Esto quizas lo quite
-			System.out.println(
-					"Profesor con id = " + id + " tiene ahora " + columnaCambiada + " = " + datoCambiado);
-		}
-		// Creo que esto no hace falta, lo pondre en el main
-		else {
-			System.out.println("No existe ningún Profesor con id = " + id);
+			hecho = true;
 		}
 
 		instancia.cerrar();
+
+		return hecho;
 	}
 
-	
 }

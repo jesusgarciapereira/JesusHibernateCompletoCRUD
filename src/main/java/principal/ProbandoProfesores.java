@@ -22,76 +22,99 @@ public class ProbandoProfesores {
 //			System.out.println("No se puede mostrar");
 //			e.printStackTrace();
 //		}
+		
+		
 
-		// ACTUALIZAR
-		List<Long> idsProfesores = new ArrayList<>();
+		// ACTUALIZAR POR OTROS DATOS (NO ID)
+//		List<Long> idsProfesores = new ArrayList<>();
+//		Long idDeCambio;
+		
 		// SI NO HAY NADIE
 //		String nombreColumna = "fechaNacimiento";
 //		String dato = "1988-01-01";
+//		String columnaCambiada = "apellidos";
+//		String datoCambiado = "Cerezo";
+		
 		// SI SOLO HAY UNO
 //		String nombreColumna = "nombre";
 //		String dato = "Ana";
 //		String columnaCambiada = "antiguedad";
-//		String datoCambiado = "15";
+//		String datoCambiado = "5";
 
 		// SI HAY MAS DE UNO
-		String nombreColumna = "apellidos";
-		String dato = "Martínez";
-		String columnaCambiada = "apellidos";
-		String datoCambiado = "Cerezo";
-		Long idDeCambio;
-
-		try {
-			idsProfesores = FuncionesProfesores.buscaIDsPorColumna(nombreColumna, dato);
-			if (idsProfesores.size() >= 1) {
-				idDeCambio = idsProfesores.get(0);
-				
-				if (idsProfesores.size() > 1) {
-					
-					switch (nombreColumna) {
-					case "nombre":
-						FuncionesProfesores.leerPorNombre(dato, "=");	
-						break;
-						
-					case "apellidos":
-						FuncionesProfesores.leerPorApellidos(dato, "=");	
-						break;
-
-					default:
-						break;
-					}
-					
-					System.out.println("Hay varios Profesores con " + nombreColumna + " = " + dato);
-					System.out.println("Escriba el id del Profesor que desea modificar:");
-					idDeCambio = sc.nextLong();
-				}
-				
-				FuncionesProfesores.actualizarPorId(idDeCambio, columnaCambiada, datoCambiado);
-				System.out.println("Profesor con " + nombreColumna + " = " + dato + " tiene ahora "
-						+ columnaCambiada + " = " + datoCambiado);
-			}else {
-				System.out.println("No existe ningún Profesor con " + nombreColumna + " = " + dato);
-			}
-
-			
-
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.println("No se puede mostrar");
-		}
-
-		// ACTUALIZAR SI SOLO HAY UNO
-//		List<Long> idsProfesores = new ArrayList<>(); 
-//		
+//		String nombreColumna = "fechaNacimiento";
+//		String dato = "1980-05-15";
+//		String columnaCambiada = "nombre";
+//		String datoCambiado = "Agapito";
+//
 //		try {
-//			idsProfesores = FuncionesProfesores.buscaIDsPorColumna("nombre", "Ana");
-//			System.out.println(idsProfesores.get(0));
-//			FuncionesProfesores.actualizarPorId(idsProfesores.get(0), "antiguedad", "15");
+//			idsProfesores = FuncionesProfesores.buscaIDsPorColumna(nombreColumna, dato);
+//
+//			if (idsProfesores.size() > 1) {
+//
+//				switch (nombreColumna) {
+//				case "nombre":
+//					FuncionesProfesores.leerPorNombre(dato, "=");
+//					break;
+//
+//				case "apellidos":
+//					FuncionesProfesores.leerPorApellidos(dato, "=");
+//					break;
+//
+//				case "fechaNacimiento":
+//					FuncionesProfesores.leerPorFechaNacimiento(LocalDate.parse(dato), "=");
+//					;
+//					break;
+//				case "antiguedad":
+//					FuncionesProfesores.leerPorAntiguedad(Integer.parseInt(dato), "=");
+//					;
+//					break;
+//
+//				default:
+//					break;
+//				}
+//
+//				System.out.println("Hay varios Profesores con " + nombreColumna + " = " + dato);
+//				System.out.println("Escriba el id del Profesor que desea modificar:");
+//				idDeCambio = sc.nextLong();
+//
+//				if (FuncionesProfesores.actualizarPorId(idDeCambio, columnaCambiada, datoCambiado)) {
+//					System.out.println("Profesor con ID = " + idDeCambio + " tiene ahora " + columnaCambiada + " = "
+//							+ datoCambiado);
+//				} else {
+//					System.out.println("No existe ningún Profesor con ID = " + idDeCambio);
+//				}
+//			} else if (idsProfesores.size() == 1) {
+//				idDeCambio = idsProfesores.get(0);
+//
+//				FuncionesProfesores.actualizarPorId(idDeCambio, columnaCambiada, datoCambiado);
+//				System.out.println("Profesor con " + nombreColumna + " = " + dato + " tiene ahora " + columnaCambiada
+//						+ " = " + datoCambiado);
+//			} else {
+//				System.out.println("No existe ningún Profesor con " + nombreColumna + " = " + dato);
+//			}
+//
 //		} catch (Exception e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //			System.out.println("No se puede mostrar");
+//		}
+
+		// ACTUALIZAR POR ID
+//		Long idDeCambio = 3L;
+//		String columnaCambiada = "fechaNacimiento";
+//		String datoCambiado = "1990-07-21";
+//		try {
+//			if (FuncionesProfesores.actualizarPorId(idDeCambio, columnaCambiada, datoCambiado)) {
+//				System.out.println(
+//						"Profesor con ID = " + idDeCambio + " tiene ahora " + columnaCambiada + " = " + datoCambiado);
+//			} else {
+//				System.out.println("No existe ningún Profesor con ID = " + idDeCambio);
+//				
+//			}
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
 //		}
 
 		// MOSTRAR PROFESORES POR ANTIGUEDAD
