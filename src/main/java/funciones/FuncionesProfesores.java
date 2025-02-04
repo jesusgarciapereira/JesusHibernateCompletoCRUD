@@ -204,6 +204,16 @@ public class FuncionesProfesores {
 
 	}
 
+	public static List<Long> buscaIDsDeTodos() throws Exception {
+		String hql = "SELECT p.id FROM ProfesorEntity p";
+
+		instancia.abrir();
+		List<Long> idsProfesores = instancia.getSesion().createQuery(hql, Long.class).getResultList();
+		instancia.cerrar();
+
+		return idsProfesores;
+	}
+
 	public static List<Long> buscaIDsPorColumna(String nombreColumna, String dato) throws Exception {
 
 		String hql = "";
@@ -271,6 +281,24 @@ public class FuncionesProfesores {
 			}
 
 			instancia.getSesion().update(profesor); // Actualiza el profesor en la base de datos
+			hecho = true;
+		}
+
+		instancia.cerrar();
+
+		return hecho;
+	}
+
+	public static boolean borrarPorId(long id) throws Exception {
+		boolean hecho = false;
+
+		instancia.abrir();
+
+		// Busca la persona por su ID
+		ProfesorEntity profesor = instancia.getSesion().get(ProfesorEntity.class, id);
+
+		if (profesor != null) {
+			instancia.getSesion().delete(profesor); // Elimina el profesor de la base de datos
 			hecho = true;
 		}
 

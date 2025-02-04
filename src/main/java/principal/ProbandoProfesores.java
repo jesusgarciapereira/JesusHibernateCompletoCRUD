@@ -22,19 +22,130 @@ public class ProbandoProfesores {
 //			System.out.println("No se puede mostrar");
 //			e.printStackTrace();
 //		}
-		
-		
+
+		// BORRAR POR OTROS DATOS (NO ID)
+		List<Long> idsProfesores = new ArrayList<>();
+		Long idDeBorrado;
+
+		// SI NO HAY NADIE
+//		String nombreColumna = "fechaNacimiento";
+//		String dato = "1988-01-01";
+
+		// SI SOLO HAY UNO
+//		String nombreColumna = "nombre";
+//		String dato = "Ana";
+
+		// SI HAY MAS DE UNO
+		String nombreColumna = "fechaNacimiento";
+		String dato = "1980-05-15";
+
+		try {
+			System.out.println(
+					"¿Está seguro de que quiere borrar al Profesor con " + nombreColumna + " = " + dato + "? (s/n)");
+
+			if (sc.nextLine().equals("s")) {
+				idsProfesores = FuncionesProfesores.buscaIDsPorColumna(nombreColumna, dato);
+
+				if (idsProfesores.size() > 1) {
+
+					switch (nombreColumna) {
+					case "nombre":
+						FuncionesProfesores.leerPorNombre(dato, "=");
+						break;
+
+					case "apellidos":
+						FuncionesProfesores.leerPorApellidos(dato, "=");
+						break;
+
+					case "fechaNacimiento":
+						FuncionesProfesores.leerPorFechaNacimiento(LocalDate.parse(dato), "=");
+						;
+						break;
+					case "antiguedad":
+						FuncionesProfesores.leerPorAntiguedad(Integer.parseInt(dato), "=");
+						;
+						break;
+
+					default:
+						break;
+					}
+
+					System.out.println("Hay varios Profesores con " + nombreColumna + " = " + dato);
+					System.out.println("Escriba el id del Profesor que desea borrar:");
+					idDeBorrado = sc.nextLong();
+					sc.nextLine(); // Con la funcion pideLong() no hara falta
+
+					System.out.println(
+							"¿Está seguro de que quiere borrar al Profesor con ID = " + idDeBorrado + "? (s/n)");
+					if (sc.nextLine().equals("s")) {
+						if (FuncionesProfesores.borrarPorId(idDeBorrado)) {
+							System.out.println("Profesor con ID = " + idDeBorrado + " borrado");
+						} else {
+							System.out.println("No existe ningún Profesor con ID = " + idDeBorrado);
+						}
+					}
+				} else if (idsProfesores.size() == 1) {
+					idDeBorrado = idsProfesores.get(0);
+
+					FuncionesProfesores.borrarPorId(idDeBorrado);
+					System.out.println("Profesor con " + nombreColumna + " = " + dato + " borrado");
+				} else {
+					System.out.println("No existe ningún Profesor con " + nombreColumna + " = " + dato);
+				}
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("No se puede mostrar");
+		}
+
+		// BORRAR POR ID
+//		Long idDeBorrado = 1L;
+//
+//		try {
+//			System.out.println("¿Está seguro de que quiere borrar al Profesor con ID = " + idDeBorrado + "? (s/n)");
+//			if (sc.nextLine().equals("s")) {
+//
+//				if (FuncionesProfesores.borrarPorId(idDeBorrado)) {
+//
+//					System.out.println("Profesor con ID = " + idDeBorrado + " ha sido borrado");
+//				} else {
+//					System.out.println("No existe ningún Profesor con ID = " + idDeBorrado);
+//
+//				}
+//			}
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+
+		// BORRAR TODOS
+//		List<Long> idsProfesores = new ArrayList<>();
+//		try {			
+//			System.out.println("¿Está seguro de que quiere borrar a todos los Profesores? (s/n)");
+//			if (sc.nextLine().equals("s")) {
+//				idsProfesores = FuncionesProfesores.buscaIDsDeTodos();
+//				for (Long id : idsProfesores) {
+//					FuncionesProfesores.borrarPorId(id);					
+//				}
+//				System.out.println("Todos los profesores han sido borrados");
+//			}
+//
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 
 		// ACTUALIZAR POR OTROS DATOS (NO ID)
 //		List<Long> idsProfesores = new ArrayList<>();
 //		Long idDeCambio;
-		
+
 		// SI NO HAY NADIE
 //		String nombreColumna = "fechaNacimiento";
 //		String dato = "1988-01-01";
 //		String columnaCambiada = "apellidos";
 //		String datoCambiado = "Cerezo";
-		
+
 		// SI SOLO HAY UNO
 //		String nombreColumna = "nombre";
 //		String dato = "Ana";
@@ -192,7 +303,6 @@ public class ProbandoProfesores {
 //			e.printStackTrace();
 //			System.out.println("No se ha podido guardar");
 //		}
-//
-//	}
+
 	}
 }
