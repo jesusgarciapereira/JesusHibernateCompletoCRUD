@@ -21,16 +21,27 @@ public class ProbandoMatriculas {
 //			System.out.println("No se puede mostrar");
 //		} 
 		
-		// MOSTRAR MATRICULAS POR ALUMNO
+		// MOSTRAR MATRICULAS POR CURSO
 		try {
 			FuncionesMatriculas.leerTodos();
-			AlumnoEntity alumno = FuncionesAlumnos.getAlumnoPorId(4); 
-			FuncionesMatriculas.leerPorAlumno(alumno);
+
+			FuncionesMatriculas.leerPorCurso(2022, ">=");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("No se puede mostrar");
 		} 
+		
+		// MOSTRAR MATRICULAS POR ALUMNO
+//		try {
+//			FuncionesMatriculas.leerTodos();
+//			AlumnoEntity alumno = FuncionesAlumnos.getAlumnoPorId(4); 
+//			FuncionesMatriculas.leerPorAlumno(alumno);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			System.out.println("No se puede mostrar");
+//		} 
 		
 		// MOSTRAR MATRICULAS POR PROFESOR
 //		try {
