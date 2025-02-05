@@ -1,7 +1,6 @@
 package funciones;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -203,7 +202,7 @@ public class FuncionesProfesores {
 		instancia.cerrar();
 
 	}
-
+	// BUSQUEDAS ESPECIFICAS
 	public static List<Long> buscaIDsDeTodos() throws Exception {
 		String hql = "SELECT p.id FROM ProfesorEntity p";
 
@@ -252,6 +251,7 @@ public class FuncionesProfesores {
 		return idsProfesores;
 	}
 
+	// ACTUALIZAR
 	public static boolean actualizarPorId(long id, String columnaCambiada, String datoCambiado) throws Exception {
 		boolean hecho = false;
 
@@ -289,6 +289,7 @@ public class FuncionesProfesores {
 		return hecho;
 	}
 
+	// BORRAR
 	public static boolean borrarPorId(long id) throws Exception {
 		boolean hecho = false;
 
