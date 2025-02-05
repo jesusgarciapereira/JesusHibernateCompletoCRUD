@@ -71,19 +71,35 @@ public class ProbandoProfesores {
 					}
 
 					System.out.println("Hay varios Profesores con " + nombreColumna + " = " + dato);
-					System.out.println("Escriba el id del Profesor que desea borrar:");
+					System.out.println(
+							"Escriba el id del Profesor que desea borrar, o si lo prefiere, \"0\" para borrar a todos estos:");
 					idDeBorrado = sc.nextLong();
 					sc.nextLine(); // Con la funcion pideLong() no hara falta
 
-					System.out.println(
-							"¿Está seguro de que quiere borrar al Profesor con ID = " + idDeBorrado + "? (s/n)");
-					if (sc.nextLine().equals("s")) {
-						if (FuncionesProfesores.borrarPorId(idDeBorrado)) {
-							System.out.println("Profesor con ID = " + idDeBorrado + " borrado");
-						} else {
-							System.out.println("No existe ningún Profesor con ID = " + idDeBorrado);
+					if (idDeBorrado != 0) {
+						System.out.println(
+								"¿Está seguro de que quiere borrar al Profesor con ID = " + idDeBorrado + "? (s/n)");
+						if (sc.nextLine().equals("s")) {
+							if (FuncionesProfesores.borrarPorId(idDeBorrado)) {
+								System.out.println("Profesor con ID = " + idDeBorrado + " borrado");
+							} else {
+								System.out.println("No existe ningún Profesor con ID = " + idDeBorrado);
+							}
 						}
+
+					} else {
+						System.out.println(
+								"¿Está seguro de que quiere borrar a todos estos Profesores con " + nombreColumna + " = " + dato + "? (s/n)");
+						if (sc.nextLine().equals("s")) {
+							for (Long id : idsProfesores) {
+								FuncionesProfesores.borrarPorId(id);					
+							}
+							System.out.println("Todos los profesores con " + nombreColumna + " = " + dato + " han sido borrados");
+						}
+						
 					}
+					
+					
 				} else if (idsProfesores.size() == 1) {
 					idDeBorrado = idsProfesores.get(0);
 
