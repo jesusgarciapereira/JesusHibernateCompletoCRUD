@@ -12,14 +12,36 @@ public class ProbandoMatriculas {
 	public static void main(String[] args) {
 		
 		// MOSTRAR MATRICULAS POR ASIGNATURA
+//		try {
+//			FuncionesMatriculas.leerTodos();
+//			FuncionesMatriculas.leerPorAsignatura("fía", "LIKE");
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			System.out.println("No se puede mostrar");
+//		} 
+		
+		// MOSTRAR MATRICULAS POR ALUMNO
 		try {
 			FuncionesMatriculas.leerTodos();
-			FuncionesMatriculas.leerPorAsignatura("fía", "LIKE");
+			AlumnoEntity alumno = FuncionesAlumnos.getAlumnoPorId(4); 
+			FuncionesMatriculas.leerPorAlumno(alumno);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("No se puede mostrar");
 		} 
+		
+		// MOSTRAR MATRICULAS POR PROFESOR
+//		try {
+//			FuncionesMatriculas.leerTodos();
+//			ProfesorEntity profesor = FuncionesProfesores.getProfesorPorId(4);
+//			FuncionesMatriculas.leerPorProfesor(profesor);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			System.out.println("No se puede mostrar");
+//		} 
 		
 		// MOSTRAR MATRICULAS POR ID
 //		try {

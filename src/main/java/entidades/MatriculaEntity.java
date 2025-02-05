@@ -81,7 +81,4 @@ public class MatriculaEntity implements Serializable { // ¿Obligatorio Serializ
 	}
 	
 	
-	
-	
-
 }
