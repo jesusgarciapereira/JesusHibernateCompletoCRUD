@@ -10,23 +10,53 @@ import funciones.FuncionesProfesores;
 public class ProbandoMatriculas {
 
 	public static void main(String[] args) {
-
+		
+		// MOSTRAR MATRICULAS POR ASIGNATURA
 		try {
-			ProfesorEntity profesor = FuncionesProfesores.getProfesorPorId(2);
-			AlumnoEntity alumno = FuncionesAlumnos.getAlumnoPorId(4);
-			
-			if (profesor != null && alumno != null) {
-				MatriculaEntity matricula = new MatriculaEntity(profesor, alumno, "Geografía", 2020);
-				FuncionesMatriculas.guardar(matricula);
-			} else {
-				System.out.println("No se puede guardar la Matricula, Profesor y/o alumno insertado(s) no existe(n) en la Base de Datos");
-			}
-
+			FuncionesMatriculas.leerTodos();
+			FuncionesMatriculas.leerPorAsignatura("fía", "LIKE");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-
+			System.out.println("No se puede mostrar");
+		} 
+		
+		// MOSTRAR MATRICULAS POR ID
+//		try {
+//			FuncionesMatriculas.leerPorId(5, "=");
+//			;
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			System.out.println("No se puede mostrar");
+//		}
+		
+		// MOSTRAR TODAS LAS MATRICULAS
+//		try {
+//			FuncionesMatriculas.leerTodos();
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			System.out.println("No se puede mostrar");
+//		} 
+		
+		// GUARDAR MATRICULA
+//		try {
+//			ProfesorEntity profesor = FuncionesProfesores.getProfesorPorId(2);
+//			AlumnoEntity alumno = FuncionesAlumnos.getAlumnoPorId(4);
+//			
+//			if (profesor != null && alumno != null) {
+//				MatriculaEntity matricula = new MatriculaEntity(profesor, alumno, "Geografía", 2020);
+//				FuncionesMatriculas.guardar(matricula);
+//			} else {
+//				System.out.println("No se puede guardar la Matricula, Profesor y/o alumno insertado(s) no existe(n) en la Base de Datos");
+//			}
+//
+//		} catch (Exception e) {
+//
+//			e.printStackTrace();
+//		}
+		
 //		try {
 //			ProfesorEntity profesor1 = FuncionesProfesores.getProfesorPorId(1L);
 //			ProfesorEntity profesor2 = FuncionesProfesores.getProfesorPorId(2L);
