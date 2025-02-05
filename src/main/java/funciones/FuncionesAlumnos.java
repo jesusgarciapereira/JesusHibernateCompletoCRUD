@@ -21,7 +21,7 @@ public class FuncionesAlumnos {
 
 		instancia.guardar(cosa); // Guarda el objeto en la base de datos
 
-		System.out.println("----------------");
+		System.out.println("---------------");
 		System.out.println("Alumno guardado");
 		System.out.println("-----------------------------------------");
 		System.out.println("idAlumno: " + alumno.getIdAlumno());
@@ -185,7 +185,6 @@ public class FuncionesAlumnos {
 	}
 
 	public static List<Long> buscaIDsPorColumna(String nombreColumna, String dato) throws Exception {
-	
 
 		String hql = "";
 		instancia.abrir();
@@ -217,59 +216,70 @@ public class FuncionesAlumnos {
 
 		return idsAlumnos;
 	}
-	
+
 	// ACTUALIZAR
-		public static boolean actualizarPorId(long id, String columnaCambiada, String datoCambiado) throws Exception {
-			boolean hecho = false;
+	public static boolean actualizarPorId(long id, String columnaCambiada, String datoCambiado) throws Exception {
+		boolean hecho = false;
 
-			instancia.abrir();
+		instancia.abrir();
 
-			// Busca el Alumno por su id
-			AlumnoEntity alumno = instancia.getSesion().get(AlumnoEntity.class, id);
+		// Busca el Alumno por su id
+		AlumnoEntity alumno = instancia.getSesion().get(AlumnoEntity.class, id);
 
-			if (alumno != null) {
-				// Actualiza el dato elegido
-				switch (columnaCambiada) {
-				case "nombre":
-					alumno.setNombre(datoCambiado);
-					break;
-				case "apellidos":
-					alumno.setApellidos(datoCambiado);
-					break;
-				case "fechaNacimiento":
-					alumno.setFechaNacimiento(LocalDate.parse(datoCambiado));
-					break;
+		if (alumno != null) {
+			// Actualiza el dato elegido
+			switch (columnaCambiada) {
+			case "nombre":
+				alumno.setNombre(datoCambiado);
+				break;
+			case "apellidos":
+				alumno.setApellidos(datoCambiado);
+				break;
+			case "fechaNacimiento":
+				alumno.setFechaNacimiento(LocalDate.parse(datoCambiado));
+				break;
 
-				default:
-					break;
-				}
-
-				instancia.getSesion().update(alumno); // Actualiza el alumno en la base de datos
-				hecho = true;
+			default:
+				break;
 			}
 
-			instancia.cerrar();
-
-			return hecho;
+			instancia.getSesion().update(alumno); // Actualiza el alumno en la base de datos
+			hecho = true;
 		}
-		
-		// BORRAR
-		public static boolean borrarPorId(long id) throws Exception {
-			boolean hecho = false;
 
-			instancia.abrir();
+		instancia.cerrar();
 
-			// Busca la persona por su ID
-			AlumnoEntity alumno = instancia.getSesion().get(AlumnoEntity.class, id);
+		return hecho;
+	}
 
-			if (alumno != null) {
-				instancia.getSesion().delete(alumno); // Elimina el alumno de la base de datos
-				hecho = true;
-			}
+	// BORRAR
+	public static boolean borrarPorId(long id) throws Exception {
+		boolean hecho = false;
 
-			instancia.cerrar();
+		instancia.abrir();
 
-			return hecho;
+		// Busca la persona por su ID
+		AlumnoEntity alumno = instancia.getSesion().get(AlumnoEntity.class, id);
+
+		if (alumno != null) {
+			instancia.getSesion().delete(alumno); // Elimina el alumno de la base de datos
+			hecho = true;
 		}
+
+		instancia.cerrar();
+
+		return hecho;
+	}
+
+	// QUE TE DEVUELVA EL OBJETO
+	public static AlumnoEntity getAlumnoPorId(long id) throws Exception {
+		instancia.abrir();
+		// Busca el Profesor por su ID
+		AlumnoEntity alumno = instancia.getSesion().get(AlumnoEntity.class, id);
+
+		instancia.cerrar();
+		return alumno;
+
+	}
 
 }

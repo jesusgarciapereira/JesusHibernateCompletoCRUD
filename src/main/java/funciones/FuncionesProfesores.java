@@ -202,6 +202,7 @@ public class FuncionesProfesores {
 		instancia.cerrar();
 
 	}
+
 	// BUSQUEDAS ESPECIFICAS
 	public static List<Long> buscaIDsDeTodos() throws Exception {
 		String hql = "SELECT p.id FROM ProfesorEntity p";
@@ -295,7 +296,7 @@ public class FuncionesProfesores {
 
 		instancia.abrir();
 
-		// Busca la persona por su ID
+		// Busca el Profesor por su ID
 		ProfesorEntity profesor = instancia.getSesion().get(ProfesorEntity.class, id);
 
 		if (profesor != null) {
@@ -306,6 +307,17 @@ public class FuncionesProfesores {
 		instancia.cerrar();
 
 		return hecho;
+	}
+
+	// QUE TE DEVUELVA EL OBJETO
+	public static ProfesorEntity getProfesorPorId(long id) throws Exception {
+		instancia.abrir();
+		// Busca el Profesor por su ID
+		ProfesorEntity profesor = instancia.getSesion().get(ProfesorEntity.class, id);
+
+		instancia.cerrar();
+		return profesor;
+
 	}
 
 }

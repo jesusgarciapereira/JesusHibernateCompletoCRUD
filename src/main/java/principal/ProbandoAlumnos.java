@@ -14,8 +14,8 @@ public class ProbandoAlumnos {
 	public static void main(String[] args) {
 		
 		// BORRAR POR OTROS DATOS (NO ID)
-		List<Long> idsAlumnos = new ArrayList<>();
-		Long idDeBorrado;
+//		List<Long> idsAlumnos = new ArrayList<>();
+//		Long idDeBorrado;
 
 		// SI NO HAY NADIE
 //		String nombreColumna = "fechaNacimiento";
@@ -26,80 +26,80 @@ public class ProbandoAlumnos {
 //		String dato = "Sandra";
 
 		// SI HAY MAS DE UNO
-		String nombreColumna = "fechaNacimiento";
-		String dato = "2005-07-12";
+//		String nombreColumna = "fechaNacimiento";
+//		String dato = "2005-07-12";
 
-		try {
-			System.out.println(
-					"¿Está seguro de que quiere borrar al Alumno con " + nombreColumna + " = " + dato + "? (s/n)");
-
-			if (sc.nextLine().equals("s")) {
-				idsAlumnos = FuncionesAlumnos.buscaIDsPorColumna(nombreColumna, dato);
-
-				if (idsAlumnos.size() > 1) {
-
-					switch (nombreColumna) {
-					case "nombre":
-						FuncionesAlumnos.leerPorNombre(dato, "=");
-						break;
-
-					case "apellidos":
-						FuncionesAlumnos.leerPorApellidos(dato, "=");
-						break;
-
-					case "fechaNacimiento":
-						FuncionesAlumnos.leerPorFechaNacimiento(LocalDate.parse(dato), "=");
-						
-						break;
-
-					default:
-						break;
-					}
-
-					System.out.println("Hay varios Alumnos con " + nombreColumna + " = " + dato);
-					System.out.println(
-							"Escriba el id del Alumno que desea borrar, o si lo prefiere, \"0\" para borrar a todos estos:");
-					idDeBorrado = sc.nextLong();
-					sc.nextLine(); // Con la funcion pideLong() no hara falta
-
-					if (idDeBorrado != 0) {
-						System.out.println(
-								"¿Está seguro de que quiere borrar al Alumno con ID = " + idDeBorrado + "? (s/n)");
-						if (sc.nextLine().equals("s")) {
-							if (idsAlumnos.contains(idDeBorrado) && FuncionesAlumnos.borrarPorId(idDeBorrado)) {
-								System.out.println("Alumno con ID = " + idDeBorrado + " borrado");
-							} else {
-								System.out.println("No existe ningún Alumno con ID = " + idDeBorrado + " en la lista anteriormente mostrada");
-							}
-						}
-
-					} else {
-						System.out.println("¿Está seguro de que quiere borrar a todos estos Alumnos con "
-								+ nombreColumna + " = " + dato + "? (s/n)");
-						if (sc.nextLine().equals("s")) {
-							for (Long id : idsAlumnos) {
-								FuncionesAlumnos.borrarPorId(id);
-							}
-							System.out.println(
-									"Todos los Alumnos con " + nombreColumna + " = " + dato + " han sido borrados");
-						}
-
-					}
-
-				} else if (idsAlumnos.size() == 1) {
-					idDeBorrado = idsAlumnos.get(0);
-
-					FuncionesAlumnos.borrarPorId(idDeBorrado);
-					System.out.println("Alumno con " + nombreColumna + " = " + dato + " borrado");
-				} else {
-					System.out.println("No existe ningún Alumno con " + nombreColumna + " = " + dato);
-				}
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.println("No se puede mostrar");
-		}
+//		try {
+//			System.out.println(
+//					"¿Está seguro de que quiere borrar al Alumno con " + nombreColumna + " = " + dato + "? (s/n)");
+//
+//			if (sc.nextLine().equals("s")) {
+//				idsAlumnos = FuncionesAlumnos.buscaIDsPorColumna(nombreColumna, dato);
+//
+//				if (idsAlumnos.size() > 1) {
+//
+//					switch (nombreColumna) {
+//					case "nombre":
+//						FuncionesAlumnos.leerPorNombre(dato, "=");
+//						break;
+//
+//					case "apellidos":
+//						FuncionesAlumnos.leerPorApellidos(dato, "=");
+//						break;
+//
+//					case "fechaNacimiento":
+//						FuncionesAlumnos.leerPorFechaNacimiento(LocalDate.parse(dato), "=");
+//						
+//						break;
+//
+//					default:
+//						break;
+//					}
+//
+//					System.out.println("Hay varios Alumnos con " + nombreColumna + " = " + dato);
+//					System.out.println(
+//							"Escriba el id del Alumno que desea borrar, o si lo prefiere, \"0\" para borrar a todos estos:");
+//					idDeBorrado = sc.nextLong();
+//					sc.nextLine(); // Con la funcion pideLong() no hara falta
+//
+//					if (idDeBorrado != 0) {
+//						System.out.println(
+//								"¿Está seguro de que quiere borrar al Alumno con ID = " + idDeBorrado + "? (s/n)");
+//						if (sc.nextLine().equals("s")) {
+//							if (idsAlumnos.contains(idDeBorrado) && FuncionesAlumnos.borrarPorId(idDeBorrado)) {
+//								System.out.println("Alumno con ID = " + idDeBorrado + " borrado");
+//							} else {
+//								System.out.println("No existe ningún Alumno con ID = " + idDeBorrado + " en la lista anteriormente mostrada");
+//							}
+//						}
+//
+//					} else {
+//						System.out.println("¿Está seguro de que quiere borrar a todos estos Alumnos con "
+//								+ nombreColumna + " = " + dato + "? (s/n)");
+//						if (sc.nextLine().equals("s")) {
+//							for (Long id : idsAlumnos) {
+//								FuncionesAlumnos.borrarPorId(id);
+//							}
+//							System.out.println(
+//									"Todos los Alumnos con " + nombreColumna + " = " + dato + " han sido borrados");
+//						}
+//
+//					}
+//
+//				} else if (idsAlumnos.size() == 1) {
+//					idDeBorrado = idsAlumnos.get(0);
+//
+//					FuncionesAlumnos.borrarPorId(idDeBorrado);
+//					System.out.println("Alumno con " + nombreColumna + " = " + dato + " borrado");
+//				} else {
+//					System.out.println("No existe ningún Alumno con " + nombreColumna + " = " + dato);
+//				}
+//			}
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			System.out.println("No se puede mostrar");
+//		}
 		
 		// BORRAR POR ID
 //		Long idDeBorrado = 10L;
