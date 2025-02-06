@@ -32,6 +32,7 @@ public class ProbandoAlumnos {
 //		try {
 //			System.out.println(
 //					"¿Está seguro de que quiere borrar al Alumno con " + nombreColumna + " = " + dato + "? (s/n)");
+//			System.out.println("ADVERTENCIA: Se borrarán también las Matriculas asociadas a dicho Alumno");
 //
 //			if (sc.nextLine().equals("s")) {
 //				idsAlumnos = FuncionesAlumnos.buscaIDsPorColumna(nombreColumna, dato);
@@ -65,6 +66,8 @@ public class ProbandoAlumnos {
 //					if (idDeBorrado != 0) {
 //						System.out.println(
 //								"¿Está seguro de que quiere borrar al Alumno con ID = " + idDeBorrado + "? (s/n)");
+//						System.out.println("ADVERTENCIA: Se borrarán también las Matriculas asociadas a dicho Alumno");
+//
 //						if (sc.nextLine().equals("s")) {
 //							if (idsAlumnos.contains(idDeBorrado) && FuncionesAlumnos.borrarPorId(idDeBorrado)) {
 //								System.out.println("Alumno con ID = " + idDeBorrado + " borrado");
@@ -76,6 +79,8 @@ public class ProbandoAlumnos {
 //					} else {
 //						System.out.println("¿Está seguro de que quiere borrar a todos estos Alumnos con "
 //								+ nombreColumna + " = " + dato + "? (s/n)");
+//						System.out.println("ADVERTENCIA: Se borrarán también las Matriculas asociadas a dichos Alumnos");
+//
 //						if (sc.nextLine().equals("s")) {
 //							for (Long id : idsAlumnos) {
 //								FuncionesAlumnos.borrarPorId(id);
@@ -102,10 +107,11 @@ public class ProbandoAlumnos {
 //		}
 		
 		// BORRAR POR ID
-//		Long idDeBorrado = 10L;
+//		Long idDeBorrado = 1L;
 //
 //		try {
 //			System.out.println("¿Está seguro de que quiere borrar al Alumno con ID = " + idDeBorrado + "? (s/n)");
+//			System.out.println("ADVERTENCIA: Se borrarán también las Matriculas asociadas a dicho Alumno");
 //			if (sc.nextLine().equals("s")) {
 //
 //				if (FuncionesAlumnos.borrarPorId(idDeBorrado)) {
@@ -125,6 +131,7 @@ public class ProbandoAlumnos {
 //		List<Long> idsAlumnos = new ArrayList<>();
 //		try {			
 //			System.out.println("¿Está seguro de que quiere borrar a todos los Alumnos? (s/n)");
+//			System.out.println("ADVERTENCIA: Se borrarán también las Matriculas asociadas a dichos Alumnos");
 //			if (sc.nextLine().equals("s")) {
 //				idsAlumnos = FuncionesAlumnos.buscaIDsDeTodos();
 //				for (Long id : idsAlumnos) {
@@ -186,7 +193,8 @@ public class ProbandoAlumnos {
 //				System.out.println(
 //						"Escriba el idAlumno del Alumno que desea modificar, o si lo prefiere, \"0\" para modificar a todos estos:");
 //				idDeCambio = sc.nextLong();
-//
+//				sc.nextLine(); // Con la funcion pideLong() no hara falta
+		
 //				if (idDeCambio != 0) {
 //					if (idsAlumnos.contains(idDeCambio) && FuncionesAlumnos.actualizarPorId(idDeCambio, columnaCambiada, datoCambiado)) {
 //						System.out.println("Alumno con ID = " + idDeCambio + " tiene ahora " + columnaCambiada + " = "

@@ -397,4 +397,23 @@ public class FuncionesMatriculas {
 
 		return hecho;
 	}
+	
+	// BORRAR
+		public static boolean borrarPorId(long id) throws Exception {
+			boolean hecho = false;
+
+			instancia.abrir();
+
+			// Busca la matricula por su ID
+			MatriculaEntity matricula = instancia.getSesion().get(MatriculaEntity.class, id);
+
+			if (matricula != null) {
+				instancia.getSesion().delete(matricula); // Elimina el alumno de la base de datos
+				hecho = true;
+			}
+
+			instancia.cerrar();
+
+			return hecho;
+		}
 }

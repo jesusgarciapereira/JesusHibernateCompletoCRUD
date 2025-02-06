@@ -1,6 +1,7 @@
 package entidades;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -25,6 +26,9 @@ public class ProfesorEntity implements Serializable{ // ¿Obligatorio Serializab
 	@Column(name="antiguedad")
 	private int antiguedad;
 	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idProfesor")
+	private List<MatriculaEntity> matriculas;
 
 	// CONSTRUCTORES
 	

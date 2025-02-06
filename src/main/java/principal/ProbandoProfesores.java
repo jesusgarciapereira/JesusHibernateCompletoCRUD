@@ -42,6 +42,7 @@ public class ProbandoProfesores {
 //		try {
 //			System.out.println(
 //					"¿Está seguro de que quiere borrar al Profesor con " + nombreColumna + " = " + dato + "? (s/n)");
+//			System.out.println("ADVERTENCIA: Se borrarán también las Matriculas asociadas a dicho Profesor");
 //
 //			if (sc.nextLine().equals("s")) {
 //				idsProfesores = FuncionesProfesores.buscaIDsPorColumna(nombreColumna, dato);
@@ -79,6 +80,7 @@ public class ProbandoProfesores {
 //					if (idDeBorrado != 0) {
 //						System.out.println(
 //								"¿Está seguro de que quiere borrar al Profesor con ID = " + idDeBorrado + "? (s/n)");
+//						System.out.println("ADVERTENCIA: Se borrarán también las Matriculas asociadas a dicho Profesor");
 //						if (sc.nextLine().equals("s")) {
 //							if (idsProfesores.contains(idDeBorrado) && FuncionesProfesores.borrarPorId(idDeBorrado)) {
 //								System.out.println("Profesor con ID = " + idDeBorrado + " borrado");
@@ -90,6 +92,7 @@ public class ProbandoProfesores {
 //					} else {
 //						System.out.println("¿Está seguro de que quiere borrar a todos estos Profesores con "
 //								+ nombreColumna + " = " + dato + "? (s/n)");
+//						System.out.println("ADVERTENCIA: Se borrarán también las Matriculas asociadas a dichos Profesores");
 //						if (sc.nextLine().equals("s")) {
 //							for (Long id : idsProfesores) {
 //								FuncionesProfesores.borrarPorId(id);
@@ -116,10 +119,11 @@ public class ProbandoProfesores {
 //		}
 
 		// BORRAR POR ID
-//		Long idDeBorrado = 1L;
+//		Long idDeBorrado = 2L;
 //
 //		try {
 //			System.out.println("¿Está seguro de que quiere borrar al Profesor con ID = " + idDeBorrado + "? (s/n)");
+//			System.out.println("ADVERTENCIA: Se borrarán también las Matriculas asociadas a dicho Profesor");
 //			if (sc.nextLine().equals("s")) {
 //
 //				if (FuncionesProfesores.borrarPorId(idDeBorrado)) {
@@ -139,6 +143,8 @@ public class ProbandoProfesores {
 //		List<Long> idsProfesores = new ArrayList<>();
 //		try {			
 //			System.out.println("¿Está seguro de que quiere borrar a todos los Profesores? (s/n)");
+//			System.out.println("ADVERTENCIA: Se borrarán también las Matriculas asociadas a dichos Profesores");
+//
 //			if (sc.nextLine().equals("s")) {
 //				idsProfesores = FuncionesProfesores.buscaIDsDeTodos();
 //				for (Long id : idsProfesores) {

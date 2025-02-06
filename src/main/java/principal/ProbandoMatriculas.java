@@ -1,23 +1,148 @@
 package principal;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
+import entidades.AlumnoEntity;
+import entidades.MatriculaEntity;
+import entidades.ProfesorEntity;
 import funciones.FuncionesAlumnos;
 import funciones.FuncionesMatriculas;
 import funciones.FuncionesProfesores;
 
 public class ProbandoMatriculas {
-	
+
 	public static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		
+		// BORRAR POR OTROS DATOS (NO ID)
+//		List<Long> idsMatriculas = new ArrayList<>();
+//		Long idDeBorrado;
+
+		// SI NO HAY NADIE
+//		String nombreColumna = "idProfesor";
+//		String dato = "6";
+
+		// SI SOLO HAY UNO
+//		String nombreColumna = "idProfesor";
+//		String dato = "3";
+
+		// SI HAY MAS DE UNO
+//		String nombreColumna = "asignatura";
+//		String dato = "matemáticas";
+
+//		try {
+//			System.out.println(
+//					"¿Está seguro de que quiere borrar la Matricula con " + nombreColumna + " = " + dato + "? (s/n)");
+//			if (sc.nextLine().equals("s")) {
+//				idsMatriculas = FuncionesMatriculas.buscaIDsPorColumna(nombreColumna, dato);
+//
+//				if (idsMatriculas.size() > 1) {
+//
+//					switch (nombreColumna) {
+//					case "idProfesor":
+//						FuncionesMatriculas.leerPorProfesor(FuncionesProfesores.getProfesorPorId(Long.valueOf(dato)));
+//						break;
+//
+//					case "idAlumno":
+//						FuncionesMatriculas.leerPorAlumno(FuncionesAlumnos.getAlumnoPorId(Long.valueOf(dato)));
+//						break;
+//
+//					case "asignatura":
+//						FuncionesMatriculas.leerPorAsignatura(dato, "=");
+//						break;
+//
+//					case "curso":
+//						FuncionesMatriculas.leerPorCurso(Integer.valueOf(dato), "=");
+//						break;
+//
+//					default:
+//						break;
+//					}
+//
+//					System.out.println("Hay varias Matriculas con " + nombreColumna + " = " + dato);
+//					System.out.println(
+//							"Escriba el idMatricula de la Matricula que desea borrar, o si lo prefiere, \"0\" para borrar a todas estas:");
+//					idDeBorrado = sc.nextLong();
+//					sc.nextLine();
+//
+//					if (idDeBorrado != 0) {
+//
+//						System.out.println(
+//								"¿Está seguro de que quiere borrar la Matricula con ID = " + idDeBorrado + "? (s/n)");
+//						if (sc.nextLine().equals("s")) {
+//							if (idsMatriculas.contains(idDeBorrado) && FuncionesMatriculas.borrarPorId(idDeBorrado)) {
+//								System.out.println("Matricula con ID = " + idDeBorrado + " borrada");
+//							} else {
+//								System.out.println("No existe ninguna Matricula con ID = " + idDeBorrado
+//										+ " en la lista anteriormente mostrada");
+//							}
+//						}
+//					} else {
+//						System.out.println("¿Está seguro de que quiere borrar todas estas Matriculas con "
+//								+ nombreColumna + " = " + dato + "? (s/n)");
+//						if (sc.nextLine().equals("s")) {
+//							for (Long id : idsMatriculas) {
+//								FuncionesMatriculas.borrarPorId(id);
+//							}
+//							System.out.println(
+//									"Todas las Matriculas con " + nombreColumna + " = " + dato + " han sido borradas");
+//						}
+//					}
+//				} else if (idsMatriculas.size() == 1) {
+//					idDeBorrado = idsMatriculas.get(0);
+//
+//					FuncionesMatriculas.borrarPorId(idDeBorrado);
+//					System.out.println("Matricula con " + nombreColumna + " = " + dato + " borrada");
+//
+//				} else {
+//					System.out.println("No existe ninguna Matricula con " + nombreColumna + " = " + dato);
+//				}
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			System.out.println("No se puede mostrar");
+//		}
+
+		// BORRAR POR ID
+//		Long idDeBorrado = 8L;
+//
+//		try {
+//			System.out.println("¿Está seguro de que quiere borrar la Matricula con ID = " + idDeBorrado + "? (s/n)");
+//			if (sc.nextLine().equals("s")) {
+//
+//				if (FuncionesMatriculas.borrarPorId(idDeBorrado)) {
+//
+//					System.out.println("Matricula con ID = " + idDeBorrado + " ha sido borrada");
+//				} else {
+//					System.out.println("No existe ninguna Matricula con ID = " + idDeBorrado);
+//
+//				}
+//			}
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+
+		// BORRAR TODOS
+//		List<Long> idsMatriculas = new ArrayList<>();
+//		try {			
+//			System.out.println("¿Está seguro de que quiere borrar todas las Matrículas? (s/n)");
+//			if (sc.nextLine().equals("s")) {
+//				idsMatriculas = FuncionesMatriculas.buscaIDsDeTodos();
+//				for (Long id : idsMatriculas) {
+//					FuncionesMatriculas.borrarPorId(id);					
+//				}
+//				System.out.println("Todas las Matrículas han sido borradas");
+//			}
+//
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+
 		// ACTUALIZAR POR OTROS DATOS (NO ID)
-		List<Long> idsMatriculas = new ArrayList<>();
-		Long idDeCambio;
+//		List<Long> idsMatriculas = new ArrayList<>();
+//		Long idDeCambio;
 
 		// SI NO HAY NADIE
 //		String nombreColumna = "idAlumno";
@@ -32,81 +157,81 @@ public class ProbandoMatriculas {
 //		String datoCambiado = "3";
 
 		// SI HAY MAS DE UNO
-		String nombreColumna = "asignatura";
-		String dato = "Matemáticas";
-		String columnaCambiada = "curso";
-		String datoCambiado = "1996";
+//		String nombreColumna = "asignatura";
+//		String dato = "Matemáticas";
+//		String columnaCambiada = "curso";
+//		String datoCambiado = "1996";
 
-		try {
-			idsMatriculas = FuncionesMatriculas.buscaIDsPorColumna(nombreColumna, dato);
-
-			if (idsMatriculas.size() > 1) {
-
-				switch (nombreColumna) {
-				case "idProfesor":
-					FuncionesMatriculas.leerPorProfesor(FuncionesProfesores.getProfesorPorId(Long.valueOf(dato)));
-					break;
-					
-				case "idAlumno":
-					FuncionesMatriculas.leerPorAlumno(FuncionesAlumnos.getAlumnoPorId(Long.valueOf(dato)));
-					break;
-				
-				case "asignatura":
-					FuncionesMatriculas.leerPorAsignatura(dato, "=");
-					break;
-
-				case "curso":
-					FuncionesMatriculas.leerPorCurso(Integer.valueOf(dato), "=");
-					break;
-
-
-				default:
-					break;
-				}
-
-				System.out.println("Hay varias Matriculas con " + nombreColumna + " = " + dato);
-				System.out.println(
-						"Escriba el idMatricula de la Matricula que desea modificar, o si lo prefiere, \"0\" para modificar a todas estas:");
-				idDeCambio = sc.nextLong();
-
-				if (idDeCambio != 0) {
-					if (idsMatriculas.contains(idDeCambio) && FuncionesMatriculas.actualizarPorId(idDeCambio, columnaCambiada, datoCambiado)) {
-						System.out.println("Matricula con ID = " + idDeCambio + " tiene ahora " + columnaCambiada + " = "
-								+ datoCambiado);
-					} else {
-						System.out.println("No existe ninguna Matricula con ID = " + idDeCambio + " en la lista anteriormente mostrada");
-					}
-				} else {
-					for (Long id : idsMatriculas) {
-						FuncionesMatriculas.actualizarPorId(id, columnaCambiada, datoCambiado);
-					}
-					System.out.println(
-							"Todas las Matriculas con " + nombreColumna + " = " + dato + " tienen ahora " + columnaCambiada + " = "
-									+ datoCambiado);
-				}
-
-			} else if (idsMatriculas.size() == 1) {
-				idDeCambio = idsMatriculas.get(0);
-
-				if (FuncionesMatriculas.actualizarPorId(idDeCambio, columnaCambiada, datoCambiado)) {
-					System.out.println("Matricula con " + nombreColumna + " = " + dato + " tiene ahora " + columnaCambiada
-							+ " = " + datoCambiado);
-				} else {
-					if (columnaCambiada.equals("idProfesor")) {
-						System.out.println("No existe ningún Profesor con idProfesor = " + datoCambiado);
-					} else if (columnaCambiada.equals("idAlumno")) {
-						System.out.println("No existe ningún Alumno con idAlumno = " + datoCambiado);
-					}
-				}
-				
-			} else {
-				System.out.println("No existe ninguna Matricula con " + nombreColumna + " = " + dato);
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("No se puede mostrar");
-		}
+//		try {
+//			idsMatriculas = FuncionesMatriculas.buscaIDsPorColumna(nombreColumna, dato);
+//
+//			if (idsMatriculas.size() > 1) {
+//
+//				switch (nombreColumna) {
+//				case "idProfesor":
+//					FuncionesMatriculas.leerPorProfesor(FuncionesProfesores.getProfesorPorId(Long.valueOf(dato)));
+//					break;
+//					
+//				case "idAlumno":
+//					FuncionesMatriculas.leerPorAlumno(FuncionesAlumnos.getAlumnoPorId(Long.valueOf(dato)));
+//					break;
+//				
+//				case "asignatura":
+//					FuncionesMatriculas.leerPorAsignatura(dato, "=");
+//					break;
+//
+//				case "curso":
+//					FuncionesMatriculas.leerPorCurso(Integer.valueOf(dato), "=");
+//					break;
+//
+//
+//				default:
+//					break;
+//				}
+//
+//				System.out.println("Hay varias Matriculas con " + nombreColumna + " = " + dato);
+//				System.out.println(
+//						"Escriba el idMatricula de la Matricula que desea modificar, o si lo prefiere, \"0\" para modificar a todas estas:");
+//				idDeCambio = sc.nextLong();
+//
+//				if (idDeCambio != 0) {
+//					if (idsMatriculas.contains(idDeCambio) && FuncionesMatriculas.actualizarPorId(idDeCambio, columnaCambiada, datoCambiado)) {
+//						System.out.println("Matricula con ID = " + idDeCambio + " tiene ahora " + columnaCambiada + " = "
+//								+ datoCambiado);
+//					} else {
+//						System.out.println("No existe ninguna Matricula con ID = " + idDeCambio + " en la lista anteriormente mostrada");
+//					}
+//				} else {
+//					for (Long id : idsMatriculas) {
+//						FuncionesMatriculas.actualizarPorId(id, columnaCambiada, datoCambiado);
+//					}
+//					System.out.println(
+//							"Todas las Matriculas con " + nombreColumna + " = " + dato + " tienen ahora " + columnaCambiada + " = "
+//									+ datoCambiado);
+//				}
+//
+//			} else if (idsMatriculas.size() == 1) {
+//				idDeCambio = idsMatriculas.get(0);
+//
+//				if (FuncionesMatriculas.actualizarPorId(idDeCambio, columnaCambiada, datoCambiado)) {
+//					System.out.println("Matricula con " + nombreColumna + " = " + dato + " tiene ahora " + columnaCambiada
+//							+ " = " + datoCambiado);
+//				} else {
+//					if (columnaCambiada.equals("idProfesor")) {
+//						System.out.println("No existe ningún Profesor con idProfesor = " + datoCambiado);
+//					} else if (columnaCambiada.equals("idAlumno")) {
+//						System.out.println("No existe ningún Alumno con idAlumno = " + datoCambiado);
+//					}
+//				}
+//				
+//			} else {
+//				System.out.println("No existe ninguna Matricula con " + nombreColumna + " = " + dato);
+//			}
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			System.out.println("No se puede mostrar");
+//		}
 
 		// ACTUALIZAR POR ID
 //		Long idDeCambio = 3L;
@@ -194,8 +319,8 @@ public class ProbandoMatriculas {
 
 		// GUARDAR MATRICULA
 //		try {
-//			ProfesorEntity profesor = FuncionesProfesores.getProfesorPorId(2);
-//			AlumnoEntity alumno = FuncionesAlumnos.getAlumnoPorId(4);
+//			ProfesorEntity profesor = FuncionesProfesores.getProfesorPorId(3);
+//			AlumnoEntity alumno = FuncionesAlumnos.getAlumnoPorId(3);
 //			
 //			if (profesor != null && alumno != null) {
 //				MatriculaEntity matricula = new MatriculaEntity(profesor, alumno, "Geografía", 2020);
