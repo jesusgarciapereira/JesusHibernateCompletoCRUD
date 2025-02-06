@@ -1,5 +1,7 @@
 package funciones;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import accesodb.Accesobd;
@@ -159,14 +161,15 @@ public class FuncionesMatriculas {
 				System.out.println("curso: " + matricula.getCurso());
 			}
 		} else {
-			System.out.println("No existe ninguna Matricula correspondiente con el Profesor con id?rofesor = " + profesor.getIdProfesor());
-			
+			System.out.println("No existe ninguna Matricula correspondiente con el Profesor con id?rofesor = "
+					+ profesor.getIdProfesor());
+
 		}
 
 		instancia.cerrar();
 
 	}
-	
+
 	public static void leerPorAlumno(AlumnoEntity alumno) throws Exception {
 
 		String consultaSQL = "SELECT * FROM Matriculas WHERE idAlumno = " + alumno.getIdAlumno();
@@ -201,8 +204,9 @@ public class FuncionesMatriculas {
 				System.out.println("curso: " + matricula.getCurso());
 			}
 		} else {
-			System.out.println("No existe ninguna Matricula correspondiente con el Alumno con idAlumno = " + alumno.getIdAlumno());
-			
+			System.out.println(
+					"No existe ninguna Matricula correspondiente con el Alumno con idAlumno = " + alumno.getIdAlumno());
+
 		}
 
 		instancia.cerrar();
@@ -255,7 +259,7 @@ public class FuncionesMatriculas {
 		instancia.cerrar();
 
 	}
-	
+
 	public static void leerPorCurso(int curso, String filtro) throws Exception {
 		String consultaSQL = "SELECT * FROM Matriculas WHERE curso  " + filtro + " " + curso;
 
@@ -294,5 +298,103 @@ public class FuncionesMatriculas {
 
 		instancia.cerrar();
 
+	}
+
+	// BUSQUEDAS ESPECIFICAS
+	public static List<Long> buscaIDsDeTodos() throws Exception {
+		String hql = "SELECT p.id FROM MatriculaEntity p";
+
+		instancia.abrir();
+		List<Long> idsMatriculas = instancia.getSesion().createQuery(hql, Long.class).getResultList();
+		instancia.cerrar();
+
+		return idsMatriculas;
+	}
+
+	public static List<Long> buscaIDsPorColumna(String nombreColumna, String dato) throws Exception {
+
+		String hql = "";
+		instancia.abrir();
+
+		List<Long> idsMatriculas = new ArrayList<>();
+
+		switch (nombreColumna) {
+		case "idProfesor":
+			hql = "SELECT p.id FROM MatriculaEntity p WHERE p.profesor.idProfesor = :idProfesor";
+			idsMatriculas = instancia.getSesion().createQuery(hql, Long.class).setParameter("idProfesor", Long.valueOf(dato))
+					.getResultList();
+			break;
+		case "idAlumno":
+			hql = "SELECT p.id FROM MatriculaEntity p WHERE p.alumno.idAlumno = :idAlumno";
+			idsMatriculas = instancia.getSesion().createQuery(hql, Long.class).setParameter("idAlumno", Long.valueOf(dato))
+					.getResultList();
+			break;
+		case "asignatura":
+			hql = "SELECT p.id FROM MatriculaEntity p WHERE p.asignatura = :asignatura";
+			idsMatriculas = instancia.getSesion().createQuery(hql, Long.class)
+					.setParameter("asignatura", dato).getResultList();
+			break;
+		case "curso":
+			hql = "SELECT p.id FROM MatriculaEntity p WHERE p.curso = :curso";
+			idsMatriculas = instancia.getSesion().createQuery(hql, Long.class)
+					.setParameter("curso", Integer.valueOf(dato)).getResultList();
+			break;
+
+		default:
+			break;
+		}
+
+		instancia.cerrar();
+
+		return idsMatriculas;
+	}
+
+	// ACTUALIZAR
+	public static boolean actualizarPorId(long id, String columnaCambiada, String datoCambiado) throws Exception {
+		ProfesorEntity profesor = null;
+		AlumnoEntity alumno = null;
+		boolean hecho = false;
+
+		instancia.abrir();
+
+		// Busca el Matricula por su id
+		MatriculaEntity matricula = instancia.getSesion().get(MatriculaEntity.class, id);
+
+		if (matricula != null) {
+			// Actualiza el dato elegido
+			switch (columnaCambiada) {
+			case "idProfesor":
+				profesor = FuncionesProfesores.getProfesorPorId(Long.valueOf(datoCambiado));
+				matricula.setProfesor(profesor);
+				break;
+			case "idAlumno":
+				alumno = FuncionesAlumnos.getAlumnoPorId(Long.valueOf(datoCambiado));
+				matricula.setAlumno(alumno);
+				break;
+			case "asignatura":
+				matricula.setAsignatura(datoCambiado);
+				;
+				break;
+			case "curso":
+				matricula.setCurso(Integer.valueOf(datoCambiado));
+				break;
+
+			default:
+				break;
+			}
+
+			if (columnaCambiada.equals("asignatura") || columnaCambiada.equals("curso")
+					|| columnaCambiada.equals("idProfesor") && profesor != null
+					|| columnaCambiada.equals("idAlumno") && alumno != null) {
+				
+				instancia.getSesion().update(matricula); // Actualiza la matricula en la base de datos
+				hecho = true;
+			}
+
+		}
+
+		instancia.cerrar();
+
+		return hecho;
 	}
 }

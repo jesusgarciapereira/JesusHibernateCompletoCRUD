@@ -184,7 +184,7 @@ public class ProbandoAlumnos {
 //
 //				System.out.println("Hay varios Alumnos con " + nombreColumna + " = " + dato);
 //				System.out.println(
-//						"Escriba el id del Alumno que desea modificar, o si lo prefiere, \"0\" para modificar a todos estos:");
+//						"Escriba el idAlumno del Alumno que desea modificar, o si lo prefiere, \"0\" para modificar a todos estos:");
 //				idDeCambio = sc.nextLong();
 //
 //				if (idDeCambio != 0) {

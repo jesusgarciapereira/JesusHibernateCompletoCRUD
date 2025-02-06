@@ -44,7 +44,7 @@ public class Accesobd {
      */
     protected void setUp() {
     	
-    	java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);// Modificar a tu gusto
+    	// java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);// Modificar a tu gusto
     	
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // Carga la configuración de hibernate.cfg.xml por defecto

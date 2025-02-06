@@ -203,7 +203,7 @@ public class ProbandoProfesores {
 //
 //				System.out.println("Hay varios Profesores con " + nombreColumna + " = " + dato);
 //				System.out.println(
-//						"Escriba el id del Profesor que desea modificar, o si lo prefiere, \"0\" para modificar a todos estos:");
+//						"Escriba el idProfesor del Profesor que desea modificar, o si lo prefiere, \"0\" para modificar a todos estos:");
 //				idDeCambio = sc.nextLong();
 //
 //				if (idDeCambio != 0) {
