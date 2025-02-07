@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import accesodb.Accesobd;
+import colores.ColorMio;
 import entidades.AlumnoEntity;
 import entidades.ProfesorEntity;
 
@@ -21,15 +22,18 @@ public class FuncionesAlumnos {
 
 		instancia.guardar(cosa); // Guarda el objeto en la base de datos
 
-		System.out.println("---------------");
-		System.out.println("Alumno guardado");
+		System.out.println();
+		System.out.print(ColorMio.getFondoVerde());
+		System.out.println("Alumno guardado"+ ColorMio.getReset());
 		System.out.println("-----------------------------------------");
 		System.out.println("idAlumno: " + alumno.getIdAlumno());
 		System.out.println("nombre: " + alumno.getNombre());
 		System.out.println("apellidos: " + alumno.getApellidos());
 		// Para que se vea en ese formato
 		System.out.println("fechaNacimiento (aaaa-mm-dd): " + alumno.getFechaNacimiento());
-
+		System.out.println("-----------------------------------------");
+		System.out.println();
+		
 		instancia.cerrar();
 	}
 

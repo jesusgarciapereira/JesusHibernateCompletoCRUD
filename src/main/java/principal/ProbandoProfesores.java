@@ -313,29 +313,29 @@ public class ProbandoProfesores {
 		// GUARDAR PROFESOR
 //		// RECUERDA, en el objeto debes ponerlo asi
 
-//		List<ProfesorEntity> profesores = Arrays.asList(
-//				new ProfesorEntity("Jesús", "García Pereira", LocalDate.parse("1900-05-20"), 1),
-//			    new ProfesorEntity("Juan", "Pérez", LocalDate.parse("1980-05-15"), 10),
-//			    new ProfesorEntity("Ana", "García", LocalDate.parse("1975-09-22"), 15),
-//			    new ProfesorEntity("Luis", "Martínez", LocalDate.parse("1988-12-03"), 5),
-//			    new ProfesorEntity("Juan", "Márquez", LocalDate.parse("1970-03-27"), 20),
-//			    new ProfesorEntity("Clara", "Sánchez", LocalDate.parse("1985-11-15"), 8),
-//			    new ProfesorEntity("Roberto", "Gómez", LocalDate.parse("1978-04-19"), 12),
-//			    new ProfesorEntity("Elena", "Torres", LocalDate.parse("1990-07-09"), 6),
-//			    new ProfesorEntity("Miguel", "Álvarez", LocalDate.parse("1983-02-01"), 18),
-//			    new ProfesorEntity("Laura", "Hernández", LocalDate.parse("1992-11-23"), 7)
-//			);
-//		
-//		try {
-//			for (ProfesorEntity profesor : profesores) {
-//				FuncionesProfesores.guardar(profesor);
-//			}
-//			
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			System.out.println("No se ha podido guardar");
-//		}
+		List<ProfesorEntity> profesores = Arrays.asList(
+				new ProfesorEntity("Jesús", "García Pereira", LocalDate.parse("1900-05-20"), 1),
+			    new ProfesorEntity("Juan", "Pérez", LocalDate.parse("1980-05-15"), 10),
+			    new ProfesorEntity("Ana", "García", LocalDate.parse("1975-09-22"), 15),
+			    new ProfesorEntity("Luis", "Martínez", LocalDate.parse("1988-12-03"), 5),
+			    new ProfesorEntity("Juan", "Márquez", LocalDate.parse("1970-03-27"), 20),
+			    new ProfesorEntity("Clara", "Sánchez", LocalDate.parse("1985-11-15"), 8),
+			    new ProfesorEntity("Roberto", "Gómez", LocalDate.parse("1978-04-19"), 12),
+			    new ProfesorEntity("Elena", "Torres", LocalDate.parse("1990-07-09"), 6),
+			    new ProfesorEntity("Miguel", "Álvarez", LocalDate.parse("1983-02-01"), 18),
+			    new ProfesorEntity("Laura", "Hernández", LocalDate.parse("1992-11-23"), 7)
+			);
+		
+		try {
+			for (ProfesorEntity profesor : profesores) {
+				FuncionesProfesores.guardar(profesor);
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("No se ha podido guardar");
+		}
 
 	}
 }

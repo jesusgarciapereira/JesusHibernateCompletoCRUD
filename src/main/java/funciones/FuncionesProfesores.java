@@ -1,10 +1,12 @@
 package funciones;
 
+import java.awt.image.ColorModel;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import accesodb.Accesobd;
+import colores.ColorMio;
 import entidades.ProfesorEntity;
 
 public class FuncionesProfesores {
@@ -19,8 +21,9 @@ public class FuncionesProfesores {
 
 		instancia.guardar(cosa); // Guarda el objeto en la base de datos
 
-		System.out.println("----------------");
-		System.out.println("Profesor guardado");
+		System.out.println();
+		System.out.print(ColorMio.getFondoVerde());
+		System.out.println("Profesor guardado" + ColorMio.getReset());
 		System.out.println("-----------------------------------------");
 		System.out.println("idProfesor: " + profesor.getIdProfesor());
 		System.out.println("nombre: " + profesor.getNombre());
@@ -28,6 +31,8 @@ public class FuncionesProfesores {
 		// Para que se vea en ese formato
 		System.out.println("fechaNacimiento (aaaa-mm-dd): " + profesor.getFechaNacimiento());
 		System.out.println("antiguedad: " + profesor.getAntiguedad());
+		System.out.println("-----------------------------------------");
+		System.out.println();
 
 		instancia.cerrar();
 	}
@@ -52,7 +57,7 @@ public class FuncionesProfesores {
 				System.out.println("antiguedad: " + profesor.getAntiguedad());
 			}
 		} else {
-			System.out.println("No existe ningún elemento en la tabla Profesor");
+			System.out.println("No existe ningún elemento en la tabla Profesores");
 		}
 
 		instancia.cerrar();

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import accesodb.Accesobd;
+import colores.ColorMio;
 import entidades.AlumnoEntity;
 import entidades.MatriculaEntity;
 import entidades.ProfesorEntity;
@@ -20,8 +21,9 @@ public class FuncionesMatriculas {
 
 		instancia.guardar(cosa); // Guarda el objeto en la base de datos
 
-		System.out.println("------------------");
-		System.out.println("Matrícula guardada");
+		System.out.println();
+		System.out.print(ColorMio.getFondoVerde());
+		System.out.println("Matrícula guardada"+ ColorMio.getReset());
 		System.out.println("------------------------------------------------");
 		System.out.println("idMatricula: " + matricula.getIdMatricula());
 		System.out.println("--------");
@@ -43,6 +45,8 @@ public class FuncionesMatriculas {
 		System.out.println("\tfechaNacimiento (aaaa-mm-dd): " + matricula.getAlumno().getFechaNacimiento());
 		System.out.println("asignatura: " + matricula.getAsignatura());
 		System.out.println("curso: " + matricula.getCurso());
+		System.out.println("------------------------------------------------");
+		System.out.println();
 
 		instancia.cerrar();
 	}

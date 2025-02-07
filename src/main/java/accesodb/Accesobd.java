@@ -1,5 +1,6 @@
 package accesodb;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -44,7 +45,7 @@ public class Accesobd {
      */
     protected void setUp() {
     	
-    	// java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);// Modificar a tu gusto
+    	Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);// Modificar a tu gusto
     	
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // Carga la configuración de hibernate.cfg.xml por defecto
