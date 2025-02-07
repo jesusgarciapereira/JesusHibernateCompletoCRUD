@@ -70,13 +70,13 @@ public class Principal {
 
 							while (fechaAnnio <= 1000 || fechaAnnio > LocalDate.now().getYear()) {
 								System.out.print(
-										"Introduzca el año de FechaNacimiento del Profesor (mayor o igual que 1000 y menor o igual que el año actual): ");
+										"Introduzca el año de FechaNacimiento del Profesor (>= 1000 y <= año actual): ");
 								fechaAnnio = leeInt(sc);
 							}
 							fechaNacimiento = String.format("%d-%02d-%02d", fechaAnnio, fechaMes, fechaDia);
 						}
 						while (antiguedad < 0) {
-							System.out.print("Escriba la Antiguedad del Profesor (mayor o igual que 0): ");
+							System.out.print("Escriba la Antiguedad del Profesor (>= 0): ");
 							antiguedad = leeInt(sc);
 						}
 						try {
