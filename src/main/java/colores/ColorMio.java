@@ -9,7 +9,7 @@ public class ColorMio {
 	private static String negro = "\u001B[90m";
 	private static String rojo = "\u001B[91m";
 	private static String verde = "\u001B[92m";
-	private static String amarillo = "\u001B[93m";
+	private static String amarillo = "\u001B[33m";
 	private static String azul = "\u001B[94m";
 	private static String magenta = "\u001B[95m";
 	private static String cian = "\u001B[96m";
@@ -25,6 +25,7 @@ public class ColorMio {
 	private static String fondoMagenta = "\u001B[105m";
 	private static String fondoCian = "\u001B[106m";
 	private static String fondoBlanco = "\u001B[107m";
+	
 	public static String getReset() {
 		return reset;
 	}

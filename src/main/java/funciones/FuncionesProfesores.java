@@ -23,7 +23,9 @@ public class FuncionesProfesores {
 
 		System.out.println();
 		System.out.print(ColorMio.getFondoVerde());
-		System.out.println("Profesor guardado" + ColorMio.getReset());
+		System.out.print("Profesor guardado");
+		System.out.print(ColorMio.getReset());
+		System.out.println(ColorMio.getVerde());
 		System.out.println("-----------------------------------------");
 		System.out.println("idProfesor: " + profesor.getIdProfesor());
 		System.out.println("nombre: " + profesor.getNombre());
@@ -31,7 +33,8 @@ public class FuncionesProfesores {
 		// Para que se vea en ese formato
 		System.out.println("fechaNacimiento (aaaa-mm-dd): " + profesor.getFechaNacimiento());
 		System.out.println("antiguedad: " + profesor.getAntiguedad());
-		System.out.println("-----------------------------------------");
+		System.out.print("-----------------------------------------");
+		System.out.println(ColorMio.getReset());
 		System.out.println();
 
 		instancia.cerrar();

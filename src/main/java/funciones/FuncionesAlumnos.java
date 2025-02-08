@@ -24,14 +24,17 @@ public class FuncionesAlumnos {
 
 		System.out.println();
 		System.out.print(ColorMio.getFondoVerde());
-		System.out.println("Alumno guardado"+ ColorMio.getReset());
+		System.out.print("Alumno guardado");
+		System.out.print(ColorMio.getReset());
+		System.out.println(ColorMio.getVerde());
 		System.out.println("-----------------------------------------");
 		System.out.println("idAlumno: " + alumno.getIdAlumno());
 		System.out.println("nombre: " + alumno.getNombre());
 		System.out.println("apellidos: " + alumno.getApellidos());
 		// Para que se vea en ese formato
 		System.out.println("fechaNacimiento (aaaa-mm-dd): " + alumno.getFechaNacimiento());
-		System.out.println("-----------------------------------------");
+		System.out.print("-----------------------------------------");
+		System.out.println(ColorMio.getReset());
 		System.out.println();
 		
 		instancia.cerrar();
