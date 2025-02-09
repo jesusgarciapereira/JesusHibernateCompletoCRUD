@@ -48,6 +48,7 @@ public class Principal {
 		int fechaAnnio = 0;
 
 		String filtro = "";
+		String cabecera = "";
 
 		List<Long> idsProfesores = new ArrayList<>();
 		List<Long> idsAlumnos = new ArrayList<>();
@@ -1406,7 +1407,7 @@ public class Principal {
 							case 1: // 1. Todas.
 								FuncionesMatriculas.leerTodos();
 								System.out.println();
-								
+
 								opcionSubmenuB = 0;
 								opcionSubmenuA = 0;
 
@@ -1465,6 +1466,322 @@ public class Principal {
 
 								break; // FIN 2. Por idMatricula.
 							case 3: // 3. Por Profesor.
+								do {
+									// idsProfesores.clear();
+									// profesor = null;
+									Menu.subMenuObtenerMatriculasPorProfesores();
+									opcionSubmenuB = leeInt(sc);
+									System.out.println();
+
+									switch (opcionSubmenuB) {
+									case 1: // 1. Por idProfesor.
+										do {
+											System.out.print(
+													"Introduzca el ID del Profesor correspondiente, o si lo prefiere, \"0\" para volver al Menú anterior: ");
+											idProfesor = leeLong(sc);
+
+											if (idProfesor != 0) {
+												profesor = FuncionesProfesores.getProfesorPorId(idProfesor);
+
+												if (profesor == null) {
+													System.out.print(ColorMio.getRojo());
+													System.out.println(
+															"No existe ningún Profesor con idProfesor = " + idProfesor);
+													System.out.print(ColorMio.getReset());
+												} else {
+													cabecera = " Matricula(s) con Profesor con idProfesor = "
+															+ idProfesor + "\t";
+													
+													FuncionesMatriculas.leerPorProfesor(profesor, cabecera);
+													
+													opcionSubmenuB = 0;
+													opcionSubmenuA = 0;
+
+													idProfesor = 0;
+													profesor = null;
+													cabecera = "";
+
+												}
+											} else {
+												System.out.println();
+											}
+
+										} while (idProfesor != 0 && profesor == null);
+
+										
+
+										break; // FIN 1. Por idProfesor.
+									case 2: // 2. Por nombre.
+										do {
+											do {
+												System.out.print(
+														"Introduzca el Nombre del Profesor correspondiente, o si lo prefiere, \"0\" para volver al Menú anterior: ");
+												nombre = sc.nextLine();
+											} while (nombre == null || nombre.equals(""));
+											if (!nombre.equals("0")) {
+												idsProfesores = FuncionesProfesores.buscaIDsPorColumna("nombre",
+														nombre);
+
+												if (idsProfesores.size() > 1) {
+
+													FuncionesProfesores.leerPorNombre(nombre, "=");
+
+													System.out.print(ColorMio.getAmarillo());
+													System.out.println("Hay varios Profesores con nombre = " + nombre);
+													System.out.print(ColorMio.getReset());
+
+													System.out.print(
+															"Introduzca el idProfesor correspondiente, o si lo prefiere, \"0\" para introducir otro Nombre: ");
+													idProfesor = leeLong(sc);
+
+													if (idProfesor != 0) {
+
+														if (!idsProfesores.contains(idProfesor)) {
+															System.out.print(ColorMio.getRojo());
+															System.out.println(
+																	"No existe ningún Profesor con idProfesor = "
+																			+ idProfesor
+																			+ " en la lista anteriormente mostrada");
+															System.out.print(ColorMio.getReset());
+															nombre = "";
+														} else {
+															profesor = FuncionesProfesores.getProfesorPorId(idProfesor);
+														}
+													} else {
+
+														System.out.println();
+													}
+												}
+
+												else if (idsProfesores.size() == 0) {
+													System.out.print(ColorMio.getRojo());
+													System.out.println(
+															"No existe ningún Profesor con nombre = " + nombre);
+													System.out.print(ColorMio.getReset());
+												} else {
+													profesor = FuncionesProfesores
+															.getProfesorPorId(idsProfesores.get(0));
+
+												}
+
+											}
+
+										} while (!nombre.equals("0") && !nombre.equals("") && profesor == null
+												&& !idsProfesores.contains(idProfesor));
+										System.out.println();
+										break; // FIN 2. Por nombre.
+									case 3: // 3. Por apellidos.
+										do {
+											do {
+												System.out.print(
+														"Introduzca el Apellido del Profesor correspondiente, o si lo prefiere, \"0\" para volver al Menú anterior: ");
+												apellidos = sc.nextLine();
+											} while (apellidos == null || apellidos.equals(""));
+
+											if (!apellidos.equals("0")) {
+												idsProfesores = FuncionesProfesores.buscaIDsPorColumna("apellidos",
+														apellidos);
+
+												if (idsProfesores.size() > 1) {
+
+													FuncionesProfesores.leerPorApellidos(apellidos, "=");
+
+													System.out.print(ColorMio.getAmarillo());
+													System.out.println(
+															"Hay varios Profesores con apellidos = " + apellidos);
+													System.out.print(ColorMio.getReset());
+
+													System.out.print(
+															"Introduzca el idProfesor de la Matricula, o si lo prefiere, \"0\" para introducir otros Apellidos: ");
+													idProfesor = leeLong(sc);
+
+													if (idProfesor != 0) {
+
+														if (!idsProfesores.contains(idProfesor)) {
+															System.out.print(ColorMio.getRojo());
+															System.out.println(
+																	"No existe ningún Profesor con idProfesor = "
+																			+ idProfesor
+																			+ " en la lista anteriormente mostrada");
+															System.out.print(ColorMio.getReset());
+															apellidos = "";
+														} else {
+															profesor = FuncionesProfesores.getProfesorPorId(idProfesor);
+														}
+													} else {
+														System.out.println();
+													}
+												}
+
+												else if (idsProfesores.size() == 0) {
+													System.out.print(ColorMio.getRojo());
+													System.out.println(
+															"No existe ningún Profesor con apellidos = " + apellidos);
+													System.out.print(ColorMio.getReset());
+												} else {
+													profesor = FuncionesProfesores
+															.getProfesorPorId(idsProfesores.get(0));
+
+												}
+
+											}
+
+										} while (!apellidos.equals("0") && !apellidos.equals("") && profesor == null
+												&& !idsProfesores.contains(idProfesor));
+										System.out.println();
+										break; // FIN 3. Por apellidos.
+									case 4: // 4. Por fechaNacimiento.
+										do {
+											do {
+												do {
+													System.out.print(
+															"Introduzca el día de FechaNacimiento del Profesor correspondiente (entre 1 y 31): ");
+													fechaDia = leeInt(sc);
+												} while (fechaDia < 1 || fechaDia > 31);
+
+												do {
+													System.out.print(
+															"Introduzca el mes de FechaNacimiento del Profesor correspondiente (entre 1 y 12): ");
+													fechaMes = leeInt(sc);
+												} while (fechaMes < 1 || fechaMes > 12);
+
+												do {
+													System.out.print(
+															"Introduzca el año de FechaNacimiento del Profesor correspondiente (>= 1000 y <= año actual): ");
+													fechaAnnio = leeInt(sc);
+												} while (fechaAnnio <= 1000 || fechaAnnio > LocalDate.now().getYear());
+
+												fechaNacimiento = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
+														fechaDia);
+
+											} while (fechaNacimiento == null || fechaNacimiento.equals(""));
+
+											idsProfesores = FuncionesProfesores.buscaIDsPorColumna("fechaNacimiento",
+													fechaNacimiento);
+
+											if (idsProfesores.size() > 1) {
+
+												FuncionesProfesores
+														.leerPorFechaNacimiento(LocalDate.parse(fechaNacimiento), "=");
+
+												System.out.print(ColorMio.getAmarillo());
+												System.out.println("Hay varios Profesores con fechaNacimiento = "
+														+ fechaNacimiento);
+												System.out.print(ColorMio.getReset());
+
+												System.out.print(
+														"Introduzca el idProfesor de la Matricula, o si lo prefiere, \"0\" para introducir otra FechaNacimiento: ");
+												idProfesor = leeLong(sc);
+
+												if (idProfesor != 0) {
+
+													if (!idsProfesores.contains(idProfesor)) {
+														System.out.print(ColorMio.getRojo());
+														System.out.println("No existe ningún Profesor con idProfesor = "
+																+ idProfesor + " en la lista anteriormente mostrada");
+														System.out.print(ColorMio.getReset());
+													} else {
+														profesor = FuncionesProfesores.getProfesorPorId(idProfesor);
+													}
+												} else {
+													System.out.println();
+												}
+											}
+
+											else if (idsProfesores.size() == 0) {
+												System.out.print(ColorMio.getRojo());
+												System.out.println("No existe ningún Profesor con fechaNacimiento = "
+														+ fechaNacimiento);
+												System.out.print(ColorMio.getReset());
+												System.out.println(
+														"¿Quiere introducir una FechaNacimiento de nuevo? (s/n)");
+												if (sc.nextLine().equals("s")) {
+													fechaNacimiento = "";
+
+												}
+
+											} else {
+												profesor = FuncionesProfesores.getProfesorPorId(idsProfesores.get(0));
+
+											}
+
+										} while (fechaNacimiento.equals("")
+												&& (profesor == null && !idsProfesores.contains(idProfesor)));
+										System.out.println();
+
+										break; // FIN 4. Por fechaNacimiento.
+									case 5: // 5. Por antiguedad.
+										do {
+											do {
+												System.out.print(
+														"Introduzca la Antiguedad del Profesor correspondiente (>= 0), o si lo prefiere, \"-1\" para volver al Menú anterior: ");
+												antiguedad = leeInt(sc);
+											} while (antiguedad < 0 && antiguedad != -1);
+
+											if (antiguedad != -1) {
+												idsProfesores = FuncionesProfesores.buscaIDsPorColumna("antiguedad",
+														String.valueOf(antiguedad));
+
+												if (idsProfesores.size() > 1) {
+
+													FuncionesProfesores.leerPorAntiguedad(antiguedad, "=");
+
+													System.out.print(ColorMio.getAmarillo());
+													System.out.println(
+															"Hay varios Profesores con antiguedad = " + antiguedad);
+													System.out.print(ColorMio.getReset());
+
+													System.out.print(
+															"Introduzca el idProfesor de la Matricula, o si lo prefiere, \"0\" para introducir otra Antiguedad: ");
+													idProfesor = leeLong(sc);
+
+													if (idProfesor != 0) {
+
+														if (!idsProfesores.contains(idProfesor)) {
+															System.out.print(ColorMio.getRojo());
+															System.out.println(
+																	"No existe ningún Profesor con idProfesor = "
+																			+ idProfesor
+																			+ " en la lista anteriormente mostrada");
+															System.out.print(ColorMio.getReset());
+															antiguedad = -1;
+														} else {
+															profesor = FuncionesProfesores.getProfesorPorId(idProfesor);
+														}
+													} else {
+														System.out.println();
+													}
+												}
+
+												else if (idsProfesores.size() == 0) {
+													System.out.print(ColorMio.getRojo());
+													System.out.println(
+															"No existe ningún Profesor con antiguedad = " + antiguedad);
+													System.out.print(ColorMio.getReset());
+												} else {
+													profesor = FuncionesProfesores
+															.getProfesorPorId(idsProfesores.get(0));
+
+												}
+
+											}
+
+										} while (antiguedad != -1 && profesor == null
+												&& !idsProfesores.contains(idProfesor));
+										System.out.println();
+										break; // FIN 5. Por antiguedad.
+									case 0: // 0. Volver al Menú Principal.
+										break; // FIN 0. Volver al Menú Principal.
+
+									default:
+										System.out.print(ColorMio.getRojo());
+										System.out.print("Opción no disponible: ");
+										System.out.print(ColorMio.getReset());
+										System.out.println("Elija del 0 al 5");
+										System.out.println();
+										break;
+									}
+								} while (opcionSubmenuB != 0);
 
 								break; // FIN 3. Por Profesor.
 							case 4: // 4. Por Alumno.
