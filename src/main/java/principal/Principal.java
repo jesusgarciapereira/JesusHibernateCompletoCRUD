@@ -1471,10 +1471,100 @@ public class Principal {
 
 								break; // FIN 4. Por Alumno.
 							case 5: // 5. Por asignatura.
+								do {
+									Menu.submenuOpcionFiltroVARCHAR();
+									opcionSubmenuC = leeInt(sc);
+									System.out.println();
 
+									switch (opcionSubmenuC) {
+									case 1:
+										filtro = "=";
+										break;
+									case 2:
+										filtro = "LIKE";
+										break;
+
+									case 0:
+
+										break;
+
+									default:
+										System.out.print(ColorMio.getRojo());
+										System.out.print("Opción no disponible: ");
+										System.out.print(ColorMio.getReset());
+										System.out.println("Elija del 0 al 2");
+										System.out.println();
+										break;
+									}// FIN switch (opcionSubmenuC)
+									if (opcionSubmenuC > 0 && opcionSubmenuC <= 2) {
+										do {
+											System.out.print("Introduzca la Asignatura de la Matricula: ");
+											asignatura = sc.nextLine();
+
+										} while (asignatura == "" | asignatura == null);
+
+										FuncionesMatriculas.leerPorAsignatura(asignatura, filtro);
+
+										opcionSubmenuC = 0;
+										opcionSubmenuB = 0;
+										opcionSubmenuA = 0;
+
+										asignatura = "";
+										filtro = "";
+									}
+								} while (opcionSubmenuC != 0);
 								break; // FIN 5. Por asignatura.
 							case 6: // 6. Por curso.
+								do {
+									Menu.submenuOpcionFiltroNUMBER();
+									opcionSubmenuC = leeInt(sc);
+									System.out.println();
 
+									switch (opcionSubmenuC) {
+									case 1:
+										filtro = "=";
+										break;
+									case 2:
+										filtro = ">";
+										break;
+									case 3:
+										filtro = "<";
+										break;
+									case 4:
+										filtro = ">=";
+										break;
+									case 5:
+										filtro = "<=";
+										break;
+									case 0:
+
+										break;
+
+									default:
+										System.out.print(ColorMio.getRojo());
+										System.out.print("Opción no disponible: ");
+										System.out.print(ColorMio.getReset());
+										System.out.println("Elija del 0 al 5");
+										System.out.println();
+										break;
+									}// FIN switch (opcionSubmenuC)
+									if (opcionSubmenuC > 0 && opcionSubmenuC <= 5) {
+										do {
+											System.out.print("Introduzca el curso de la Matricula (>= 0): ");
+											curso = leeInt(sc);
+
+										} while (curso < 0);
+
+										FuncionesMatriculas.leerPorCurso(curso, filtro);
+
+										opcionSubmenuC = 0;
+										opcionSubmenuB = 0;
+										opcionSubmenuA = 0;
+
+										curso = -1;
+										filtro = "";
+									}
+								} while (opcionSubmenuC != 0);
 								break; // FIN 6. Por curso.
 							case 0: // 0. Volver al Menú anterior.
 								break; // FIN 0. Volver al Menú anterior.

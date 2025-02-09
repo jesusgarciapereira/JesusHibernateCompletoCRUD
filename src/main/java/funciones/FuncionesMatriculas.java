@@ -273,9 +273,9 @@ public class FuncionesMatriculas {
 			System.out.println();
 			System.out.print(ColorMio.getFondoAzul());
 			if (filtro.equals("=")) {
-				System.out.print("\t   Matriculas(s) con asignatura " + filtro + " '" + asignatura + "'\t ");
+				System.out.print("\t  Matricula(s) con asignatura " + filtro + " '" + asignatura + "'\t");
 			} else {
-				System.out.print("\t   Matriculas(s) con asignatura " + filtro + " '%" + asignatura + "%'\t ");
+				System.out.print("\t  Matricula(s) con asignatura " + filtro + " '%" + asignatura + "%'\t");
 			}
 			System.out.println(ColorMio.getReset());
 			System.out.print(ColorMio.getAzul());
@@ -331,7 +331,7 @@ public class FuncionesMatriculas {
 		if (!matriculas.isEmpty()) {
 			System.out.println();
 			System.out.print(ColorMio.getFondoAzul());
-			System.out.print("\t    Matriculas(s) con curso " + filtro + " " + curso + "\t ");
+			System.out.print("\t\t  Matricula(s) con curso " + filtro + " " + curso + "\t");
 			System.out.println(ColorMio.getReset());
 			System.out.print(ColorMio.getAzul());
 			for (MatriculaEntity matricula : matriculas) {
