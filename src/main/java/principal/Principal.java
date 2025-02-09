@@ -887,9 +887,7 @@ public class Principal {
 
 										} while (idProfesor <= 0);
 
-										System.out.println();
 										FuncionesProfesores.leerPorId(idProfesor, filtro);
-										System.out.println();
 
 										opcionSubmenuC = 0;
 										opcionSubmenuB = 0;
@@ -902,13 +900,175 @@ public class Principal {
 
 								break; // FIN 2. Por idProfesor.
 							case 3: // 3. Por nombre.
+								do {
+									Menu.submenuOpcionFiltroVARCHAR();
+									opcionSubmenuC = leeInt(sc);
+									System.out.println();
 
+									switch (opcionSubmenuC) {
+									case 1:
+										filtro = "=";
+										break;
+									case 2:
+										filtro = "LIKE";
+										break;
+
+									case 0:
+
+										break;
+
+									default:
+										System.out.print(ColorMio.getRojo());
+										System.out.print("Opción no disponible: ");
+										System.out.print(ColorMio.getReset());
+										System.out.println("Elija del 0 al 2");
+										System.out.println();
+										break;
+									}// FIN switch (opcionSubmenuC)
+									if (opcionSubmenuC > 0 && opcionSubmenuC <= 2) {
+										do {
+											System.out.print("Introduzca el Nombre del Profesor: ");
+											nombre = sc.nextLine();
+
+										} while (nombre == "" | nombre == null);
+
+										FuncionesProfesores.leerPorNombre(nombre, filtro);
+
+										opcionSubmenuC = 0;
+										opcionSubmenuB = 0;
+										opcionSubmenuA = 0;
+
+										nombre = "";
+										filtro = "";
+									}
+								} while (opcionSubmenuC != 0);
 								break; // FIN 3. Por nombre.
 							case 4: // 4. Por apellidos.
+								do {
+									Menu.submenuOpcionFiltroVARCHAR();
+									opcionSubmenuC = leeInt(sc);
+									System.out.println();
 
+									switch (opcionSubmenuC) {
+									case 1:
+										filtro = "=";
+										break;
+									case 2:
+										filtro = "LIKE";
+										break;
+
+									case 0:
+
+										break;
+
+									default:
+										System.out.print(ColorMio.getRojo());
+										System.out.print("Opción no disponible: ");
+										System.out.print(ColorMio.getReset());
+										System.out.println("Elija del 0 al 2");
+										System.out.println();
+										break;
+									}// FIN switch (opcionSubmenuC)
+									if (opcionSubmenuC > 0 && opcionSubmenuC <= 2) {
+										do {
+											System.out.print("Introduzca los Apellidos del Profesor: ");
+											apellidos = sc.nextLine();
+
+										} while (apellidos == "" | apellidos == null);
+
+										FuncionesProfesores.leerPorApellidos(apellidos, filtro);
+
+										opcionSubmenuC = 0;
+										opcionSubmenuB = 0;
+										opcionSubmenuA = 0;
+
+										apellidos = "";
+										filtro = "";
+									}
+								} while (opcionSubmenuC != 0);
 								break; // FIN 4. Por apellidos.
 							case 5: // 5. Por fechaNacimiento.
+								do {
+									Menu.submenuOpcionFiltroNUMBER();
+									opcionSubmenuC = leeInt(sc);
+									System.out.println();
 
+									switch (opcionSubmenuC) {
+									case 1:
+										filtro = "=";
+										break;
+									case 2:
+										filtro = ">";
+										break;
+									case 3:
+										filtro = "<";
+										break;
+									case 4:
+										filtro = ">=";
+										break;
+									case 5:
+										filtro = "<=";
+										break;
+									case 0:
+
+										break;
+
+									default:
+										System.out.print(ColorMio.getRojo());
+										System.out.print("Opción no disponible: ");
+										System.out.print(ColorMio.getReset());
+										System.out.println("Elija del 0 al 5");
+										System.out.println();
+										break;
+									}// FIN switch (opcionSubmenuC)
+									if (opcionSubmenuC > 0 && opcionSubmenuC <= 5) {
+										do {
+											do {
+												System.out.print(
+														"Introduzca el día de FechaNacimiento del Profesor (entre 1 y 31): ");
+												fechaDia = leeInt(sc);
+											} while (fechaDia < 1 || fechaDia > 31);
+
+											do {
+												System.out.print(
+														"Introduzca el mes de FechaNacimiento del Profesor (entre 1 y 12): ");
+												fechaMes = leeInt(sc);
+											} while (fechaMes < 1 || fechaMes > 12);
+
+											do {
+												System.out.print(
+														"Introduzca el año de FechaNacimiento del Profesor (>= 1000 y <= año actual): ");
+												fechaAnnio = leeInt(sc);
+											} while (fechaAnnio <= 1000 || fechaAnnio > LocalDate.now().getYear());
+
+											fechaNacimiento = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
+													fechaDia);
+										} while (fechaNacimiento == null || fechaNacimiento.equals(""));
+
+										try {
+											FuncionesProfesores.leerPorFechaNacimiento(LocalDate.parse(fechaNacimiento),
+													filtro);
+										} catch (DateTimeException e) {
+											System.out.println();
+											System.out.print(ColorMio.getRojo());
+											System.out
+													.print("Fecha de nacimiento '" + fechaNacimiento + "' incorrecta");
+											System.out.println(ColorMio.getReset());
+											System.out.println();
+										} finally {
+											opcionSubmenuC = 0;
+											opcionSubmenuB = 0;
+											opcionSubmenuA = 0;
+
+											fechaDia = 0;
+											fechaMes = 0;
+											fechaAnnio = 0;
+
+											fechaNacimiento = "";
+											filtro = "";
+										}
+									}
+								} while (opcionSubmenuC != 0);
 								break; // FIN 5. Por fechaNacimiento.
 							case 6: // 6. Por antiguedad.
 								do {
@@ -952,7 +1112,6 @@ public class Principal {
 
 										} while (antiguedad < 0);
 
-										System.out.println();
 										FuncionesProfesores.leerPorAntiguedad(antiguedad, filtro);
 
 										opcionSubmenuC = 0;
@@ -981,7 +1140,259 @@ public class Principal {
 
 						break; // FIN 2. Profesores.
 					case 3: // 3. Alumnos.
+						do {
+							Menu.subMenuObtenerAlumnos();
+							opcionSubmenuB = leeInt(sc);
+							System.out.println();
 
+							switch (opcionSubmenuB) {
+							case 1: // 1. Todos.
+								FuncionesAlumnos.leerTodos();
+								System.out.println();
+
+								opcionSubmenuB = 0;
+								opcionSubmenuA = 0;
+
+								break; // FIN 1. Todos.
+							case 2: // 2. Por idAlumno.
+
+								do {
+									Menu.submenuOpcionFiltroNUMBER();
+									opcionSubmenuC = leeInt(sc);
+									System.out.println();
+
+									switch (opcionSubmenuC) {
+									case 1:
+										filtro = "=";
+										break;
+									case 2:
+										filtro = ">";
+										break;
+									case 3:
+										filtro = "<";
+										break;
+									case 4:
+										filtro = ">=";
+										break;
+									case 5:
+										filtro = "<=";
+										break;
+									case 0:
+
+										break;
+
+									default:
+										System.out.print(ColorMio.getRojo());
+										System.out.print("Opción no disponible: ");
+										System.out.print(ColorMio.getReset());
+										System.out.println("Elija del 0 al 5");
+										System.out.println();
+										break;
+									}// FIN switch (opcionSubmenuC)
+									if (opcionSubmenuC > 0 && opcionSubmenuC <= 5) {
+										do {
+											System.out.print("Introduzca el ID del Alumno (> 0): ");
+											idAlumno = leeLong(sc);
+
+										} while (idAlumno <= 0);
+
+										FuncionesAlumnos.leerPorId(idAlumno, filtro);
+
+										opcionSubmenuC = 0;
+										opcionSubmenuB = 0;
+										opcionSubmenuA = 0;
+
+										idAlumno = -1;
+										filtro = "";
+									}
+								} while (opcionSubmenuC != 0);
+
+								break; // FIN 2. Por idAlumno.
+							case 3: // 3. Por nombre.
+								do {
+									Menu.submenuOpcionFiltroVARCHAR();
+									opcionSubmenuC = leeInt(sc);
+									System.out.println();
+
+									switch (opcionSubmenuC) {
+									case 1:
+										filtro = "=";
+										break;
+									case 2:
+										filtro = "LIKE";
+										break;
+
+									case 0:
+
+										break;
+
+									default:
+										System.out.print(ColorMio.getRojo());
+										System.out.print("Opción no disponible: ");
+										System.out.print(ColorMio.getReset());
+										System.out.println("Elija del 0 al 2");
+										System.out.println();
+										break;
+									}// FIN switch (opcionSubmenuC)
+									if (opcionSubmenuC > 0 && opcionSubmenuC <= 2) {
+										do {
+											System.out.print("Introduzca el Nombre del Alumno: ");
+											nombre = sc.nextLine();
+
+										} while (nombre == "" | nombre == null);
+
+										FuncionesAlumnos.leerPorNombre(nombre, filtro);
+
+										opcionSubmenuC = 0;
+										opcionSubmenuB = 0;
+										opcionSubmenuA = 0;
+
+										nombre = "";
+										filtro = "";
+									}
+								} while (opcionSubmenuC != 0);
+								break; // FIN 3. Por nombre.
+							case 4: // 4. Por apellidos.
+								do {
+									Menu.submenuOpcionFiltroVARCHAR();
+									opcionSubmenuC = leeInt(sc);
+									System.out.println();
+
+									switch (opcionSubmenuC) {
+									case 1:
+										filtro = "=";
+										break;
+									case 2:
+										filtro = "LIKE";
+										break;
+
+									case 0:
+
+										break;
+
+									default:
+										System.out.print(ColorMio.getRojo());
+										System.out.print("Opción no disponible: ");
+										System.out.print(ColorMio.getReset());
+										System.out.println("Elija del 0 al 2");
+										System.out.println();
+										break;
+									}// FIN switch (opcionSubmenuC)
+									if (opcionSubmenuC > 0 && opcionSubmenuC <= 2) {
+										do {
+											System.out.print("Introduzca los Apellidos del Alumno: ");
+											apellidos = sc.nextLine();
+
+										} while (apellidos == "" | apellidos == null);
+
+										FuncionesAlumnos.leerPorApellidos(apellidos, filtro);
+
+										opcionSubmenuC = 0;
+										opcionSubmenuB = 0;
+										opcionSubmenuA = 0;
+
+										apellidos = "";
+										filtro = "";
+									}
+								} while (opcionSubmenuC != 0);
+								break; // FIN 4. Por apellidos.
+							case 5: // 5. Por fechaNacimiento.
+								do {
+									Menu.submenuOpcionFiltroNUMBER();
+									opcionSubmenuC = leeInt(sc);
+									System.out.println();
+
+									switch (opcionSubmenuC) {
+									case 1:
+										filtro = "=";
+										break;
+									case 2:
+										filtro = ">";
+										break;
+									case 3:
+										filtro = "<";
+										break;
+									case 4:
+										filtro = ">=";
+										break;
+									case 5:
+										filtro = "<=";
+										break;
+									case 0:
+
+										break;
+
+									default:
+										System.out.print(ColorMio.getRojo());
+										System.out.print("Opción no disponible: ");
+										System.out.print(ColorMio.getReset());
+										System.out.println("Elija del 0 al 5");
+										System.out.println();
+										break;
+									}// FIN switch (opcionSubmenuC)
+									if (opcionSubmenuC > 0 && opcionSubmenuC <= 5) {
+										do {
+											do {
+												System.out.print(
+														"Introduzca el día de FechaNacimiento del Alumno (entre 1 y 31): ");
+												fechaDia = leeInt(sc);
+											} while (fechaDia < 1 || fechaDia > 31);
+
+											do {
+												System.out.print(
+														"Introduzca el mes de FechaNacimiento del Alumno (entre 1 y 12): ");
+												fechaMes = leeInt(sc);
+											} while (fechaMes < 1 || fechaMes > 12);
+
+											do {
+												System.out.print(
+														"Introduzca el año de FechaNacimiento del Alumno (>= 1000 y <= año actual): ");
+												fechaAnnio = leeInt(sc);
+											} while (fechaAnnio <= 1000 || fechaAnnio > LocalDate.now().getYear());
+
+											fechaNacimiento = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
+													fechaDia);
+										} while (fechaNacimiento == null || fechaNacimiento.equals(""));
+
+										try {
+											FuncionesAlumnos.leerPorFechaNacimiento(LocalDate.parse(fechaNacimiento),
+													filtro);
+										} catch (DateTimeException e) {
+											System.out.println();
+											System.out.print(ColorMio.getRojo());
+											System.out
+													.print("Fecha de nacimiento '" + fechaNacimiento + "' incorrecta");
+											System.out.println(ColorMio.getReset());
+											System.out.println();
+										} finally {
+											opcionSubmenuC = 0;
+											opcionSubmenuB = 0;
+											opcionSubmenuA = 0;
+
+											fechaDia = 0;
+											fechaMes = 0;
+											fechaAnnio = 0;
+
+											fechaNacimiento = "";
+											filtro = "";
+										}
+									}
+								} while (opcionSubmenuC != 0);
+								break; // FIN 5. Por fechaNacimiento.
+							
+							case 0: // 0. Volver al Menú anterior.
+
+								break; // FIN 0. Volver al Menú anterior.
+
+							default:
+								System.out.print(ColorMio.getRojo());
+								System.out.print("Opción no disponible: ");
+								System.out.print(ColorMio.getReset());
+								System.out.println("Elija del 0 al 5");
+								System.out.println();
+								break;
+							}// FIN switch (opcionSubmenuB)
+						} while (opcionSubmenuB != 0);
 						break; // FIN 3. Alumnos.
 
 					case 4: // 4. Matriculas.

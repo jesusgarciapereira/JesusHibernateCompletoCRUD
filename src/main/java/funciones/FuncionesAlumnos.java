@@ -83,6 +83,9 @@ public class FuncionesAlumnos {
 
 		if (!alumnos.isEmpty()) {
 			System.out.println();
+			System.out.print(ColorMio.getFondoAzul());
+			System.out.print("\t       Alumno(s) con idAlumno " + filtro + " " + idAlumno + "\t ");
+			System.out.println(ColorMio.getReset());
 			System.out.print(ColorMio.getAzul());
 			for (AlumnoEntity alumno : alumnos) {
 				System.out.println("-----------------------------------------");
@@ -95,12 +98,13 @@ public class FuncionesAlumnos {
 			System.out.print("-----------------------------------------");
 			System.out.println(ColorMio.getReset());
 		} else {
+			System.out.println();
 			System.out.print(ColorMio.getRojo());
-			System.out.println("No existe ningún Alumno con idAlumno " + filtro + " " + idAlumno);
-			System.out.println(ColorMio.getReset());	
-			
-		}
+			System.out.print("No existe ningún Alumno con idAlumno " + filtro + " " + idAlumno);
+			System.out.println(ColorMio.getReset());
 
+		}
+		System.out.println();
 		instancia.cerrar();
 
 	}
@@ -122,6 +126,13 @@ public class FuncionesAlumnos {
 
 		if (!alumnos.isEmpty()) {
 			System.out.println();
+			System.out.print(ColorMio.getFondoAzul());
+			if (filtro.equals("=")) {
+				System.out.print("\t     Alumno(s) con nombre " + filtro + " '" + nombre + "'\t ");
+			} else {
+				System.out.print("\t     Alumno(s) con nombre " + filtro + " '%" + nombre + "%'\t ");
+			}
+			System.out.println(ColorMio.getReset());
 			System.out.print(ColorMio.getAzul());
 			for (AlumnoEntity alumno : alumnos) {
 				System.out.println("-----------------------------------------");
@@ -134,10 +145,15 @@ public class FuncionesAlumnos {
 			System.out.print("-----------------------------------------");
 			System.out.println(ColorMio.getReset());
 		} else {
+			System.out.println();
 			System.out.print(ColorMio.getRojo());
-			System.out.println("No existe ningún Alumno con nombre " + filtro + " " + nombre);
+			if (filtro.equals("=")) {
+				System.out.print("No existe ningún Alumno con nombre " + filtro + " '" + nombre + "'");
+			} else {
+				System.out.print("No existe ningún Alumno con nombre " + filtro + " '%" + nombre + "%'");
+			}
 			System.out.println(ColorMio.getReset());
-			
+
 		}
 
 		System.out.println();
@@ -163,6 +179,13 @@ public class FuncionesAlumnos {
 
 		if (!alumnos.isEmpty()) {
 			System.out.println();
+			System.out.print(ColorMio.getFondoAzul());
+			if (filtro.equals("=")) {
+				System.out.print("\t   Alumno(s) con apellidos " + filtro + " '" + apellidos + "'\t ");
+			} else {
+				System.out.print("\t   Alumno(s) con apellidos " + filtro + " '%" + apellidos + "%'\t ");
+			}
+			System.out.println(ColorMio.getReset());
 			System.out.print(ColorMio.getAzul());
 			for (AlumnoEntity alumno : alumnos) {
 				System.out.println("-----------------------------------------");
@@ -175,10 +198,15 @@ public class FuncionesAlumnos {
 			System.out.print("-----------------------------------------");
 			System.out.println(ColorMio.getReset());
 		} else {
+			System.out.println();
 			System.out.print(ColorMio.getRojo());
-			System.out.println("No existe ningún Alumno con apellidos " + filtro + " " + apellidos);
+			if (filtro.equals("=")) {
+				System.out.print("No existe ningún Alumno con apellidos " + filtro + " '" + apellidos + "'");
+			} else {
+				System.out.print("No existe ningún Alumno con apellidos " + filtro + " '%" + apellidos + "%'");
+			}
 			System.out.println(ColorMio.getReset());
-			
+
 		}
 		System.out.println();
 		instancia.cerrar();
@@ -195,6 +223,9 @@ public class FuncionesAlumnos {
 
 		if (!alumnos.isEmpty()) {
 			System.out.println();
+			System.out.print(ColorMio.getFondoAzul());
+			System.out.print("Alumnos(s) con fechaNacimiento " + filtro + " '" + fechaNacimiento + "'");
+			System.out.println(ColorMio.getReset());
 			System.out.print(ColorMio.getAzul());
 			for (AlumnoEntity alumno : alumnos) {
 				System.out.println("-----------------------------------------");
@@ -207,10 +238,11 @@ public class FuncionesAlumnos {
 			System.out.print("-----------------------------------------");
 			System.out.println(ColorMio.getReset());
 		} else {
+			System.out.println();
 			System.out.print(ColorMio.getRojo());
-			System.out.println("No existe ningún Alumno con fechaNacimiento " + filtro + " " + fechaNacimiento);
+			System.out.print("No existe ningún Alumno con fechaNacimiento " + filtro + " '" + fechaNacimiento + "'");
 			System.out.println(ColorMio.getReset());
-			
+
 		}
 
 		System.out.println();

@@ -19,6 +19,22 @@ public class Menu {
 		System.out.print(ColorMio.getReset());
 	}
 	
+	static void subMenuObtenerAlumnos() {
+		System.out.println("Obtener Alumnos:");
+		System.out.println("================");
+		System.out.println("1. Todos.");
+		System.out.println("2. Por idAlumno.");
+		System.out.println("3. Por nombre.");
+		System.out.println("4. Por apellidos.");
+		System.out.println("5. Por fechaNacimiento.");
+		System.out.println("0. Volver al Menú anterior.");
+		System.out.println();
+
+		System.out.print(ColorMio.getAzul());
+		System.out.print("Escriba una opción: ");
+		System.out.print(ColorMio.getReset());
+	}
+	
 	static void subMenuObtenerProfesores() {
 		System.out.println("Obtener Profesores:");
 		System.out.println("===================");
