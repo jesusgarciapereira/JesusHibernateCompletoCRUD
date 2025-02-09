@@ -1467,8 +1467,8 @@ public class Principal {
 								break; // FIN 2. Por idMatricula.
 							case 3: // 3. Por Profesor.
 								do {
-									// idsProfesores.clear();
-									// profesor = null;
+									idsProfesores.clear();
+									 profesor = null;
 									Menu.subMenuObtenerMatriculasPorProfesores();
 									opcionSubmenuB = leeInt(sc);
 									System.out.println();
@@ -1542,7 +1542,7 @@ public class Principal {
 																	"No existe ningún Profesor con idProfesor = "
 																			+ idProfesor
 																			+ " en la lista anteriormente mostrada");
-															System.out.print(ColorMio.getReset());
+															System.out.println(ColorMio.getReset());
 															nombre = "";
 														} else {
 															cabecera = " Matricula(s) con Profesor con idProfesor = "
@@ -1595,10 +1595,9 @@ public class Principal {
 										do {
 											do {
 												System.out.print(
-														"Introduzca el Apellido del Profesor correspondiente, o si lo prefiere, \"0\" para volver al Menú anterior: ");
+														"Introduzca los Apellidos del Profesor correspondiente, o si lo prefiere, \"0\" para volver al Menú anterior: ");
 												apellidos = sc.nextLine();
 											} while (apellidos == null || apellidos.equals(""));
-
 											if (!apellidos.equals("0")) {
 												idsProfesores = FuncionesProfesores.buscaIDsPorColumna("apellidos",
 														apellidos);
@@ -1608,12 +1607,11 @@ public class Principal {
 													FuncionesProfesores.leerPorApellidos(apellidos, "=");
 
 													System.out.print(ColorMio.getAmarillo());
-													System.out.println(
-															"Hay varios Profesores con apellidos = " + apellidos);
+													System.out.println("Hay varios Profesores con apellidos = " + apellidos);
 													System.out.print(ColorMio.getReset());
 
 													System.out.print(
-															"Introduzca el idProfesor de la Matricula, o si lo prefiere, \"0\" para introducir otros Apellidos: ");
+															"Introduzca el idProfesor correspondiente, o si lo prefiere, \"0\" para introducir otros Apellidos: ");
 													idProfesor = leeLong(sc);
 
 													if (idProfesor != 0) {
@@ -1624,12 +1622,24 @@ public class Principal {
 																	"No existe ningún Profesor con idProfesor = "
 																			+ idProfesor
 																			+ " en la lista anteriormente mostrada");
-															System.out.print(ColorMio.getReset());
+															System.out.println(ColorMio.getReset());
 															apellidos = "";
 														} else {
+															cabecera = " Matricula(s) con Profesor con idProfesor = "
+																	+ idProfesor + "\t";
 															profesor = FuncionesProfesores.getProfesorPorId(idProfesor);
+															FuncionesMatriculas.leerPorProfesor(profesor, cabecera);
+															
+															opcionSubmenuB = 0;
+															opcionSubmenuA = 0;
+															
+															apellidos = "";
+															idProfesor = 0;
+															profesor = null;
+															cabecera = "";
 														}
 													} else {
+
 														System.out.println();
 													}
 												}
@@ -1640,16 +1650,25 @@ public class Principal {
 															"No existe ningún Profesor con apellidos = " + apellidos);
 													System.out.print(ColorMio.getReset());
 												} else {
+													cabecera = " Matricula(s) con Profesor con apellidos = '"
+															+ apellidos + "'\t";
 													profesor = FuncionesProfesores
 															.getProfesorPorId(idsProfesores.get(0));
+													FuncionesMatriculas.leerPorProfesor(profesor, cabecera);
+													
+													opcionSubmenuB = 0;
+													opcionSubmenuA = 0;
 
+													apellidos = "";
+													idProfesor = 0;
+													profesor = null;
+													cabecera = "";
 												}
 
 											}
 
 										} while (!apellidos.equals("0") && !apellidos.equals("") && profesor == null
 												&& !idsProfesores.contains(idProfesor));
-										System.out.println();
 										break; // FIN 3. Por apellidos.
 									case 4: // 4. Por fechaNacimiento.
 										do {
