@@ -700,7 +700,7 @@ public class Principal {
 															System.out.println("No existe ningún Alumno con idAlumno = "
 																	+ idAlumno + " en la lista anteriormente mostrada");
 															System.out.print(ColorMio.getReset());
-															
+
 														} else {
 															alumno = FuncionesAlumnos.getAlumnoPorId(idAlumno);
 														}
@@ -811,7 +811,84 @@ public class Principal {
 
 				break; // FIN 1. Guardar Datos.
 			case 2: // 2. Obtener datos.
+				do {
+					Menu.subMenuObtenerDatos();
+					opcionSubmenuA = leeInt(sc);
+					System.out.println();
 
+					switch (opcionSubmenuA) {
+					case 1: // 1. Todos.
+						
+						FuncionesProfesores.leerTodos();
+						FuncionesAlumnos.leerTodos();
+						FuncionesMatriculas.leerTodos();
+						System.out.println();
+						
+						break; // FIN 1. Todos.
+
+					case 2: // 2. Profesores.
+						do {
+							Menu.subMenuObtenerProfesores();
+							opcionSubmenuB = leeInt(sc);
+							System.out.println();
+
+							switch (opcionSubmenuB) {
+							case 1: // 1. Todos.
+
+								break; // FIN 1. Todos.
+							case 2: // 2. Por idProfesor.
+
+								break; // FIN 2. Por idProfesor.
+							case 3: // 3. Por nombre.
+
+								break; // FIN 3. Por nombre.
+							case 4: // 4. Por apellidos.
+
+								break; // FIN 4. Por apellidos.
+							case 5: // 5. Por fechaNacimiento.
+
+								break; // FIN 5. Por fechaNacimiento.
+							case 6: // 6. Por antiguedad.
+
+								break; // FIN 6. Por antiguedad.
+							case 0: // 0. Volver al Menú anterior.
+
+								break; // FIN 0. Volver al Menú anterior.
+
+							default:
+								System.out.print(ColorMio.getRojo());
+								System.out.print("Opción no disponible: ");
+								System.out.print(ColorMio.getReset());
+								System.out.println("Elija del 0 al 6");
+								System.out.println();
+								break;
+							}// FIN switch (opcionSubmenuB)
+						} while (opcionSubmenuB != 0);
+
+						break; // FIN 2. Profesores.
+					case 3: // 3. Alumnos.
+
+						break; // FIN 3. Alumnos.
+
+					case 4: // 4. Matriculas.
+
+						break; // FIN 4. Matriculas.
+
+					case 0: // 0. Volver al Menú anterior.
+
+						break; // FIN 0. Volver al Menú anterior.
+
+					default:
+						System.out.print(ColorMio.getRojo());
+						System.out.print("Opción no disponible: ");
+						System.out.print(ColorMio.getReset());
+						System.out.println("Elija del 0 al 4");
+						System.out.println();
+						break;
+					}// FIN switch (opcionSubmenuA)
+
+				} while (opcionSubmenuA != 0);
+				// opcionMenu = -1;
 				break; // FIN 2. Obtener datos.
 			case 3: // 3. Actualizar Datos.
 

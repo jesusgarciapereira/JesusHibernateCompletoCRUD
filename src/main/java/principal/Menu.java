@@ -18,6 +18,38 @@ public class Menu {
 		System.out.print("Escriba una opción: ");
 		System.out.print(ColorMio.getReset());
 	}
+	
+	static void subMenuObtenerProfesores() {
+		System.out.println("Obtener Profesores:");
+		System.out.println("===================");
+		System.out.println("1. Todos.");
+		System.out.println("2. Por idProfesor.");
+		System.out.println("3. Por nombre.");
+		System.out.println("4. Por apellidos.");
+		System.out.println("5. Por fechaNacimiento.");
+		System.out.println("6. Por antiguedad.");
+		System.out.println("0. Volver al Menú anterior.");
+		System.out.println();
+
+		System.out.print(ColorMio.getAzul());
+		System.out.print("Escriba una opción: ");
+		System.out.print(ColorMio.getReset());
+	}
+	
+	static void subMenuObtenerDatos() {
+		System.out.println("Obtener Datos:");
+		System.out.println("==============");
+		System.out.println("1. Todos.");
+		System.out.println("2. Profesores.");
+		System.out.println("3. Alumnos.");
+		System.out.println("4. Matriculas.");
+		System.out.println("0. Volver al Menú anterior.");
+		System.out.println();
+		
+		System.out.print(ColorMio.getAzul());
+		System.out.print("Escriba una opción: ");
+		System.out.print(ColorMio.getReset());
+	}
 
 	static void subMenuGuardarDatos() {
 		System.out.println("Guardar Datos:");

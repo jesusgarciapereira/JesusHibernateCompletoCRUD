@@ -64,6 +64,11 @@ public class FuncionesMatriculas {
 				.getResultList();
 
 		if (!matriculas.isEmpty()) {
+			System.out.println();
+			System.out.print(ColorMio.getFondoAzul());
+			System.out.print("\t\t\t    MATRICULAS\t\t\t");
+			System.out.println(ColorMio.getReset());
+			System.out.print(ColorMio.getAzul());
 			for (MatriculaEntity matricula : matriculas) {
 				System.out.println("------------------------------------------------");
 				System.out.println("idMatricula: " + matricula.getIdMatricula());
@@ -87,6 +92,8 @@ public class FuncionesMatriculas {
 				System.out.println("asignatura: " + matricula.getAsignatura());
 				System.out.println("curso: " + matricula.getCurso());
 			}
+			System.out.print("------------------------------------------------");
+			System.out.println(ColorMio.getReset());
 		} else {
 			System.out.println("No existe ningún elemento en la tabla Alumno");
 		}
@@ -103,6 +110,8 @@ public class FuncionesMatriculas {
 				.getResultList();
 
 		if (!matriculas.isEmpty()) {
+			System.out.println();
+			System.out.print(ColorMio.getAzul());
 			for (MatriculaEntity matricula : matriculas) {
 				System.out.println("------------------------------------------------");
 				System.out.println("idMatricula: " + matricula.getIdMatricula());
@@ -126,6 +135,8 @@ public class FuncionesMatriculas {
 				System.out.println("asignatura: " + matricula.getAsignatura());
 				System.out.println("curso: " + matricula.getCurso());
 			}
+			System.out.print("------------------------------------------------");
+			System.out.println(ColorMio.getReset());
 		} else {
 			System.out.println("No existe ninguna Matricula con idMatricula " + filtro + " " + idMatricula);
 		}
@@ -144,6 +155,8 @@ public class FuncionesMatriculas {
 				.getResultList();
 
 		if (!matriculas.isEmpty()) {
+			System.out.println();
+			System.out.print(ColorMio.getAzul());
 			for (MatriculaEntity matricula : matriculas) {
 				System.out.println("------------------------------------------------");
 				System.out.println("idMatricula: " + matricula.getIdMatricula());
@@ -167,6 +180,8 @@ public class FuncionesMatriculas {
 				System.out.println("asignatura: " + matricula.getAsignatura());
 				System.out.println("curso: " + matricula.getCurso());
 			}
+			System.out.print("------------------------------------------------");
+			System.out.println(ColorMio.getReset());
 		} else {
 			System.out.println("No existe ninguna Matricula correspondiente con el Profesor con id?rofesor = "
 					+ profesor.getIdProfesor());
@@ -187,6 +202,8 @@ public class FuncionesMatriculas {
 				.getResultList();
 
 		if (!matriculas.isEmpty()) {
+			System.out.println();
+			System.out.print(ColorMio.getAzul());
 			for (MatriculaEntity matricula : matriculas) {
 				System.out.println("------------------------------------------------");
 				System.out.println("idMatricula: " + matricula.getIdMatricula());
@@ -210,6 +227,8 @@ public class FuncionesMatriculas {
 				System.out.println("asignatura: " + matricula.getAsignatura());
 				System.out.println("curso: " + matricula.getCurso());
 			}
+			System.out.print("------------------------------------------------");
+			System.out.println(ColorMio.getReset());
 		} else {
 			System.out.println(
 					"No existe ninguna Matricula correspondiente con el Alumno con idAlumno = " + alumno.getIdAlumno());
@@ -236,6 +255,8 @@ public class FuncionesMatriculas {
 				.getResultList();
 
 		if (!matriculas.isEmpty()) {
+			System.out.println();
+			System.out.print(ColorMio.getAzul());
 			for (MatriculaEntity matricula : matriculas) {
 				System.out.println("------------------------------------------------");
 				System.out.println("idMatricula: " + matricula.getIdMatricula());
@@ -259,6 +280,8 @@ public class FuncionesMatriculas {
 				System.out.println("asignatura: " + matricula.getAsignatura());
 				System.out.println("curso: " + matricula.getCurso());
 			}
+			System.out.print("------------------------------------------------");
+			System.out.println(ColorMio.getReset());
 		} else {
 			System.out.println("No existe ninguna Matricula con asignatura " + filtro + " " + asignatura);
 		}
@@ -276,6 +299,8 @@ public class FuncionesMatriculas {
 				.getResultList();
 
 		if (!matriculas.isEmpty()) {
+			System.out.println();
+			System.out.print(ColorMio.getAzul());
 			for (MatriculaEntity matricula : matriculas) {
 				System.out.println("------------------------------------------------");
 				System.out.println("idMatricula: " + matricula.getIdMatricula());
@@ -299,6 +324,8 @@ public class FuncionesMatriculas {
 				System.out.println("asignatura: " + matricula.getAsignatura());
 				System.out.println("curso: " + matricula.getCurso());
 			}
+			System.out.print("------------------------------------------------");
+			System.out.println(ColorMio.getReset());
 		} else {
 			System.out.println("No existe ninguna Matricula con curso " + filtro + " " + curso);
 		}

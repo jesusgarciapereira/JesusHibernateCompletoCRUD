@@ -51,6 +51,11 @@ public class FuncionesAlumnos {
 				.getResultList();
 
 		if (!alumnos.isEmpty()) {
+			System.out.println();
+			System.out.print(ColorMio.getFondoAzul());
+			System.out.print("\t\t\tALUMNOS\t\t\t ");
+			System.out.println(ColorMio.getReset());
+			System.out.print(ColorMio.getAzul());
 			for (AlumnoEntity alumno : alumnos) {
 				System.out.println("-----------------------------------------");
 				System.out.println("idAlumno: " + alumno.getIdAlumno());
@@ -59,6 +64,8 @@ public class FuncionesAlumnos {
 				// Para que se vea en ese formato
 				System.out.println("fechaNacimiento (aaaa-mm-dd): " + alumno.getFechaNacimiento());
 			}
+			System.out.print("-----------------------------------------");
+			System.out.println(ColorMio.getReset());
 		} else {
 			System.out.println("No existe ningún elemento en la tabla Alumno");
 		}
@@ -75,6 +82,8 @@ public class FuncionesAlumnos {
 				.getResultList();
 
 		if (!alumnos.isEmpty()) {
+			System.out.println();
+			System.out.print(ColorMio.getAzul());
 			for (AlumnoEntity alumno : alumnos) {
 				System.out.println("-----------------------------------------");
 				System.out.println("idAlumno: " + alumno.getIdAlumno());
@@ -83,6 +92,8 @@ public class FuncionesAlumnos {
 				// Para que se vea en ese formato
 				System.out.println("fechaNacimiento (aaaa-mm-dd): " + alumno.getFechaNacimiento());
 			}
+			System.out.print("-----------------------------------------");
+			System.out.println(ColorMio.getReset());
 		} else {
 			System.out.println("No existe ningún Alumno con idAlumno " + filtro + " " + idAlumno);
 		}

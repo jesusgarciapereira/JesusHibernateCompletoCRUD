@@ -51,6 +51,11 @@ public class FuncionesProfesores {
 				.getResultList();
 
 		if (!profesores.isEmpty()) {
+			System.out.println();
+			System.out.print(ColorMio.getFondoAzul());
+			System.out.print("\t\t\tPROFESORES\t\t ");
+			System.out.println(ColorMio.getReset());
+			System.out.print(ColorMio.getAzul());
 			for (ProfesorEntity profesor : profesores) {
 				System.out.println("-----------------------------------------");
 				System.out.println("idProfesor: " + profesor.getIdProfesor());
@@ -60,6 +65,8 @@ public class FuncionesProfesores {
 				System.out.println("fechaNacimiento (aaaa-mm-dd): " + profesor.getFechaNacimiento());
 				System.out.println("antiguedad: " + profesor.getAntiguedad());
 			}
+			System.out.print("-----------------------------------------");
+			System.out.println(ColorMio.getReset());
 		} else {
 			System.out.println("No existe ningún elemento en la tabla Profesores");
 		}
@@ -76,6 +83,8 @@ public class FuncionesProfesores {
 				.getResultList();
 
 		if (!profesores.isEmpty()) {
+			System.out.println();
+			System.out.print(ColorMio.getAzul());
 			for (ProfesorEntity profesor : profesores) {
 				System.out.println("-----------------------------------------");
 				System.out.println("idProfesor: " + profesor.getIdProfesor());
@@ -85,6 +94,8 @@ public class FuncionesProfesores {
 				System.out.println("fechaNacimiento (aaaa-mm-dd): " + profesor.getFechaNacimiento());
 				System.out.println("antiguedad: " + profesor.getAntiguedad());
 			}
+			System.out.print("-----------------------------------------");
+			System.out.println(ColorMio.getReset());
 		} else {
 			System.out.println("No existe ningún Profesor con idProfesor " + filtro + " " + idProfesor);
 		}
