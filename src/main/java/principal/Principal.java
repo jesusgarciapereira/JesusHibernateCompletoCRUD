@@ -1720,8 +1720,21 @@ public class Principal {
 														System.out.println("No existe ningún Profesor con idProfesor = "
 																+ idProfesor + " en la lista anteriormente mostrada");
 														System.out.print(ColorMio.getReset());
+														//fechaNacimiento = "";
 													} else {
+														cabecera = " Matricula(s) con Profesor con idProfesor = "
+																+ idProfesor + "\t";
 														profesor = FuncionesProfesores.getProfesorPorId(idProfesor);
+														FuncionesMatriculas.leerPorProfesor(profesor, cabecera);
+														
+														opcionSubmenuB = 0;
+														opcionSubmenuA = 0;
+														
+														// fechaNacimiento = "";
+														idProfesor = 0;
+														profesor = null;
+														cabecera = "";
+	
 													}
 												} else {
 													System.out.println();
@@ -1741,13 +1754,24 @@ public class Principal {
 												}
 
 											} else {
-												profesor = FuncionesProfesores.getProfesorPorId(idsProfesores.get(0));
+												cabecera = " Matricula(s) con Profesor con fechaNacimiento = '"
+														+ fechaNacimiento + "'\t";
+												profesor = FuncionesProfesores
+														.getProfesorPorId(idsProfesores.get(0));
+												FuncionesMatriculas.leerPorProfesor(profesor, cabecera);
+												
+												opcionSubmenuB = 0;
+												opcionSubmenuA = 0;
 
+												fechaNacimiento = "";
+												idProfesor = 0;
+												profesor = null;
+												cabecera = "";
+												
 											}
 
 										} while (fechaNacimiento.equals("")
 												&& (profesor == null && !idsProfesores.contains(idProfesor)));
-										System.out.println();
 
 										break; // FIN 4. Por fechaNacimiento.
 									case 5: // 5. Por antiguedad.
@@ -1786,7 +1810,20 @@ public class Principal {
 															System.out.print(ColorMio.getReset());
 															antiguedad = -1;
 														} else {
+															cabecera = " Matricula(s) con Profesor con idProfesor = "
+																	+ idProfesor + "\t";
 															profesor = FuncionesProfesores.getProfesorPorId(idProfesor);
+															FuncionesMatriculas.leerPorProfesor(profesor, cabecera);
+															
+															opcionSubmenuB = 0;
+															opcionSubmenuA = 0;
+
+															antiguedad = -1;
+															idProfesor = 0;
+															profesor = null;
+															cabecera = "";
+															
+															
 														}
 													} else {
 														System.out.println();
@@ -1799,8 +1836,20 @@ public class Principal {
 															"No existe ningún Profesor con antiguedad = " + antiguedad);
 													System.out.print(ColorMio.getReset());
 												} else {
+													cabecera = " Matricula(s) con Profesor con antiguedad = '"
+															+ antiguedad + "'\t";
 													profesor = FuncionesProfesores
 															.getProfesorPorId(idsProfesores.get(0));
+													FuncionesMatriculas.leerPorProfesor(profesor, cabecera);
+													
+													opcionSubmenuB = 0;
+													opcionSubmenuA = 0;
+
+													antiguedad = -1;
+													idProfesor = 0;
+													profesor = null;
+													cabecera = "";
+													
 
 												}
 
@@ -1808,7 +1857,7 @@ public class Principal {
 
 										} while (antiguedad != -1 && profesor == null
 												&& !idsProfesores.contains(idProfesor));
-										System.out.println();
+									
 										break; // FIN 5. Por antiguedad.
 									case 0: // 0. Volver al Menú Principal.
 										break; // FIN 0. Volver al Menú Principal.
