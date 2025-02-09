@@ -1545,7 +1545,18 @@ public class Principal {
 															System.out.print(ColorMio.getReset());
 															nombre = "";
 														} else {
+															cabecera = " Matricula(s) con Profesor con idProfesor = "
+																	+ idProfesor + "\t";
 															profesor = FuncionesProfesores.getProfesorPorId(idProfesor);
+															FuncionesMatriculas.leerPorProfesor(profesor, cabecera);
+															
+															opcionSubmenuB = 0;
+															opcionSubmenuA = 0;
+															
+															nombre = "";
+															idProfesor = 0;
+															profesor = null;
+															cabecera = "";
 														}
 													} else {
 
@@ -1559,16 +1570,26 @@ public class Principal {
 															"No existe ningún Profesor con nombre = " + nombre);
 													System.out.print(ColorMio.getReset());
 												} else {
+													cabecera = " Matricula(s) con Profesor con nombre = '"
+															+ nombre + "'\t";
 													profesor = FuncionesProfesores
 															.getProfesorPorId(idsProfesores.get(0));
+													FuncionesMatriculas.leerPorProfesor(profesor, cabecera);
+													
+													opcionSubmenuB = 0;
+													opcionSubmenuA = 0;
 
+													nombre = "";
+													idProfesor = 0;
+													profesor = null;
+													cabecera = "";
 												}
 
 											}
 
 										} while (!nombre.equals("0") && !nombre.equals("") && profesor == null
 												&& !idsProfesores.contains(idProfesor));
-										System.out.println();
+										
 										break; // FIN 2. Por nombre.
 									case 3: // 3. Por apellidos.
 										do {
