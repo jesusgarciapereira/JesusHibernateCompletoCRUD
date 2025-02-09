@@ -18,6 +18,22 @@ public class Menu {
 		System.out.print("Escriba una opción: ");
 		System.out.print(ColorMio.getReset());
 	}
+	static void subMenuObtenerMatriculas() {
+		System.out.println("Obtener Matriculas:");
+		System.out.println("===================");
+		System.out.println("1. Todas.");
+		System.out.println("2. Por idMatricula.");
+		System.out.println("3. Por Profesor.");
+		System.out.println("4. Por Alumno.");
+		System.out.println("5. Por asignatura.");
+		System.out.println("6. Por curso.");
+		System.out.println("0. Volver al Menú anterior.");
+		System.out.println();
+
+		System.out.print(ColorMio.getAzul());
+		System.out.print("Escriba una opción: ");
+		System.out.print(ColorMio.getReset());
+	}
 	
 	static void subMenuObtenerAlumnos() {
 		System.out.println("Obtener Alumnos:");

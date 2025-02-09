@@ -1379,7 +1379,7 @@ public class Principal {
 									}
 								} while (opcionSubmenuC != 0);
 								break; // FIN 5. Por fechaNacimiento.
-							
+
 							case 0: // 0. Volver al Menú anterior.
 
 								break; // FIN 0. Volver al Menú anterior.
@@ -1396,6 +1396,47 @@ public class Principal {
 						break; // FIN 3. Alumnos.
 
 					case 4: // 4. Matriculas.
+						do {
+							Menu.subMenuObtenerMatriculas();
+							opcionSubmenuB = leeInt(sc);
+							System.out.println();
+
+							switch (opcionSubmenuB) {
+							case 1: // 1. Todas.
+								FuncionesMatriculas.leerTodos();
+								System.out.println();
+								
+								opcionSubmenuB = 0;
+								opcionSubmenuA = 0;
+
+								break; // FIN 1. Todas.
+							case 2: // 2. Por idMatricula.
+
+								break; // FIN 2. Por idMatricula.
+							case 3: // 3. Por Profesor.
+
+								break; // FIN 3. Por Profesor.
+							case 4: // 4. Por Alumno.
+
+								break; // FIN 4. Por Alumno.
+							case 5: // 5. Por asignatura.
+
+								break; // FIN 5. Por asignatura.
+							case 6: // 6. Por curso.
+
+								break; // FIN 6. Por curso.
+							case 0: // 0. Volver al Menú anterior.
+								break; // FIN 0. Volver al Menú anterior.
+							default:
+								System.out.print(ColorMio.getRojo());
+								System.out.print("Opción no disponible: ");
+								System.out.print(ColorMio.getReset());
+								System.out.println("Elija del 0 al 6");
+								System.out.println();
+								break;
+							}// FIN switch (opcionSubmenuB)
+
+						} while (opcionSubmenuB != 0);
 
 						break; // FIN 4. Matriculas.
 
