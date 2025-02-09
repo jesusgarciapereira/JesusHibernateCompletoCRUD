@@ -111,5 +111,42 @@ public class Menu {
 		System.out.print("Escriba una opción: ");
 		System.out.print(ColorMio.getReset());
 	}
+	
+	/**
+	 * Submenu que permite seleccionar opciones de filtro para columnas de tipo VARCHAR.
+	 */
+	static void submenuOpcionFiltroVARCHAR() {
+		System.out.println("Opción filtro:");
+		System.out.println("==============");
+		System.out.println("1. =");
+		System.out.println("2. LIKE");
+		System.out.println("0. Volver al Menú anterior.");
+		
+		System.out.println();
+
+		System.out.print(ColorMio.getAzul());
+		System.out.print("Escriba una opción: ");
+		System.out.print(ColorMio.getReset());
+	}
+
+	/**
+	 * Submenu que permite seleccionar opciones de filtro para columnas de tipo INT.
+	 */
+	static void submenuOpcionFiltroNUMBER() {
+		System.out.println("Opción filtro:");
+		System.out.println("==============");
+		System.out.println("1. =");
+		System.out.println("2. >");
+		System.out.println("3. <");
+		System.out.println("4. >=");
+		System.out.println("5. <=");
+		System.out.println("0. Volver al Menú anterior.");
+
+		System.out.println();
+
+		System.out.print(ColorMio.getAzul());
+		System.out.print("Escriba una opción: ");
+		System.out.print(ColorMio.getReset());
+	}
 
 }

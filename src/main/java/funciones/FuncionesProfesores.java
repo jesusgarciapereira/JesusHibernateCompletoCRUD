@@ -84,6 +84,9 @@ public class FuncionesProfesores {
 
 		if (!profesores.isEmpty()) {
 			System.out.println();
+			System.out.print(ColorMio.getFondoAzul());
+			System.out.print("\t    Profesor(es) con idProfesor " + filtro + " " + idProfesor + "\t ");
+			System.out.println(ColorMio.getReset());
 			System.out.print(ColorMio.getAzul());
 			for (ProfesorEntity profesor : profesores) {
 				System.out.println("-----------------------------------------");
@@ -97,7 +100,9 @@ public class FuncionesProfesores {
 			System.out.print("-----------------------------------------");
 			System.out.println(ColorMio.getReset());
 		} else {
-			System.out.println("No existe ningún Profesor con idProfesor " + filtro + " " + idProfesor);
+			System.out.print(ColorMio.getRojo());
+			System.out.print("No existe ningún Profesor con idProfesor " + filtro + " " + idProfesor);
+			System.out.println(ColorMio.getReset());			
 		}
 
 		instancia.cerrar();
@@ -135,7 +140,10 @@ public class FuncionesProfesores {
 			System.out.print("-----------------------------------------");
 			System.out.println(ColorMio.getReset());
 		} else {
+			System.out.print(ColorMio.getRojo());
 			System.out.println("No existe ningún Profesor con nombre " + filtro + " " + nombre);
+			System.out.println(ColorMio.getReset());	
+			
 		}
 		System.out.println();
 
@@ -173,7 +181,10 @@ public class FuncionesProfesores {
 			System.out.print("-----------------------------------------");
 			System.out.println(ColorMio.getReset());
 		} else {
+			System.out.print(ColorMio.getRojo());
 			System.out.println("No existe ningún Profesor con apellidos " + filtro + " " + apellidos);
+			System.out.println(ColorMio.getReset());	
+
 		}
 		System.out.println();
 		instancia.cerrar();
@@ -203,7 +214,10 @@ public class FuncionesProfesores {
 			System.out.print("-----------------------------------------");
 			System.out.println(ColorMio.getReset());
 		} else {
+			System.out.print(ColorMio.getRojo());
 			System.out.println("No existe ningún Profesor con fechaNacimiento " + filtro + " " + fechaNacimiento);
+			System.out.println(ColorMio.getReset());	
+			
 		}
 
 		System.out.println();
@@ -221,6 +235,9 @@ public class FuncionesProfesores {
 
 		if (!profesores.isEmpty()) {
 			System.out.println();
+			System.out.print(ColorMio.getFondoAzul());
+			System.out.print("\t    Profesor(es) con antiguedad " + filtro + " " + antiguedad + "\t ");
+			System.out.println(ColorMio.getReset());
 			System.out.print(ColorMio.getAzul());
 			for (ProfesorEntity profesor : profesores) {
 				System.out.println("-----------------------------------------");
@@ -234,7 +251,10 @@ public class FuncionesProfesores {
 			System.out.print("-----------------------------------------");
 			System.out.println(ColorMio.getReset());
 		} else {
+			System.out.print(ColorMio.getRojo());
 			System.out.println("No existe ningún Profesor con antigüedad " + filtro + " " + antiguedad);
+			System.out.println(ColorMio.getReset());	
+			
 		}
 		System.out.println();
 		instancia.cerrar();

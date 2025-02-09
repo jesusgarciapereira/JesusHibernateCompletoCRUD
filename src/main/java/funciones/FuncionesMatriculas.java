@@ -138,7 +138,10 @@ public class FuncionesMatriculas {
 			System.out.print("------------------------------------------------");
 			System.out.println(ColorMio.getReset());
 		} else {
+			System.out.print(ColorMio.getRojo());
 			System.out.println("No existe ninguna Matricula con idMatricula " + filtro + " " + idMatricula);
+			System.out.println(ColorMio.getReset());
+			
 		}
 
 		instancia.cerrar();
@@ -183,8 +186,11 @@ public class FuncionesMatriculas {
 			System.out.print("------------------------------------------------");
 			System.out.println(ColorMio.getReset());
 		} else {
-			System.out.println("No existe ninguna Matricula correspondiente con el Profesor con id?rofesor = "
+			System.out.print(ColorMio.getRojo());
+			System.out.println("No existe ninguna Matricula correspondiente con el Profesor con idProfesor = "
 					+ profesor.getIdProfesor());
+			System.out.println(ColorMio.getReset());
+			
 
 		}
 
@@ -230,8 +236,11 @@ public class FuncionesMatriculas {
 			System.out.print("------------------------------------------------");
 			System.out.println(ColorMio.getReset());
 		} else {
+			System.out.print(ColorMio.getRojo());
 			System.out.println(
 					"No existe ninguna Matricula correspondiente con el Alumno con idAlumno = " + alumno.getIdAlumno());
+			System.out.println(ColorMio.getReset());
+			
 
 		}
 
@@ -283,7 +292,10 @@ public class FuncionesMatriculas {
 			System.out.print("------------------------------------------------");
 			System.out.println(ColorMio.getReset());
 		} else {
+			System.out.print(ColorMio.getRojo());
 			System.out.println("No existe ninguna Matricula con asignatura " + filtro + " " + asignatura);
+			System.out.println(ColorMio.getReset());
+			
 		}
 
 		instancia.cerrar();
@@ -327,7 +339,10 @@ public class FuncionesMatriculas {
 			System.out.print("------------------------------------------------");
 			System.out.println(ColorMio.getReset());
 		} else {
+			System.out.print(ColorMio.getRojo());
 			System.out.println("No existe ninguna Matricula con curso " + filtro + " " + curso);
+			System.out.println(ColorMio.getReset());
+			
 		}
 
 		instancia.cerrar();

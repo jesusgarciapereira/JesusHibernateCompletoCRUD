@@ -46,6 +46,8 @@ public class Principal {
 		int fechaMes = 0;
 		int fechaAnnio = 0;
 
+		String filtro = "";
+
 		List<Long> idsProfesores = new ArrayList<>();
 		List<Long> idsAlumnos = new ArrayList<>();
 
@@ -818,12 +820,14 @@ public class Principal {
 
 					switch (opcionSubmenuA) {
 					case 1: // 1. Todos.
-						
+
 						FuncionesProfesores.leerTodos();
 						FuncionesAlumnos.leerTodos();
 						FuncionesMatriculas.leerTodos();
 						System.out.println();
-						
+
+						opcionSubmenuA = 0;
+
 						break; // FIN 1. Todos.
 
 					case 2: // 2. Profesores.
@@ -834,9 +838,67 @@ public class Principal {
 
 							switch (opcionSubmenuB) {
 							case 1: // 1. Todos.
+								FuncionesProfesores.leerTodos();
+								System.out.println();
+
+								opcionSubmenuB = 0;
+								opcionSubmenuA = 0;
 
 								break; // FIN 1. Todos.
 							case 2: // 2. Por idProfesor.
+
+								do {
+									Menu.submenuOpcionFiltroNUMBER();
+									opcionSubmenuC = leeInt(sc);
+									System.out.println();
+
+									switch (opcionSubmenuC) {
+									case 1:
+										filtro = "=";
+										break;
+									case 2:
+										filtro = ">";
+										break;
+									case 3:
+										filtro = "<";
+										break;
+									case 4:
+										filtro = ">=";
+										break;
+									case 5:
+										filtro = "<=";
+										break;
+									case 0:
+
+										break;
+
+									default:
+										System.out.print(ColorMio.getRojo());
+										System.out.print("Opción no disponible: ");
+										System.out.print(ColorMio.getReset());
+										System.out.println("Elija del 0 al 5");
+										System.out.println();
+										break;
+									}// FIN switch (opcionSubmenuC)
+									if (opcionSubmenuC > 0 && opcionSubmenuC <= 5) {
+										do {
+											System.out.print("Introduzca el ID del Profesor (> 0): ");
+											idProfesor = leeLong(sc);
+
+										} while (idProfesor <= 0);
+
+										System.out.println();
+										FuncionesProfesores.leerPorId(idProfesor, filtro);
+										System.out.println();
+
+										opcionSubmenuC = 0;
+										opcionSubmenuB = 0;
+										opcionSubmenuA = 0;
+
+										idProfesor = -1;
+										filtro = "";
+									}
+								} while (opcionSubmenuC != 0);
 
 								break; // FIN 2. Por idProfesor.
 							case 3: // 3. Por nombre.
@@ -849,7 +911,59 @@ public class Principal {
 
 								break; // FIN 5. Por fechaNacimiento.
 							case 6: // 6. Por antiguedad.
+								do {
+									Menu.submenuOpcionFiltroNUMBER();
+									opcionSubmenuC = leeInt(sc);
+									System.out.println();
 
+									switch (opcionSubmenuC) {
+									case 1:
+										filtro = "=";
+										break;
+									case 2:
+										filtro = ">";
+										break;
+									case 3:
+										filtro = "<";
+										break;
+									case 4:
+										filtro = ">=";
+										break;
+									case 5:
+										filtro = "<=";
+										break;
+									case 0:
+
+										break;
+
+									default:
+										System.out.print(ColorMio.getRojo());
+										System.out.print("Opción no disponible: ");
+										System.out.print(ColorMio.getReset());
+										System.out.println("Elija del 0 al 5");
+										System.out.println();
+										break;
+									}// FIN switch (opcionSubmenuC)
+
+									if (opcionSubmenuC > 0 && opcionSubmenuC <= 5) {
+										do {
+											System.out.print("Introduzca la antiguedad del Profesor (>= 0): ");
+											antiguedad = leeInt(sc);
+
+										} while (antiguedad < 0);
+
+										System.out.println();
+										FuncionesProfesores.leerPorAntiguedad(antiguedad, filtro);
+
+										opcionSubmenuC = 0;
+										opcionSubmenuB = 0;
+										opcionSubmenuA = 0;
+
+										antiguedad = -1;
+										filtro = "";
+
+									}
+								} while (opcionSubmenuC != 0);
 								break; // FIN 6. Por antiguedad.
 							case 0: // 0. Volver al Menú anterior.
 
