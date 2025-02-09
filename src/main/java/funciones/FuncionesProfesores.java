@@ -1,6 +1,7 @@
 package funciones;
 
 import java.awt.image.ColorModel;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -108,7 +109,10 @@ public class FuncionesProfesores {
 				.getResultList();
 
 		if (!profesores.isEmpty()) {
+			System.out.println();
+			System.out.print(ColorMio.getAzul());
 			for (ProfesorEntity profesor : profesores) {
+
 				System.out.println("-----------------------------------------");
 				System.out.println("idProfesor: " + profesor.getIdProfesor());
 				System.out.println("nombre: " + profesor.getNombre());
@@ -117,12 +121,14 @@ public class FuncionesProfesores {
 				System.out.println("fechaNacimiento (aaaa-mm-dd): " + profesor.getFechaNacimiento());
 				System.out.println("antiguedad: " + profesor.getAntiguedad());
 			}
+			System.out.print("-----------------------------------------");
+			System.out.println(ColorMio.getReset());
 		} else {
 			System.out.println("No existe ningún Profesor con nombre " + filtro + " " + nombre);
 		}
+		System.out.println();
 
 		instancia.cerrar();
-
 	}
 
 	public static void leerPorApellidos(String apellidos, String filtro) throws Exception {
@@ -142,6 +148,8 @@ public class FuncionesProfesores {
 				.getResultList();
 
 		if (!profesores.isEmpty()) {
+			System.out.println();
+			System.out.print(ColorMio.getAzul());
 			for (ProfesorEntity profesor : profesores) {
 				System.out.println("-----------------------------------------");
 				System.out.println("idProfesor: " + profesor.getIdProfesor());
@@ -151,10 +159,12 @@ public class FuncionesProfesores {
 				System.out.println("fechaNacimiento (aaaa-mm-dd): " + profesor.getFechaNacimiento());
 				System.out.println("antiguedad: " + profesor.getAntiguedad());
 			}
+			System.out.print("-----------------------------------------");
+			System.out.println(ColorMio.getReset());
 		} else {
 			System.out.println("No existe ningún Profesor con apellidos " + filtro + " " + apellidos);
 		}
-
+		System.out.println();
 		instancia.cerrar();
 
 	}
@@ -168,6 +178,8 @@ public class FuncionesProfesores {
 				.getResultList();
 
 		if (!profesores.isEmpty()) {
+			System.out.println();
+			System.out.print(ColorMio.getAzul());
 			for (ProfesorEntity profesor : profesores) {
 				System.out.println("-----------------------------------------");
 				System.out.println("idProfesor: " + profesor.getIdProfesor());
@@ -177,10 +189,13 @@ public class FuncionesProfesores {
 				System.out.println("fechaNacimiento (aaaa-mm-dd): " + profesor.getFechaNacimiento());
 				System.out.println("antiguedad: " + profesor.getAntiguedad());
 			}
+			System.out.print("-----------------------------------------");
+			System.out.println(ColorMio.getReset());
 		} else {
 			System.out.println("No existe ningún Profesor con fechaNacimiento " + filtro + " " + fechaNacimiento);
 		}
 
+		System.out.println();
 		instancia.cerrar();
 
 	}
@@ -194,6 +209,8 @@ public class FuncionesProfesores {
 				.getResultList();
 
 		if (!profesores.isEmpty()) {
+			System.out.println();
+			System.out.print(ColorMio.getAzul());
 			for (ProfesorEntity profesor : profesores) {
 				System.out.println("-----------------------------------------");
 				System.out.println("idProfesor: " + profesor.getIdProfesor());
@@ -203,10 +220,12 @@ public class FuncionesProfesores {
 				System.out.println("fechaNacimiento (aaaa-mm-dd): " + profesor.getFechaNacimiento());
 				System.out.println("antiguedad: " + profesor.getAntiguedad());
 			}
+			System.out.print("-----------------------------------------");
+			System.out.println(ColorMio.getReset());
 		} else {
 			System.out.println("No existe ningún Profesor con antigüedad " + filtro + " " + antiguedad);
 		}
-
+		System.out.println();
 		instancia.cerrar();
 
 	}
@@ -242,8 +261,14 @@ public class FuncionesProfesores {
 			break;
 		case "fechaNacimiento":
 			hql = "SELECT p.id FROM ProfesorEntity p WHERE p.fechaNacimiento = :fechaNacimiento";
-			idsProfesores = instancia.getSesion().createQuery(hql, Long.class)
-					.setParameter("fechaNacimiento", LocalDate.parse(dato)).getResultList();
+			try {
+				idsProfesores = instancia.getSesion().createQuery(hql, Long.class)
+						.setParameter("fechaNacimiento", LocalDate.parse(dato)).getResultList();
+			} catch (DateTimeException e) {
+				System.out.print(ColorMio.getRojo());
+				System.out.print("Fecha '" + dato + "' incorrecta");
+				System.out.println(ColorMio.getReset());
+			}
 			break;
 		case "antiguedad":
 			hql = "SELECT p.id FROM ProfesorEntity p WHERE p.antiguedad = :antiguedad";

@@ -1,5 +1,6 @@
 package funciones;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,7 @@ public class FuncionesAlumnos {
 		System.out.print("-----------------------------------------");
 		System.out.println(ColorMio.getReset());
 		System.out.println();
-		
+
 		instancia.cerrar();
 	}
 
@@ -106,6 +107,8 @@ public class FuncionesAlumnos {
 				.getResultList();
 
 		if (!alumnos.isEmpty()) {
+			System.out.println();
+			System.out.print(ColorMio.getAzul());
 			for (AlumnoEntity alumno : alumnos) {
 				System.out.println("-----------------------------------------");
 				System.out.println("idAlumno: " + alumno.getIdAlumno());
@@ -114,10 +117,13 @@ public class FuncionesAlumnos {
 				// Para que se vea en ese formato
 				System.out.println("fechaNacimiento (aaaa-mm-dd): " + alumno.getFechaNacimiento());
 			}
+			System.out.print("-----------------------------------------");
+			System.out.println(ColorMio.getReset());
 		} else {
 			System.out.println("No existe ningún Alumno con nombre " + filtro + " " + nombre);
 		}
 
+		System.out.println();
 		instancia.cerrar();
 
 	}
@@ -139,6 +145,8 @@ public class FuncionesAlumnos {
 				.getResultList();
 
 		if (!alumnos.isEmpty()) {
+			System.out.println();
+			System.out.print(ColorMio.getAzul());
 			for (AlumnoEntity alumno : alumnos) {
 				System.out.println("-----------------------------------------");
 				System.out.println("idAlumno: " + alumno.getIdAlumno());
@@ -147,10 +155,12 @@ public class FuncionesAlumnos {
 				// Para que se vea en ese formato
 				System.out.println("fechaNacimiento (aaaa-mm-dd): " + alumno.getFechaNacimiento());
 			}
+			System.out.print("-----------------------------------------");
+			System.out.println(ColorMio.getReset());
 		} else {
 			System.out.println("No existe ningún Alumno con apellidos " + filtro + " " + apellidos);
 		}
-
+		System.out.println();
 		instancia.cerrar();
 
 	}
@@ -164,6 +174,8 @@ public class FuncionesAlumnos {
 				.getResultList();
 
 		if (!alumnos.isEmpty()) {
+			System.out.println();
+			System.out.print(ColorMio.getAzul());
 			for (AlumnoEntity alumno : alumnos) {
 				System.out.println("-----------------------------------------");
 				System.out.println("idAlumno: " + alumno.getIdAlumno());
@@ -172,10 +184,13 @@ public class FuncionesAlumnos {
 				// Para que se vea en ese formato
 				System.out.println("fechaNacimiento (aaaa-mm-dd): " + alumno.getFechaNacimiento());
 			}
+			System.out.print("-----------------------------------------");
+			System.out.println(ColorMio.getReset());
 		} else {
 			System.out.println("No existe ningún Alumno con fechaNacimiento " + filtro + " " + fechaNacimiento);
 		}
 
+		System.out.println();
 		instancia.cerrar();
 
 	}
@@ -211,8 +226,14 @@ public class FuncionesAlumnos {
 			break;
 		case "fechaNacimiento":
 			hql = "SELECT p.id FROM AlumnoEntity p WHERE p.fechaNacimiento = :fechaNacimiento";
-			idsAlumnos = instancia.getSesion().createQuery(hql, Long.class)
-					.setParameter("fechaNacimiento", LocalDate.parse(dato)).getResultList();
+			try {
+				idsAlumnos = instancia.getSesion().createQuery(hql, Long.class)
+						.setParameter("fechaNacimiento", LocalDate.parse(dato)).getResultList();
+			} catch (DateTimeException e) {
+				System.out.print(ColorMio.getRojo());
+				System.out.print("Fecha '" + dato + "' incorrecta");
+				System.out.println(ColorMio.getReset());
+			}
 			break;
 
 		default:

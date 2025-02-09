@@ -23,7 +23,9 @@ public class FuncionesMatriculas {
 
 		System.out.println();
 		System.out.print(ColorMio.getFondoVerde());
-		System.out.println("Matrícula guardada"+ ColorMio.getReset());
+		System.out.print("Matrícula guardado");
+		System.out.print(ColorMio.getReset());
+		System.out.println(ColorMio.getVerde());
 		System.out.println("------------------------------------------------");
 		System.out.println("idMatricula: " + matricula.getIdMatricula());
 		System.out.println("--------");
@@ -45,7 +47,8 @@ public class FuncionesMatriculas {
 		System.out.println("\tfechaNacimiento (aaaa-mm-dd): " + matricula.getAlumno().getFechaNacimiento());
 		System.out.println("asignatura: " + matricula.getAsignatura());
 		System.out.println("curso: " + matricula.getCurso());
-		System.out.println("------------------------------------------------");
+		System.out.print("------------------------------------------------");
+		System.out.println(ColorMio.getReset());
 		System.out.println();
 
 		instancia.cerrar();

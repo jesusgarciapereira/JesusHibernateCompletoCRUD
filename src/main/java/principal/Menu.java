@@ -59,7 +59,7 @@ public class Menu {
 	
 	static void subMenuInsertarAlumno() {
 		System.out.println("Insertar Alumno en la Matricula:");
-		System.out.println("==================================");
+		System.out.println("================================");
 		System.out.println("1. Por idAlumno.");
 		System.out.println("2. Por nombre.");
 		System.out.println("3. Por apellidos.");
