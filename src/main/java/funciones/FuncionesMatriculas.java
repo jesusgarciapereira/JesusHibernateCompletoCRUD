@@ -111,6 +111,9 @@ public class FuncionesMatriculas {
 
 		if (!matriculas.isEmpty()) {
 			System.out.println();
+			System.out.print(ColorMio.getFondoAzul());
+			System.out.print("\t       Matricula(s) con idMatricula " + filtro + " " + idMatricula + "\t");
+			System.out.println(ColorMio.getReset());
 			System.out.print(ColorMio.getAzul());
 			for (MatriculaEntity matricula : matriculas) {
 				System.out.println("------------------------------------------------");
@@ -268,6 +271,13 @@ public class FuncionesMatriculas {
 
 		if (!matriculas.isEmpty()) {
 			System.out.println();
+			System.out.print(ColorMio.getFondoAzul());
+			if (filtro.equals("=")) {
+				System.out.print("\t   Matriculas(s) con asignatura " + filtro + " '" + asignatura + "'\t ");
+			} else {
+				System.out.print("\t   Matriculas(s) con asignatura " + filtro + " '%" + asignatura + "%'\t ");
+			}
+			System.out.println(ColorMio.getReset());
 			System.out.print(ColorMio.getAzul());
 			for (MatriculaEntity matricula : matriculas) {
 				System.out.println("------------------------------------------------");
@@ -297,7 +307,11 @@ public class FuncionesMatriculas {
 		} else {
 			System.out.println();
 			System.out.print(ColorMio.getRojo());
-			System.out.print("No existe ninguna Matricula con asignatura " + filtro + " " + asignatura);
+			if (filtro.equals("=")) {
+				System.out.print("No existe ninguna Matricula con asignatura " + filtro + " '" + asignatura + "'");
+			} else {
+				System.out.print("No existe ninguna Matricula con asignatura " + filtro + " '%" + asignatura + "%'");
+			}
 			System.out.println(ColorMio.getReset());
 			
 		}
@@ -316,6 +330,9 @@ public class FuncionesMatriculas {
 
 		if (!matriculas.isEmpty()) {
 			System.out.println();
+			System.out.print(ColorMio.getFondoAzul());
+			System.out.print("\t    Matriculas(s) con curso " + filtro + " " + curso + "\t ");
+			System.out.println(ColorMio.getReset());
 			System.out.print(ColorMio.getAzul());
 			for (MatriculaEntity matricula : matriculas) {
 				System.out.println("------------------------------------------------");

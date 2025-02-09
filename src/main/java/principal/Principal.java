@@ -39,6 +39,7 @@ public class Principal {
 		String fechaNacimiento = "";
 		int antiguedad = -1;
 		long idAlumno = -1;
+		long idMatricula = -1;
 		String asignatura = "";
 		int curso = -1;
 
@@ -1411,6 +1412,56 @@ public class Principal {
 
 								break; // FIN 1. Todas.
 							case 2: // 2. Por idMatricula.
+								do {
+									Menu.submenuOpcionFiltroNUMBER();
+									opcionSubmenuC = leeInt(sc);
+									System.out.println();
+
+									switch (opcionSubmenuC) {
+									case 1:
+										filtro = "=";
+										break;
+									case 2:
+										filtro = ">";
+										break;
+									case 3:
+										filtro = "<";
+										break;
+									case 4:
+										filtro = ">=";
+										break;
+									case 5:
+										filtro = "<=";
+										break;
+									case 0:
+
+										break;
+
+									default:
+										System.out.print(ColorMio.getRojo());
+										System.out.print("Opción no disponible: ");
+										System.out.print(ColorMio.getReset());
+										System.out.println("Elija del 0 al 5");
+										System.out.println();
+										break;
+									}// FIN switch (opcionSubmenuC)
+									if (opcionSubmenuC > 0 && opcionSubmenuC <= 5) {
+										do {
+											System.out.print("Introduzca el ID de la Matricula (> 0): ");
+											idMatricula = leeLong(sc);
+
+										} while (idMatricula <= 0);
+
+										FuncionesMatriculas.leerPorId(idMatricula, filtro);
+
+										opcionSubmenuC = 0;
+										opcionSubmenuB = 0;
+										opcionSubmenuA = 0;
+
+										idMatricula = -1;
+										filtro = "";
+									}
+								} while (opcionSubmenuC != 0);
 
 								break; // FIN 2. Por idMatricula.
 							case 3: // 3. Por Profesor.
