@@ -2114,11 +2114,12 @@ public class Principal {
 
 											if (idsAlumnos.size() > 1) {
 
-												FuncionesAlumnos.leerPorFechaNacimiento(LocalDate.parse(fechaNacimiento), "=");
+												FuncionesAlumnos
+														.leerPorFechaNacimiento(LocalDate.parse(fechaNacimiento), "=");
 
 												System.out.print(ColorMio.getAmarillo());
-												System.out.println("Hay varios Alumnos con fechaNacimiento = "
-														+ fechaNacimiento);
+												System.out.println(
+														"Hay varios Alumnos con fechaNacimiento = " + fechaNacimiento);
 												System.out.print(ColorMio.getReset());
 
 												System.out.print(
@@ -2134,8 +2135,8 @@ public class Principal {
 														System.out.print(ColorMio.getReset());
 														// fechaNacimiento = "";
 													} else {
-														cabecera = " Matricula(s) con Alumno con idAlumno = "
-																+ idAlumno + "\t";
+														cabecera = " Matricula(s) con Alumno con idAlumno = " + idAlumno
+																+ "\t";
 														alumno = FuncionesAlumnos.getAlumnoPorId(idAlumno);
 														FuncionesMatriculas.leerPorAlumno(alumno, cabecera);
 
@@ -2330,6 +2331,101 @@ public class Principal {
 				// opcionMenu = -1;
 				break; // FIN 2. Obtener datos.
 			case 3: // 3. Actualizar Datos.
+				do {
+					Menu.subMenuActualizarDatos();
+					opcionSubmenuA = leeInt(sc);
+					System.out.println();
+
+					switch (opcionSubmenuA) {
+					case 1: // 1. Profesores.
+						do {
+							Menu.subMenuElegirProfesorActualizar();
+							opcionSubmenuB = leeInt(sc);
+							System.out.println();
+
+							switch (opcionSubmenuB) {
+							case 1: // 1. Por idProfesor.
+								
+
+								break; // FIN 1. Por idProfesor.
+							case 2: // 2. Por nombre.
+
+								break; // FIN 2. Por nombre.
+							case 3: // 3. Por apellidos.
+
+								break; // FIN 3. Por apellidos.
+							case 4: // 4. Por fechaNacimiento.
+
+								break; // FIN 4. Por fechaNacimiento.
+							case 5: // 5. Por antiguedad.
+
+								break; // FIN 5. Por antiguedad.
+							case 0: // 0. Volver al Menú anterior.
+
+								break; // FIN 0. Volver al Menú anterior.
+
+							default:
+								System.out.print(ColorMio.getRojo());
+								System.out.print("Opción no disponible: ");
+								System.out.print(ColorMio.getReset());
+								System.out.println("Elija del 0 al 5");
+								System.out.println();
+								break;
+							}
+						} while (opcionSubmenuB != 0);
+
+						break; // FIN 1. Profesores.
+					case 2: // 2. Alumnos.
+						do {
+							Menu.subMenuElegirAlumnoActualizar();
+							opcionSubmenuB = leeInt(sc);
+							System.out.println();
+
+							switch (opcionSubmenuB) {
+							case 1: // 1. Por idAlumno.
+								
+
+								break; // FIN 1. Por idAlumno.
+							case 2: // 2. Por nombre.
+
+								break; // FIN 2. Por nombre.
+							case 3: // 3. Por apellidos.
+
+								break; // FIN 3. Por apellidos.
+							case 4: // 4. Por fechaNacimiento.
+
+								break; // FIN 4. Por fechaNacimiento.
+							case 0: // 0. Volver al Menú anterior.
+
+								break; // FIN 0. Volver al Menú anterior.
+
+							default:
+								System.out.print(ColorMio.getRojo());
+								System.out.print("Opción no disponible: ");
+								System.out.print(ColorMio.getReset());
+								System.out.println("Elija del 0 al 4");
+								System.out.println();
+								break;
+							}
+						} while (opcionSubmenuB != 0);
+
+						break; // FIN 2. Alumnos.
+					case 3: // 3. Matriculas.
+
+						break; // FIN 3. Matriculas.
+					case 0: // 0. Volver al Menú anterior.
+
+						break; // FIN 0. Volver al Menú anterior.
+
+					default:
+						System.out.print(ColorMio.getRojo());
+						System.out.print("Opción no disponible: ");
+						System.out.print(ColorMio.getReset());
+						System.out.println("Elija del 0 al 3");
+						System.out.println();
+						break;
+					}
+				} while (opcionSubmenuA != 0);
 
 				break;// FIN 3. Actualizar Datos.
 			case 4: // 4. Borrar Datos.
