@@ -1743,6 +1743,7 @@ public class Principal {
 
 													}
 												} else {
+													fechaNacimiento = "";
 													System.out.println();
 												}
 											}
@@ -1769,8 +1770,8 @@ public class Principal {
 												opcionSubmenuB = 0;
 												opcionSubmenuA = 0;
 
-												fechaNacimiento = "";
-												idProfesor = 0;
+												// fechaNacimiento = "";
+												idProfesor = -1;
 												profesor = null;
 												cabecera = "";
 
@@ -1826,7 +1827,7 @@ public class Principal {
 															opcionSubmenuA = 0;
 
 															antiguedad = -1;
-															idProfesor = 0;
+															idProfesor = -1;
 															profesor = null;
 															cabecera = "";
 
@@ -1853,7 +1854,7 @@ public class Principal {
 													opcionSubmenuA = 0;
 
 													antiguedad = -1;
-													idProfesor = 0;
+													idProfesor = -1;
 													profesor = null;
 													cabecera = "";
 
@@ -1965,7 +1966,7 @@ public class Principal {
 															opcionSubmenuA = 0;
 
 															nombre = "";
-															idAlumno = 0;
+															idAlumno = -1;
 															alumno = null;
 															cabecera = "";
 														}
@@ -1991,7 +1992,7 @@ public class Principal {
 													opcionSubmenuA = 0;
 
 													nombre = "";
-													idAlumno = 0;
+													idAlumno = -1;
 													alumno = null;
 													cabecera = "";
 												}
@@ -2045,7 +2046,7 @@ public class Principal {
 															opcionSubmenuA = 0;
 
 															apellidos = "";
-															idAlumno = 0;
+															idAlumno = -1;
 															alumno = null;
 															cabecera = "";
 														}
@@ -2071,7 +2072,7 @@ public class Principal {
 													opcionSubmenuA = 0;
 
 													apellidos = "";
-													idAlumno = 0;
+													idAlumno = -1;
 													alumno = null;
 													cabecera = "";
 												}
@@ -2143,12 +2144,13 @@ public class Principal {
 														opcionSubmenuA = 0;
 
 														// fechaNacimiento = "";
-														idAlumno = 0;
+														idAlumno = -1;
 														alumno = null;
 														cabecera = "";
 
 													}
 												} else {
+													fechaNacimiento = "";
 													System.out.println();
 												}
 											}
@@ -2175,8 +2177,8 @@ public class Principal {
 												opcionSubmenuB = 0;
 												opcionSubmenuA = 0;
 
-												fechaNacimiento = "";
-												idAlumno = 0;
+												// fechaNacimiento = "";
+												idAlumno = -1;
 												alumno = null;
 												cabecera = "";
 
