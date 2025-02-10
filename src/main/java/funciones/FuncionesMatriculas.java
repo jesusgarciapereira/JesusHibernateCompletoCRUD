@@ -206,7 +206,7 @@ public class FuncionesMatriculas {
 
 	}
 
-	public static void leerPorAlumno(AlumnoEntity alumno) throws Exception {
+	public static void leerPorAlumno(AlumnoEntity alumno, String cabecera) throws Exception {
 
 		String consultaSQL = "SELECT * FROM Matriculas WHERE idAlumno = " + alumno.getIdAlumno();
 
@@ -217,7 +217,10 @@ public class FuncionesMatriculas {
 
 		if (!matriculas.isEmpty()) {
 			System.out.println();
-			System.out.print(ColorMio.getAzul());
+			System.out.print(ColorMio.getFondoAzul());
+			System.out.print(cabecera);
+			System.out.print(ColorMio.getReset());
+			System.out.println(ColorMio.getAzul());
 			for (MatriculaEntity matricula : matriculas) {
 				System.out.println("------------------------------------------------");
 				System.out.println("idMatricula: " + matricula.getIdMatricula());
