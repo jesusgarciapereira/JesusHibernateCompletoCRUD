@@ -19,6 +19,35 @@ public class Menu {
 		System.out.print(ColorMio.getReset());
 	}
 	
+	static void subMenuElegirColumnaModificarAlumno() {
+		System.out.println("Elegir Dato a Actualizar del Alumno:");
+		System.out.println("======================================");
+		System.out.println("1. nombre.");
+		System.out.println("2. apellidos.");
+		System.out.println("3. fechaNacimiento.");
+		System.out.println("0. Volver al Menú Principal.");
+		System.out.println();
+
+		System.out.print(ColorMio.getAzul());
+		System.out.print("Escriba una opción: ");
+		System.out.print(ColorMio.getReset());
+	}
+	
+	static void subMenuElegirColumnaModificarProfesor() {
+		System.out.println("Elegir Dato a Actualizar del Profesor:");
+		System.out.println("======================================");
+		System.out.println("1. nombre.");
+		System.out.println("2. apellidos.");
+		System.out.println("3. fechaNacimiento.");
+		System.out.println("4. antiguedad.");
+		System.out.println("0. Volver al Menú Principal.");
+		System.out.println();
+
+		System.out.print(ColorMio.getAzul());
+		System.out.print("Escriba una opción: ");
+		System.out.print(ColorMio.getReset());
+	}
+	
 	static void subMenuElegirMatriculaActualizar() {
 		System.out.println("Elegir Matricula a Actualizar:");
 		System.out.println("==============================");
@@ -28,6 +57,14 @@ public class Menu {
 		System.out.println("4. Por asignatura.");
 		System.out.println("5. Por curso.");
 		System.out.println("0. Volver al Menú anterior.");
+		System.out.println();
+		
+		System.out.print(ColorMio.getAmarillo());
+		System.out.print("Consejo: ");
+		System.out.print(ColorMio.getReset());
+		System.out.println("Antes de Actualizar una Matricula asegúrese de que conoce alguno de sus campos");
+		System.out.println("Si lo necesita, vuelva al Menú Principal y seleccione la opción 2. Obtener Datos ");
+		
 		System.out.println();
 
 		System.out.print(ColorMio.getAzul());
