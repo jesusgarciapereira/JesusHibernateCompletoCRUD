@@ -19,6 +19,37 @@ public class Menu {
 		System.out.print(ColorMio.getReset());
 	}
 	
+//	static void subMenuSeleccionarProfesor() {
+//		System.out.println("Seleccionar Profesor:");
+//		System.out.println("=====================");
+//		System.out.println("1. Por idProfesor.");
+//		System.out.println("2. Por nombre.");
+//		System.out.println("3. Por apellidos.");
+//		System.out.println("4. Por fechaNacimiento.");
+//		System.out.println("5. Por antiguedad.");
+//		System.out.println("0. Volver al Menú anterior.");
+//		System.out.println();
+//		
+//		System.out.print(ColorMio.getAzul());
+//		System.out.print("Escriba una opción: ");
+//		System.out.print(ColorMio.getReset());
+//	}
+	
+	static void subMenuElegirColumnaModificarMatricula() {
+		System.out.println("Elegir Dato a Actualizar de la Matricula:");
+		System.out.println("=========================================");
+		System.out.println("1. idProfesor.");
+		System.out.println("2. idAlumno.");
+		System.out.println("3. asignatura.");
+		System.out.println("4. curso.");
+		System.out.println("0. Volver al Menú Principal.");
+		System.out.println();
+		
+		System.out.print(ColorMio.getAzul());
+		System.out.print("Escriba una opción: ");
+		System.out.print(ColorMio.getReset());
+	}
+	
 	static void subMenuElegirColumnaModificarAlumno() {
 		System.out.println("Elegir Dato a Actualizar del Alumno:");
 		System.out.println("======================================");
@@ -52,8 +83,8 @@ public class Menu {
 		System.out.println("Elegir Matricula a Actualizar:");
 		System.out.println("==============================");
 		System.out.println("1. Por idMatricula.");
-		System.out.println("2. Por Profesor.");
-		System.out.println("3. Por Alumno.");
+		System.out.println("2. Por idProfesor.");
+		System.out.println("3. Por idAlumno.");
 		System.out.println("4. Por asignatura.");
 		System.out.println("5. Por curso.");
 		System.out.println("0. Volver al Menú anterior.");
