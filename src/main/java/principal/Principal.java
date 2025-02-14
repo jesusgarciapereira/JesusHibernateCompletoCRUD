@@ -4798,7 +4798,7 @@ public class Principal {
 										FuncionesProfesores.leerPorNombre(datoDeBorrado, "=");
 
 										System.out.print(ColorMio.getAmarillo());
-										System.out.print("Hay varios Profesores con nombre = " + datoDeBorrado);
+										System.out.print("Hay varios Profesores con nombre = '" + datoDeBorrado + "'");
 										System.out.println(ColorMio.getReset());
 
 										System.out.println(
@@ -4883,7 +4883,114 @@ public class Principal {
 								break; // FIN 3. Por nombre.
 
 							case 4: // 4. Por apellidos.
+								idsProfesores.clear();
 
+								do {
+									System.out.print("Introduzca los Apellidos del Profesor que quiera Borrar: ");
+									datoDeBorrado = sc.nextLine();
+								} while (datoDeBorrado == "" || datoDeBorrado == null);
+
+								System.out.println();
+
+								System.out.println("¿Está seguro de que quiere borrar al Profesor con apellidos = '"
+										+ datoDeBorrado + "'? (s/n)");
+								System.out.print(ColorMio.getAmarillo());
+								System.out.print(
+										"ADVERTENCIA: Se borrarán también las Matriculas asociadas a dicho Profesor");
+								System.out.println(ColorMio.getReset());
+
+								if (sc.nextLine().equals("s")) {
+									System.out.println();
+
+									idsProfesores = FuncionesProfesores.buscaIDsPorColumna("apellidos", datoDeBorrado);
+
+									if (idsProfesores.size() > 1) {
+										
+										
+										FuncionesProfesores.leerPorApellidos(datoDeBorrado, "=");
+
+										System.out.print(ColorMio.getAmarillo());
+										System.out.print("Hay varios Profesores con apellidos = '" + datoDeBorrado + "'");
+										System.out.println(ColorMio.getReset());
+
+										System.out.println(
+												"Escriba el id del Profesor que desea borrar, o si lo prefiere, \"0\" para borrar a todos estos:");
+										idDeBorrado = leeLong(sc);
+
+										System.out.println();
+
+										if (idDeBorrado != 0) {
+											System.out.println("¿Está seguro de que quiere borrar al Profesor con ID = "
+													+ idDeBorrado + "? (s/n)");
+											System.out.print(ColorMio.getAmarillo());
+											System.out.print(
+													"ADVERTENCIA: Se borrarán también las Matriculas asociadas a dicho Profesor");
+											System.out.println(ColorMio.getReset());
+											if (sc.nextLine().equals("s")) {
+												System.out.println();
+												if (idsProfesores.contains(idDeBorrado)
+														&& FuncionesProfesores.borrarPorId(idDeBorrado)) {
+
+													System.out.print(ColorMio.getVerde());
+													System.out.print("Profesor con ID = " + idDeBorrado + " borrado");
+													System.out.println(ColorMio.getReset());
+												} else {
+													System.out.print(ColorMio.getRojo());
+													System.out.print("No existe ningún Profesor con ID = " + idDeBorrado
+															+ " en la lista anteriormente mostrada");
+													System.out.println(ColorMio.getReset());
+												}
+											}
+
+										} else {
+											System.out.println(
+													"¿Está seguro de que quiere borrar a todos estos Profesores con apellidos = '"
+															+ datoDeBorrado + "'? (s/n)");
+
+											System.out.print(ColorMio.getAmarillo());
+											System.out.print(
+													"ADVERTENCIA: Se borrarán también las Matriculas asociadas a dichos Profesores");
+											System.out.println(ColorMio.getReset());
+
+											if (sc.nextLine().equals("s")) {
+												
+												System.out.println();
+												
+												for (Long id : idsProfesores) {
+													FuncionesProfesores.borrarPorId(id);
+												}
+												System.out.print(ColorMio.getVerde());
+												System.out.print("Todos los Profesores con apellidos = '" + datoDeBorrado
+														+ "' han sido borrados");
+												System.out.println(ColorMio.getReset());
+											}
+
+										}
+
+									} else if (idsProfesores.size() == 1) {
+										idDeBorrado = idsProfesores.get(0);
+
+										FuncionesProfesores.borrarPorId(idDeBorrado);
+
+										System.out.print(ColorMio.getVerde());
+										System.out.print("Profesor con apellidos = '" + datoDeBorrado + "' borrado");
+										System.out.println(ColorMio.getReset());
+									} else {
+										System.out.print(ColorMio.getRojo());
+										System.out.print(
+												"No existe ningún Profesor con apellidos = '" + datoDeBorrado + "'");
+										System.out.println(ColorMio.getReset());
+									}
+								}
+
+								System.out.println();
+
+								opcionSubmenuB = 0;
+								opcionSubmenuA = 0;
+
+								idDeBorrado = -1;
+								datoDeBorrado = "";
+								idsProfesores.clear();
 								break; // FIN 4. Por apellidos.
 
 							case 5: // 5. Por fechaNacimiento.
