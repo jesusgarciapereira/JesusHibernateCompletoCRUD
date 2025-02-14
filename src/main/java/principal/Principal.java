@@ -4841,9 +4841,9 @@ public class Principal {
 											System.out.println(ColorMio.getReset());
 
 											if (sc.nextLine().equals("s")) {
-												
+
 												System.out.println();
-												
+
 												for (Long id : idsProfesores) {
 													FuncionesProfesores.borrarPorId(id);
 												}
@@ -4905,12 +4905,12 @@ public class Principal {
 									idsProfesores = FuncionesProfesores.buscaIDsPorColumna("apellidos", datoDeBorrado);
 
 									if (idsProfesores.size() > 1) {
-										
-										
+
 										FuncionesProfesores.leerPorApellidos(datoDeBorrado, "=");
 
 										System.out.print(ColorMio.getAmarillo());
-										System.out.print("Hay varios Profesores con apellidos = '" + datoDeBorrado + "'");
+										System.out
+												.print("Hay varios Profesores con apellidos = '" + datoDeBorrado + "'");
 										System.out.println(ColorMio.getReset());
 
 										System.out.println(
@@ -4953,15 +4953,15 @@ public class Principal {
 											System.out.println(ColorMio.getReset());
 
 											if (sc.nextLine().equals("s")) {
-												
+
 												System.out.println();
-												
+
 												for (Long id : idsProfesores) {
 													FuncionesProfesores.borrarPorId(id);
 												}
 												System.out.print(ColorMio.getVerde());
-												System.out.print("Todos los Profesores con apellidos = '" + datoDeBorrado
-														+ "' han sido borrados");
+												System.out.print("Todos los Profesores con apellidos = '"
+														+ datoDeBorrado + "' han sido borrados");
 												System.out.println(ColorMio.getReset());
 											}
 
@@ -4994,6 +4994,134 @@ public class Principal {
 								break; // FIN 4. Por apellidos.
 
 							case 5: // 5. Por fechaNacimiento.
+								do {
+									do {
+										System.out.print(
+												"Introduzca el día de FechaNacimiento del Profesor que quiera Borrar (entre 1 y 31): ");
+										fechaDia = leeInt(sc);
+									} while (fechaDia < 1 || fechaDia > 31);
+
+									do {
+										System.out.print(
+												"Introduzca el mes de FechaNacimiento del Profesor que quiera Borrar (entre 1 y 12): ");
+										fechaMes = leeInt(sc);
+									} while (fechaMes < 1 || fechaMes > 12);
+
+									do {
+										System.out.print(
+												"Introduzca el año de FechaNacimiento del Profesor que quiera Borrar (>= 1000 y <= año actual): ");
+										fechaAnnio = leeInt(sc);
+									} while (fechaAnnio <= 1000 || fechaAnnio > LocalDate.now().getYear());
+
+									datoDeBorrado = String.format("%d-%02d-%02d", fechaAnnio, fechaMes, fechaDia);
+								} while (datoDeBorrado == null || datoDeBorrado.equals(""));
+
+								System.out.println();
+								System.out
+										.println("¿Está seguro de que quiere borrar al Profesor con fechaNacimiento = '"
+												+ datoDeBorrado + "'? (s/n)");
+								System.out.print(ColorMio.getAmarillo());
+								System.out.print(
+										"ADVERTENCIA: Se borrarán también las Matriculas asociadas a dicho Profesor");
+								System.out.println(ColorMio.getReset());
+
+								if (sc.nextLine().equals("s")) {
+									System.out.println();
+
+									idsProfesores = FuncionesProfesores.buscaIDsPorColumna("fechaNacimiento",
+											datoDeBorrado);
+
+									if (idsProfesores.size() > 1) {
+
+										FuncionesProfesores.leerPorFechaNacimiento(LocalDate.parse(datoDeBorrado), "=");
+
+										System.out.print(ColorMio.getAmarillo());
+										System.out
+												.print("Hay varios Profesores con fechaNacimiento = '" + datoDeBorrado + "'");
+										System.out.println(ColorMio.getReset());
+
+										System.out.println(
+												"Escriba el id del Profesor que desea borrar, o si lo prefiere, \"0\" para borrar a todos estos:");
+										idDeBorrado = leeLong(sc);
+
+										System.out.println();
+
+										if (idDeBorrado != 0) {
+											System.out.println("¿Está seguro de que quiere borrar al Profesor con ID = "
+													+ idDeBorrado + "? (s/n)");
+											System.out.print(ColorMio.getAmarillo());
+											System.out.print(
+													"ADVERTENCIA: Se borrarán también las Matriculas asociadas a dicho Profesor");
+											System.out.println(ColorMio.getReset());
+											if (sc.nextLine().equals("s")) {
+												System.out.println();
+												if (idsProfesores.contains(idDeBorrado)
+														&& FuncionesProfesores.borrarPorId(idDeBorrado)) {
+
+													System.out.print(ColorMio.getVerde());
+													System.out.print("Profesor con ID = " + idDeBorrado + " borrado");
+													System.out.println(ColorMio.getReset());
+												} else {
+													System.out.print(ColorMio.getRojo());
+													System.out.print("No existe ningún Profesor con ID = " + idDeBorrado
+															+ " en la lista anteriormente mostrada");
+													System.out.println(ColorMio.getReset());
+												}
+											}
+
+										} else {
+											System.out.println(
+													"¿Está seguro de que quiere borrar a todos estos Profesores con fechaNacimiento = '"
+															+ datoDeBorrado + "'? (s/n)");
+
+											System.out.print(ColorMio.getAmarillo());
+											System.out.print(
+													"ADVERTENCIA: Se borrarán también las Matriculas asociadas a dichos Profesores");
+											System.out.println(ColorMio.getReset());
+
+											if (sc.nextLine().equals("s")) {
+
+												System.out.println();
+
+												for (Long id : idsProfesores) {
+													FuncionesProfesores.borrarPorId(id);
+												}
+												System.out.print(ColorMio.getVerde());
+												System.out.print("Todos los Profesores con fechaNacimiento = '"
+														+ datoDeBorrado + "' han sido borrados");
+												System.out.println(ColorMio.getReset());
+											}
+
+										}
+
+									} else if (idsProfesores.size() == 1) {
+										idDeBorrado = idsProfesores.get(0);
+
+										FuncionesProfesores.borrarPorId(idDeBorrado);
+
+										System.out.print(ColorMio.getVerde());
+										System.out.print("Profesor con fechaNacimiento = '" + datoDeBorrado + "' borrado");
+										System.out.println(ColorMio.getReset());
+									} else {
+										System.out.print(ColorMio.getRojo());
+										System.out.print(
+												"No existe ningún Profesor con fechaNacimiento = '" + datoDeBorrado + "'");
+										System.out.println(ColorMio.getReset());
+									}
+								}
+
+								System.out.println();
+
+								opcionSubmenuB = 0;
+								opcionSubmenuA = 0;
+
+								fechaDia = 0;
+								fechaMes = 0;
+								fechaAnnio = 0;
+
+								idDeBorrado = -1;
+								datoDeBorrado = "";
+								idsProfesores.clear();
 
 								break; // 5. FIN Por fechaNacimiento.
 
