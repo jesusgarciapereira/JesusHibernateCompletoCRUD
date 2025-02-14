@@ -5301,7 +5301,7 @@ public class Principal {
 
 									idsAlumnos = FuncionesAlumnos.buscaIDsDeTodos();
 									if (!idsAlumnos.isEmpty()) {
-										for (Long id : idsProfesores) {
+										for (Long id : idsAlumnos) {
 											FuncionesAlumnos.borrarPorId(id);
 										}
 										System.out.print(ColorMio.getVerde());
