@@ -34,7 +34,7 @@ public class AlumnoEntity implements Serializable { // ¿Obligatorio Serializabl
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idAlumno")
-	private List<MatriculaEntity> matriculas;
+	private List<MatriculaEntity> matriculasAlumno;
 
 	// CONSTRUCTORES
 

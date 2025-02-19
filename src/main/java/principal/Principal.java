@@ -102,7 +102,7 @@ public class Principal {
 								System.out.print(
 										"Introduzca el año de FechaNacimiento del Profesor (>= 1000 y <= año actual): ");
 								fechaAnnio = leeInt(sc);
-							} while (fechaAnnio <= 1000 || fechaAnnio > LocalDate.now().getYear());
+							} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
 
 							fechaNacimiento = String.format("%d-%02d-%02d", fechaAnnio, fechaMes, fechaDia);
 						} while (fechaNacimiento == null || fechaNacimiento.equals(""));
@@ -171,7 +171,7 @@ public class Principal {
 								System.out.print(
 										"Introduzca el año de FechaNacimiento del Alumno (>= 1000 y <= año actual): ");
 								fechaAnnio = leeInt(sc);
-							} while (fechaAnnio <= 1000 || fechaAnnio > LocalDate.now().getYear());
+							} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
 
 							fechaNacimiento = String.format("%d-%02d-%02d", fechaAnnio, fechaMes, fechaDia);
 						} while (fechaNacimiento == null || fechaNacimiento.equals(""));
@@ -376,7 +376,7 @@ public class Principal {
 												System.out.print(
 														"Introduzca el año de FechaNacimiento del Profesor correspondiente (>= 1000 y <= año actual): ");
 												fechaAnnio = leeInt(sc);
-											} while (fechaAnnio <= 1000 || fechaAnnio > LocalDate.now().getYear());
+											} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
 
 											fechaNacimiento = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
 													fechaDia);
@@ -681,7 +681,7 @@ public class Principal {
 														System.out.print(
 																"Introduzca el año de FechaNacimiento del Alumno correspondiente (>= 1000 y <= año actual): ");
 														fechaAnnio = leeInt(sc);
-													} while (fechaAnnio <= 1000
+													} while (fechaAnnio < 1000
 															|| fechaAnnio > LocalDate.now().getYear());
 
 													fechaNacimiento = String.format("%d-%02d-%02d", fechaAnnio,
@@ -1049,7 +1049,7 @@ public class Principal {
 												System.out.print(
 														"Introduzca el año de FechaNacimiento del Profesor (>= 1000 y <= año actual): ");
 												fechaAnnio = leeInt(sc);
-											} while (fechaAnnio <= 1000 || fechaAnnio > LocalDate.now().getYear());
+											} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
 
 											fechaNacimiento = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
 													fechaDia);
@@ -1358,7 +1358,7 @@ public class Principal {
 												System.out.print(
 														"Introduzca el año de FechaNacimiento del Alumno (>= 1000 y <= año actual): ");
 												fechaAnnio = leeInt(sc);
-											} while (fechaAnnio <= 1000 || fechaAnnio > LocalDate.now().getYear());
+											} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
 
 											fechaNacimiento = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
 													fechaDia);
@@ -1702,7 +1702,7 @@ public class Principal {
 													System.out.print(
 															"Introduzca el año de FechaNacimiento del Profesor correspondiente (>= 1000 y <= año actual): ");
 													fechaAnnio = leeInt(sc);
-												} while (fechaAnnio <= 1000 || fechaAnnio > LocalDate.now().getYear());
+												} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
 
 												fechaNacimiento = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
 														fechaDia);
@@ -2110,7 +2110,7 @@ public class Principal {
 													System.out.print(
 															"Introduzca el año de FechaNacimiento del Alumno correspondiente (>= 1000 y <= año actual): ");
 													fechaAnnio = leeInt(sc);
-												} while (fechaAnnio <= 1000 || fechaAnnio > LocalDate.now().getYear());
+												} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
 
 												fechaNacimiento = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
 														fechaDia);
@@ -2402,7 +2402,7 @@ public class Principal {
 												System.out.print(
 														"Introduzca el año de FechaNacimiento del Profesor (>= 1000 y <= año actual): ");
 												fechaAnnio = leeInt(sc);
-											} while (fechaAnnio <= 1000 || fechaAnnio > LocalDate.now().getYear());
+											} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
 
 											datoCambiado = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
 													fechaDia);
@@ -2526,7 +2526,7 @@ public class Principal {
 												System.out.print(
 														"Introduzca el año de FechaNacimiento del Profesor (>= 1000 y <= año actual): ");
 												fechaAnnio = leeInt(sc);
-											} while (fechaAnnio <= 1000 || fechaAnnio > LocalDate.now().getYear());
+											} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
 
 											datoCambiado = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
 													fechaDia);
@@ -2700,7 +2700,7 @@ public class Principal {
 												System.out.print(
 														"Introduzca el año de FechaNacimiento del Profesor (>= 1000 y <= año actual): ");
 												fechaAnnio = leeInt(sc);
-											} while (fechaAnnio <= 1000 || fechaAnnio > LocalDate.now().getYear());
+											} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
 
 											datoCambiado = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
 													fechaDia);
@@ -2845,7 +2845,7 @@ public class Principal {
 										System.out.print(
 												"Introduzca el año de FechaNacimiento del Profesor que quiera Actualizar (>= 1000 y <= año actual): ");
 										fechaAnnio = leeInt(sc);
-									} while (fechaAnnio <= 1000 || fechaAnnio > LocalDate.now().getYear());
+									} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
 
 									datoDeCambio = String.format("%d-%02d-%02d", fechaAnnio, fechaMes, fechaDia);
 								} while (datoDeCambio == null || datoDeCambio.equals(""));
@@ -2893,7 +2893,7 @@ public class Principal {
 												System.out.print(
 														"Introduzca el año de FechaNacimiento del Profesor (>= 1000 y <= año actual): ");
 												fechaAnnio = leeInt(sc);
-											} while (fechaAnnio <= 1000 || fechaAnnio > LocalDate.now().getYear());
+											} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
 
 											datoCambiado = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
 													fechaDia);
@@ -3092,7 +3092,7 @@ public class Principal {
 												System.out.print(
 														"Introduzca el año de FechaNacimiento del Profesor (>= 1000 y <= año actual): ");
 												fechaAnnio = leeInt(sc);
-											} while (fechaAnnio <= 1000 || fechaAnnio > LocalDate.now().getYear());
+											} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
 
 											datoCambiado = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
 													fechaDia);
@@ -3291,7 +3291,7 @@ public class Principal {
 												System.out.print(
 														"Introduzca el año de FechaNacimiento del Alumno (>= 1000 y <= año actual): ");
 												fechaAnnio = leeInt(sc);
-											} while (fechaAnnio <= 1000 || fechaAnnio > LocalDate.now().getYear());
+											} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
 
 											datoCambiado = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
 													fechaDia);
@@ -3403,7 +3403,7 @@ public class Principal {
 												System.out.print(
 														"Introduzca el año de FechaNacimiento del Alumno (>= 1000 y <= año actual): ");
 												fechaAnnio = leeInt(sc);
-											} while (fechaAnnio <= 1000 || fechaAnnio > LocalDate.now().getYear());
+											} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
 
 											datoCambiado = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
 													fechaDia);
@@ -3563,7 +3563,7 @@ public class Principal {
 												System.out.print(
 														"Introduzca el año de FechaNacimiento del Alumno (>= 1000 y <= año actual): ");
 												fechaAnnio = leeInt(sc);
-											} while (fechaAnnio <= 1000 || fechaAnnio > LocalDate.now().getYear());
+											} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
 
 											datoCambiado = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
 													fechaDia);
@@ -3692,7 +3692,7 @@ public class Principal {
 										System.out.print(
 												"Introduzca el año de FechaNacimiento del Alumno que quiera Actualizar (>= 1000 y <= año actual): ");
 										fechaAnnio = leeInt(sc);
-									} while (fechaAnnio <= 1000 || fechaAnnio > LocalDate.now().getYear());
+									} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
 
 									datoDeCambio = String.format("%d-%02d-%02d", fechaAnnio, fechaMes, fechaDia);
 								} while (datoDeCambio == null || datoDeCambio.equals(""));
@@ -3740,7 +3740,7 @@ public class Principal {
 												System.out.print(
 														"Introduzca el año de FechaNacimiento del Alumno (>= 1000 y <= año actual): ");
 												fechaAnnio = leeInt(sc);
-											} while (fechaAnnio <= 1000 || fechaAnnio > LocalDate.now().getYear());
+											} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
 
 											datoCambiado = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
 													fechaDia);
@@ -5041,7 +5041,7 @@ public class Principal {
 										System.out.print(
 												"Introduzca el año de FechaNacimiento del Profesor que quiera Borrar (>= 1000 y <= año actual): ");
 										fechaAnnio = leeInt(sc);
-									} while (fechaAnnio <= 1000 || fechaAnnio > LocalDate.now().getYear());
+									} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
 
 									datoDeBorrado = String.format("%d-%02d-%02d", fechaAnnio, fechaMes, fechaDia);
 								} while (datoDeBorrado == null || datoDeBorrado.equals(""));
@@ -5263,6 +5263,7 @@ public class Principal {
 
 								idDeBorrado = -1;
 								datoDeBorrado = "";
+								antiguedad = 0;
 								idsProfesores.clear();
 
 								break; // FIN 6. Por antiguedad.
@@ -5601,7 +5602,7 @@ public class Principal {
 										System.out.print(
 												"Introduzca el año de FechaNacimiento del Alumno que quiera Borrar (>= 1000 y <= año actual): ");
 										fechaAnnio = leeInt(sc);
-									} while (fechaAnnio <= 1000 || fechaAnnio > LocalDate.now().getYear());
+									} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
 
 									datoDeBorrado = String.format("%d-%02d-%02d", fechaAnnio, fechaMes, fechaDia);
 								} while (datoDeBorrado == null || datoDeBorrado.equals(""));
@@ -5731,7 +5732,308 @@ public class Principal {
 						} while (opcionSubmenuB != 0);
 						break; // FIN 3. Alumnos.
 					case 4: // 4. Matriculas.
+						do {
+							Menu.subMenuElegirMatriculaBorrar();
+							opcionSubmenuB = leeInt(sc);
+							System.out.println();
 
+							switch (opcionSubmenuB) {
+							case 1: // 1. Todos
+								System.out.println("¿Está seguro de que quiere borrar todas las Matriculas? (s/n)");
+
+								if (sc.nextLine().equals("s")) {
+
+									System.out.println();
+
+									idsMatriculas = FuncionesMatriculas.buscaIDsDeTodos();
+								
+									
+									if (!idsMatriculas.isEmpty()) {
+										for (Long id : idsMatriculas) {
+											FuncionesMatriculas.borrarPorId(id);
+										}
+										System.out.print(ColorMio.getVerde());
+										System.out.print("Todos las Matriculas han sido borradas");
+										System.out.println(ColorMio.getReset());
+									} else {
+										System.out.print(ColorMio.getRojo());
+										System.out.print("No existen Matriculas que borrar");
+										System.out.println(ColorMio.getReset());
+									}
+								}
+
+								System.out.println();
+
+								opcionSubmenuB = 0;
+								opcionSubmenuA = 0;
+
+								idsMatriculas.clear();
+								break; // FIN 1. Todos
+							case 2: // 2. Por idMatricula
+								do {
+									System.out.print("Introduzca el ID de la Matricula que quiera Borrar (> 0): ");
+									idDeBorrado = leeLong(sc);
+								} while (idDeBorrado <= 0);
+
+								System.out.println();
+
+								System.out.println("¿Está seguro de que quiere borrar la Matricula con ID = "
+										+ idDeBorrado + "? (s/n)");
+
+								if (sc.nextLine().equals("s")) {
+
+									System.out.println();
+
+									if (FuncionesMatriculas.borrarPorId(idDeBorrado)) {
+										System.out.print(ColorMio.getVerde());
+										System.out.print("Matricula con ID = " + idDeBorrado + " ha sido borrada");
+										System.out.println(ColorMio.getReset());
+									} else {
+										System.out.print(ColorMio.getRojo());
+										System.out.print("No existe ninguna Matricula con ID = " + idDeBorrado);
+										System.out.println(ColorMio.getReset());
+
+									}
+								}
+
+								System.out.println();
+
+								opcionSubmenuB = 0;
+								opcionSubmenuA = 0;
+
+								idDeBorrado = -1;
+
+								break; // FIN 2. Por idMatricula.
+								
+							case 3: // 3. Por idProfesor.
+								do {
+									System.out
+											.print("Introduzca el IDProfesor de la Matricula que quiera Borrar (>= 0): ");
+									idProfesor = leeLong(sc);
+									if (idProfesor >= 0) {
+										datoDeBorrado = String.valueOf(idProfesor);
+									}
+								} while (datoDeBorrado == null || datoDeBorrado.equals(""));
+
+								System.out.println();
+								System.out.println("¿Está seguro de que quiere borrar la Matricula con idProfesor = "
+										+ datoDeBorrado + "? (s/n)");								
+
+								if (sc.nextLine().equals("s")) {
+									System.out.println();
+									
+									idsMatriculas = FuncionesMatriculas.buscaIDsPorColumna("idProfesor", datoDeBorrado);
+
+									if (idsMatriculas.size() > 1) {
+										
+										FuncionesMatriculas.leerPorIdProfesor(Long.parseLong(datoDeBorrado), "=");					
+
+										System.out.print(ColorMio.getAmarillo());
+										System.out.print("Hay varias Matriculas con idProfesor = " + datoDeBorrado);
+										System.out.println(ColorMio.getReset());
+
+										System.out.println(
+												"Escriba el id de la Matricula que desea borrar, o si lo prefiere, \"0\" para borrar a todos estas:");
+										idDeBorrado = leeLong(sc);
+
+										System.out.println();
+
+										if (idDeBorrado != 0) {
+											System.out.println("¿Está seguro de que quiere borrar la Matricula con ID = "
+													+ idDeBorrado + "? (s/n)");
+
+											if (sc.nextLine().equals("s")) {
+												System.out.println();
+												if (idsMatriculas.contains(idDeBorrado)
+														&& FuncionesMatriculas.borrarPorId(idDeBorrado)) {
+
+													System.out.print(ColorMio.getVerde());
+													System.out.print("Matricula con ID = " + idDeBorrado + " borrada");
+													System.out.println(ColorMio.getReset());
+												} else {
+													System.out.print(ColorMio.getRojo());
+													System.out.print("No existe ninguna Matricula con ID = " + idDeBorrado
+															+ " en la lista anteriormente mostrada");
+													System.out.println(ColorMio.getReset());
+												}
+											}
+
+										} else {
+											System.out.println(
+													"¿Está seguro de que quiere borrar todas estas Matriculas con idProfesor = "
+															+ datoDeBorrado + "? (s/n)");
+
+											if (sc.nextLine().equals("s")) {
+
+												System.out.println();
+
+												for (Long id : idsMatriculas) {
+													FuncionesMatriculas.borrarPorId(id);
+												}
+												System.out.print(ColorMio.getVerde());
+												System.out.print("Todas las Matriculas con idProfesor = "
+														+ datoDeBorrado + " han sido borradas");
+												System.out.println(ColorMio.getReset());
+											}
+
+										}
+
+									} else if (idsMatriculas.size() == 1) {
+										idDeBorrado = idsMatriculas.get(0);
+
+										FuncionesMatriculas.borrarPorId(idDeBorrado);
+
+										System.out.print(ColorMio.getVerde());
+										System.out.print("Matricula con idProfesor = " + datoDeBorrado + " borrada");
+										System.out.println(ColorMio.getReset());
+									} else {
+										System.out.print(ColorMio.getRojo());
+										System.out.print("No existe ninguna Matricula con idProfesor = " + datoDeBorrado);
+										System.out.println(ColorMio.getReset());
+									}
+								}
+
+								System.out.println();
+
+								opcionSubmenuB = 0;
+								opcionSubmenuA = 0;
+
+								idDeBorrado = -1;
+								datoDeBorrado = "";
+								idProfesor = -1;
+								idsMatriculas.clear();
+
+								break; // FIN 3. Por idProfesor.
+
+								
+								
+								
+							case 5: // 5. Por asignatura.
+								idsProfesores.clear();
+
+								do {
+									System.out.print("Introduzca el Nombre del Alumno que quiera Borrar: ");
+									datoDeBorrado = sc.nextLine();
+								} while (datoDeBorrado == "" || datoDeBorrado == null);
+
+								System.out.println();
+
+								System.out.println("¿Está seguro de que quiere borrar al Alumno con nombre = '"
+										+ datoDeBorrado + "'? (s/n)");
+								System.out.print(ColorMio.getAmarillo());
+								System.out.print(
+										"ADVERTENCIA: Se borrarán también las Matriculas asociadas a dicho Alumno");
+								System.out.println(ColorMio.getReset());
+
+								if (sc.nextLine().equals("s")) {
+									System.out.println();
+
+									idsAlumnos = FuncionesAlumnos.buscaIDsPorColumna("nombre", datoDeBorrado);
+
+									if (idsAlumnos.size() > 1) {
+									
+										FuncionesAlumnos.leerPorNombre(datoDeBorrado, "=");
+
+										System.out.print(ColorMio.getAmarillo());
+										System.out.print("Hay varios Alumnos con nombre = '" + datoDeBorrado + "'");
+										System.out.println(ColorMio.getReset());
+
+										System.out.println(
+												"Escriba el id del Alumno que desea borrar, o si lo prefiere, \"0\" para borrar a todos estos:");
+										idDeBorrado = leeLong(sc);
+
+										System.out.println();
+
+										if (idDeBorrado != 0) {
+											System.out.println("¿Está seguro de que quiere borrar al Alumno con ID = "
+													+ idDeBorrado + "? (s/n)");
+											System.out.print(ColorMio.getAmarillo());
+											System.out.print(
+													"ADVERTENCIA: Se borrarán también las Matriculas asociadas a dicho Alumno");
+											System.out.println(ColorMio.getReset());
+											if (sc.nextLine().equals("s")) {
+												System.out.println();
+												if (idsAlumnos.contains(idDeBorrado)
+														&& FuncionesAlumnos.borrarPorId(idDeBorrado)) {
+
+													System.out.print(ColorMio.getVerde());
+													System.out.print("Alumno con ID = " + idDeBorrado + " borrado");
+													System.out.println(ColorMio.getReset());
+												} else {
+													System.out.print(ColorMio.getRojo());
+													System.out.print("No existe ningún Alumno con ID = " + idDeBorrado
+															+ " en la lista anteriormente mostrada");
+													System.out.println(ColorMio.getReset());
+												}
+											}
+
+										} else {
+											System.out.println(
+													"¿Está seguro de que quiere borrar a todos estos Alumnos con nombre = '"
+															+ datoDeBorrado + "'? (s/n)");
+
+											System.out.print(ColorMio.getAmarillo());
+											System.out.print(
+													"ADVERTENCIA: Se borrarán también las Matriculas asociadas a dichos Alumnos");
+											System.out.println(ColorMio.getReset());
+
+											if (sc.nextLine().equals("s")) {
+
+												System.out.println();
+
+												for (Long id : idsAlumnos) {
+													FuncionesAlumnos.borrarPorId(id);
+												}
+												System.out.print(ColorMio.getVerde());
+												System.out.print("Todos los Alumnos con nombre = '" + datoDeBorrado
+														+ "' han sido borrados");
+												System.out.println(ColorMio.getReset());
+											}
+
+										}
+
+									} else if (idsAlumnos.size() == 1) {
+										idDeBorrado = idsAlumnos.get(0);
+
+										FuncionesAlumnos.borrarPorId(idDeBorrado);
+
+										System.out.print(ColorMio.getVerde());
+										System.out.print("Alumno con nombre = '" + datoDeBorrado + "' borrado");
+										System.out.println(ColorMio.getReset());
+									} else {
+										System.out.print(ColorMio.getRojo());
+										System.out.print(
+												"No existe ningún Alumno con nombre = '" + datoDeBorrado + "'");
+										System.out.println(ColorMio.getReset());
+									}
+								}
+
+								System.out.println();
+
+								opcionSubmenuB = 0;
+								opcionSubmenuA = 0;
+
+								idDeBorrado = -1;
+								datoDeBorrado = "";
+								idsAlumnos.clear();
+
+								break; // FIN 5. Por asignatura.
+
+
+
+							case 0: // 0. Volver al Menú anterior.
+								break; // FIN 0. Volver al Menú anterior.
+
+							default:
+								System.out.print(ColorMio.getRojo());
+								System.out.print("Opción no disponible: ");
+								System.out.print(ColorMio.getReset());
+								System.out.println("Elija del 0 al 6");
+								System.out.println();
+								break;
+							}
+
+						} while (opcionSubmenuB != 0);
 						break; // FIN 4. Matriculas.
 					case 0: // 0. Volver al Menú anterior.
 

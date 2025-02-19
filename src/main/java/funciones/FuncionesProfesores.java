@@ -68,7 +68,9 @@ public class FuncionesProfesores {
 			System.out.print("-----------------------------------------");
 			System.out.println(ColorMio.getReset());
 		} else {
-			System.out.println("No existe ningún elemento en la tabla Profesores");
+			System.out.print(ColorMio.getRojo());
+			System.out.print("No existe ningún elemento en la tabla Profesores");
+			System.out.println(ColorMio.getReset());
 		}
 
 		instancia.cerrar();

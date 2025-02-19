@@ -28,7 +28,7 @@ public class ProfesorEntity implements Serializable{ // ¿Obligatorio Serializab
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idProfesor")
-	private List<MatriculaEntity> matriculas;
+	private List<MatriculaEntity> matriculasProfesor;
 
 	// CONSTRUCTORES
 	

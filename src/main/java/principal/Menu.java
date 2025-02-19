@@ -18,11 +18,37 @@ public class Menu {
 		System.out.print("Escriba una opción: ");
 		System.out.print(ColorMio.getReset());
 	}
+	
+	static void subMenuElegirMatriculaBorrar() {
+		System.out.println("Elegir Matricula a Borrar:");
+		System.out.println("==========================");
+		System.out.println("1. Todas");
+		System.out.println("2. Por idMatricula.");
+		System.out.println("3. Por idProfesor.");
+		System.out.println("4. Por idAlumno.");
+		System.out.println("5. Por asignatura.");
+		System.out.println("6. Por curso.");
+		System.out.println("0. Volver al Menú anterior.");
+		System.out.println();
+		
+		System.out.print(ColorMio.getAmarillo());
+		System.out.print("Consejo: ");
+		System.out.print(ColorMio.getReset());
+		System.out.println("Antes de Borrar una Matricula asegúrese de que conoce alguno de sus campos");
+		System.out.println("Si lo necesita, vuelva al Menú Principal y seleccione la opción 2. Obtener Datos ");
+		
+		System.out.println();
+
+		System.out.print(ColorMio.getAzul());
+		System.out.print("Escriba una opción: ");
+		System.out.print(ColorMio.getReset());
+	}
+	
 	static void subMenuElegirAlumnoBorrar() {
 		System.out.println("Elegir Alumno a Borrar:");
-		System.out.println("=========================");
+		System.out.println("=======================");
 		System.out.println("1. Todos");
-		System.out.println("2. Por idProfesor.");
+		System.out.println("2. Por idAlumno.");
 		System.out.println("3. Por nombre.");
 		System.out.println("4. Por apellidos.");
 		System.out.println("5. Por fechaNacimiento.");
@@ -32,7 +58,7 @@ public class Menu {
 		System.out.print(ColorMio.getAmarillo());
 		System.out.print("Consejo: ");
 		System.out.print(ColorMio.getReset());
-		System.out.println("Antes de Borrar un Profesor asegúrese de que conoce alguno de sus campos");
+		System.out.println("Antes de Borrar un Alumno asegúrese de que conoce alguno de sus campos");
 		System.out.println("Si lo necesita, vuelva al Menú Principal y seleccione la opción 2. Obtener Datos ");
 		
 		System.out.println();
