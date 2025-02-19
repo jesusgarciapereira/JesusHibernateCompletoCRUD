@@ -3234,6 +3234,8 @@ public class Principal {
 						} while (opcionSubmenuB != 0);
 
 						break; // FIN 1. Profesores.
+						
+						
 					case 2: // 2. Alumnos.
 						do {
 							Menu.subMenuElegirAlumnoActualizar();

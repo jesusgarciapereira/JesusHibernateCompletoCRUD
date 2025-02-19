@@ -18,7 +18,7 @@
 		<property name="show_sql">false</property> <!-- ESTO PUEDES PONERLO A FALSE PARA QUE NO SE VEA TODO LO ROJO -->
 		<!-- Establece el contexto de la sesion -->
 		<property name="current_session_context_class">thread</property>
-		<property name="hbm2ddl.auto">update</property>
+		<property name="hbm2ddl.auto">update</property> <!-- Prueba create -->
 
 
 		<!-- Cuidado con esto, si no pones nada busca en el paquete por defecto -->
