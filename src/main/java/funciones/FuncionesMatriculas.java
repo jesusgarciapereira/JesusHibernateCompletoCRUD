@@ -259,6 +259,58 @@ public class FuncionesMatriculas {
 		instancia.cerrar();
 
 	}
+	
+	public static void leerPorIdAlumno(long idAlumno, String filtro) throws Exception {
+		String consultaSQL = "SELECT * FROM Matriculas WHERE idAlumno  " + filtro + " " + idAlumno;
+
+		instancia.abrir();
+
+		List<MatriculaEntity> matriculas = instancia.getSesion().createNativeQuery(consultaSQL, MatriculaEntity.class)
+				.getResultList();
+
+		if (!matriculas.isEmpty()) {
+			System.out.println();
+			System.out.print(ColorMio.getFondoAzul());
+			System.out.print("\t\t  Matricula(s) con idAlumno " + filtro + " " + idAlumno + "\t");
+			System.out.println(ColorMio.getReset());
+			System.out.print(ColorMio.getAzul());
+			for (MatriculaEntity matricula : matriculas) {
+				System.out.println("------------------------------------------------");
+				System.out.println("idMatricula: " + matricula.getIdMatricula());
+				System.out.println("--------");
+				System.out.println("PROFESOR");
+				System.out.println("--------");
+				System.out.println("\tidProfesor: " + matricula.getProfesor().getIdProfesor());
+				System.out.println("\tnombre: " + matricula.getProfesor().getNombre());
+				System.out.println("\tapellidos: " + matricula.getProfesor().getApellidos());
+				// Para que se vea en ese formato
+				System.out.println("\tfechaNacimiento (aaaa-mm-dd): " + matricula.getProfesor().getFechaNacimiento());
+				System.out.println("\tantiguedad: " + matricula.getProfesor().getAntiguedad());
+				System.out.println("------");
+				System.out.println("ALUMNO");
+				System.out.println("------");
+				System.out.println("\tidAlumno: " + matricula.getAlumno().getIdAlumno());
+				System.out.println("\tnombre: " + matricula.getAlumno().getNombre());
+				System.out.println("\tapellidos: " + matricula.getAlumno().getApellidos());
+				// Para que se vea en ese formato
+				System.out.println("\tfechaNacimiento (aaaa-mm-dd): " + matricula.getAlumno().getFechaNacimiento());
+				System.out.println("asignatura: " + matricula.getAsignatura());
+				System.out.println("curso: " + matricula.getCurso());
+			}
+			System.out.print("------------------------------------------------");
+			System.out.println(ColorMio.getReset());
+		} else {
+			System.out.println();
+			System.out.print(ColorMio.getRojo());
+			System.out.print("No existe ninguna Matricula con idAlumno " + filtro + " " + idAlumno);
+			System.out.println(ColorMio.getReset());
+			
+		}
+		
+		System.out.println();
+		instancia.cerrar();
+
+	}
 
 	public static void leerPorAlumno(AlumnoEntity alumno, String cabecera) throws Exception {
 

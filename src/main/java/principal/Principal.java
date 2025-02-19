@@ -4719,7 +4719,64 @@ public class Principal {
 
 					switch (opcionSubmenuA) {
 					case 1: // 1. Todos
+						System.out.println("¿Está seguro de que quiere borrar todos los datos? (s/n)");
+						if (sc.nextLine().equals("s")) {
 
+							System.out.println();
+
+							idsMatriculas = FuncionesMatriculas.buscaIDsDeTodos();
+							idsAlumnos = FuncionesAlumnos.buscaIDsDeTodos();
+							idsProfesores = FuncionesProfesores.buscaIDsDeTodos();
+							
+							if (!idsMatriculas.isEmpty()) {
+								for (Long id : idsMatriculas) {
+									FuncionesMatriculas.borrarPorId(id);
+								}
+								System.out.print(ColorMio.getVerde());
+								System.out.print("Todos las Matriculas han sido borradas");
+								System.out.println(ColorMio.getReset());
+							} else {
+								System.out.print(ColorMio.getRojo());
+								System.out.print("No existen Matriculas que borrar");
+								System.out.println(ColorMio.getReset());
+							}
+							
+							if (!idsAlumnos.isEmpty()) {
+								for (Long id : idsAlumnos) {
+									FuncionesAlumnos.borrarPorId(id);
+								}
+								System.out.print(ColorMio.getVerde());
+								System.out.print("Todos los Alumnos han sido borrados");
+								System.out.println(ColorMio.getReset());
+							} else {
+								System.out.print(ColorMio.getRojo());
+								System.out.print("No existen Alumnos que borrar");
+								System.out.println(ColorMio.getReset());
+							}
+							
+							if (!idsProfesores.isEmpty()) {
+								for (Long id : idsProfesores) {
+									FuncionesProfesores.borrarPorId(id);
+								}
+								System.out.print(ColorMio.getVerde());
+								System.out.print("Todos los Profesores han sido borrados");
+								System.out.println(ColorMio.getReset());
+							} else {
+								System.out.print(ColorMio.getRojo());
+								System.out.print("No existen Profesores que borrar");
+								System.out.println(ColorMio.getReset());
+							}
+						}
+
+						System.out.println();
+
+						opcionSubmenuB = 0;
+						opcionSubmenuA = 0;
+
+						idsMatriculas.clear();
+						idsAlumnos.clear();
+						idsProfesores.clear();
+						
 						break; // FIN 1. Todos
 					case 2: // 2. Profesores.
 						do {
@@ -5904,64 +5961,54 @@ public class Principal {
 								idsMatriculas.clear();
 
 								break; // FIN 3. Por idProfesor.
-
-								
-								
-								
-							case 5: // 5. Por asignatura.
-								idsProfesores.clear();
-
+							case 4: // 4. Por idAlumno.
 								do {
-									System.out.print("Introduzca el Nombre del Alumno que quiera Borrar: ");
-									datoDeBorrado = sc.nextLine();
-								} while (datoDeBorrado == "" || datoDeBorrado == null);
+									System.out
+											.print("Introduzca el IDAlumno de la Matricula que quiera Borrar (>= 0): ");
+									idAlumno = leeLong(sc);
+									if (idAlumno >= 0) {
+										datoDeBorrado = String.valueOf(idAlumno);
+									}
+								} while (datoDeBorrado == null || datoDeBorrado.equals(""));
 
 								System.out.println();
-
-								System.out.println("¿Está seguro de que quiere borrar al Alumno con nombre = '"
-										+ datoDeBorrado + "'? (s/n)");
-								System.out.print(ColorMio.getAmarillo());
-								System.out.print(
-										"ADVERTENCIA: Se borrarán también las Matriculas asociadas a dicho Alumno");
-								System.out.println(ColorMio.getReset());
+								System.out.println("¿Está seguro de que quiere borrar la Matricula con idAlumno = "
+										+ datoDeBorrado + "? (s/n)");								
 
 								if (sc.nextLine().equals("s")) {
 									System.out.println();
-
-									idsAlumnos = FuncionesAlumnos.buscaIDsPorColumna("nombre", datoDeBorrado);
-
-									if (idsAlumnos.size() > 1) {
 									
-										FuncionesAlumnos.leerPorNombre(datoDeBorrado, "=");
+									idsMatriculas = FuncionesMatriculas.buscaIDsPorColumna("idAlumno", datoDeBorrado);
+
+									if (idsMatriculas.size() > 1) {
+										
+										FuncionesMatriculas.leerPorIdAlumno(Long.parseLong(datoDeBorrado), "=");					
 
 										System.out.print(ColorMio.getAmarillo());
-										System.out.print("Hay varios Alumnos con nombre = '" + datoDeBorrado + "'");
+										System.out.print("Hay varias Matriculas con idAlumno = " + datoDeBorrado);
 										System.out.println(ColorMio.getReset());
 
 										System.out.println(
-												"Escriba el id del Alumno que desea borrar, o si lo prefiere, \"0\" para borrar a todos estos:");
+												"Escriba el id de la Matricula que desea borrar, o si lo prefiere, \"0\" para borrar a todos estas:");
 										idDeBorrado = leeLong(sc);
 
 										System.out.println();
 
 										if (idDeBorrado != 0) {
-											System.out.println("¿Está seguro de que quiere borrar al Alumno con ID = "
+											System.out.println("¿Está seguro de que quiere borrar la Matricula con ID = "
 													+ idDeBorrado + "? (s/n)");
-											System.out.print(ColorMio.getAmarillo());
-											System.out.print(
-													"ADVERTENCIA: Se borrarán también las Matriculas asociadas a dicho Alumno");
-											System.out.println(ColorMio.getReset());
+
 											if (sc.nextLine().equals("s")) {
 												System.out.println();
-												if (idsAlumnos.contains(idDeBorrado)
-														&& FuncionesAlumnos.borrarPorId(idDeBorrado)) {
+												if (idsMatriculas.contains(idDeBorrado)
+														&& FuncionesMatriculas.borrarPorId(idDeBorrado)) {
 
 													System.out.print(ColorMio.getVerde());
-													System.out.print("Alumno con ID = " + idDeBorrado + " borrado");
+													System.out.print("Matricula con ID = " + idDeBorrado + " borrada");
 													System.out.println(ColorMio.getReset());
 												} else {
 													System.out.print(ColorMio.getRojo());
-													System.out.print("No existe ningún Alumno con ID = " + idDeBorrado
+													System.out.print("No existe ninguna Matricula con ID = " + idDeBorrado
 															+ " en la lista anteriormente mostrada");
 													System.out.println(ColorMio.getReset());
 												}
@@ -5969,41 +6016,35 @@ public class Principal {
 
 										} else {
 											System.out.println(
-													"¿Está seguro de que quiere borrar a todos estos Alumnos con nombre = '"
-															+ datoDeBorrado + "'? (s/n)");
-
-											System.out.print(ColorMio.getAmarillo());
-											System.out.print(
-													"ADVERTENCIA: Se borrarán también las Matriculas asociadas a dichos Alumnos");
-											System.out.println(ColorMio.getReset());
+													"¿Está seguro de que quiere borrar todas estas Matriculas con idAlumno = "
+															+ datoDeBorrado + "? (s/n)");
 
 											if (sc.nextLine().equals("s")) {
 
 												System.out.println();
 
-												for (Long id : idsAlumnos) {
-													FuncionesAlumnos.borrarPorId(id);
+												for (Long id : idsMatriculas) {
+													FuncionesMatriculas.borrarPorId(id);
 												}
 												System.out.print(ColorMio.getVerde());
-												System.out.print("Todos los Alumnos con nombre = '" + datoDeBorrado
-														+ "' han sido borrados");
+												System.out.print("Todas las Matriculas con idAlumno = "
+														+ datoDeBorrado + " han sido borradas");
 												System.out.println(ColorMio.getReset());
 											}
 
 										}
 
-									} else if (idsAlumnos.size() == 1) {
-										idDeBorrado = idsAlumnos.get(0);
+									} else if (idsMatriculas.size() == 1) {
+										idDeBorrado = idsMatriculas.get(0);
 
-										FuncionesAlumnos.borrarPorId(idDeBorrado);
+										FuncionesMatriculas.borrarPorId(idDeBorrado);
 
 										System.out.print(ColorMio.getVerde());
-										System.out.print("Alumno con nombre = '" + datoDeBorrado + "' borrado");
+										System.out.print("Matricula con idAlumno = " + datoDeBorrado + " borrada");
 										System.out.println(ColorMio.getReset());
 									} else {
 										System.out.print(ColorMio.getRojo());
-										System.out.print(
-												"No existe ningún Alumno con nombre = '" + datoDeBorrado + "'");
+										System.out.print("No existe ninguna Matricula con idAlumno = " + datoDeBorrado);
 										System.out.println(ColorMio.getReset());
 									}
 								}
@@ -6015,10 +6056,208 @@ public class Principal {
 
 								idDeBorrado = -1;
 								datoDeBorrado = "";
-								idsAlumnos.clear();
+								idAlumno = -1;
+								idsMatriculas.clear();
+
+								break; // FIN 4. Por idAlumno.													
+								
+							case 5: // 5. Por asignatura.
+								idsMatriculas.clear();
+
+								do {
+									System.out.print("Introduzca la Asignatura de la Matricula que quiera Borrar: ");
+									datoDeBorrado = sc.nextLine();
+								} while (datoDeBorrado == "" || datoDeBorrado == null);
+
+								System.out.println();
+
+								System.out.println("¿Está seguro de que quiere borrar la Matricula con asignatura = '"
+										+ datoDeBorrado + "'? (s/n)");				
+
+								if (sc.nextLine().equals("s")) {
+									System.out.println();
+
+									idsMatriculas = FuncionesMatriculas.buscaIDsPorColumna("asignatura", datoDeBorrado);
+
+									if (idsMatriculas.size() > 1) {
+										
+										FuncionesMatriculas.leerPorAsignatura(datoDeBorrado, "=");
+
+										System.out.print(ColorMio.getAmarillo());
+										System.out.print("Hay varias Matriculas con asignatura = '" + datoDeBorrado + "'");
+										System.out.println(ColorMio.getReset());
+
+										System.out.println(
+												"Escriba el id de la Matricula que desea borrar, o si lo prefiere, \"0\" para borrar a todos estos:");
+										idDeBorrado = leeLong(sc);
+
+										System.out.println();
+
+										if (idDeBorrado != 0) {
+											System.out.println("¿Está seguro de que quiere borrar la Matricula con ID = "
+													+ idDeBorrado + "? (s/n)");
+											
+											if (sc.nextLine().equals("s")) {
+												System.out.println();
+												if (idsMatriculas.contains(idDeBorrado)
+														&& FuncionesMatriculas.borrarPorId(idDeBorrado)) {
+
+													System.out.print(ColorMio.getVerde());
+													System.out.print("Matricula con ID = " + idDeBorrado + " borrada");
+													System.out.println(ColorMio.getReset());
+												} else {
+													System.out.print(ColorMio.getRojo());
+													System.out.print("No existe ninguna Matricula con ID = " + idDeBorrado
+															+ " en la lista anteriormente mostrada");
+													System.out.println(ColorMio.getReset());
+												}
+											}
+
+										} else {
+											System.out.println(
+													"¿Está seguro de que quiere borrar todas estas Matriculas con asignatura = '"
+															+ datoDeBorrado + "'? (s/n)");									
+
+											if (sc.nextLine().equals("s")) {
+
+												System.out.println();
+
+												for (Long id : idsMatriculas) {
+													FuncionesMatriculas.borrarPorId(id);
+												}
+												System.out.print(ColorMio.getVerde());
+												System.out.print("Todas las Matriculas con asignatura = '" + datoDeBorrado
+														+ "' han sido borradas");
+												System.out.println(ColorMio.getReset());
+											}
+
+										}
+
+									} else if (idsMatriculas.size() == 1) {
+										idDeBorrado = idsMatriculas.get(0);
+
+										FuncionesMatriculas.borrarPorId(idDeBorrado);
+
+										System.out.print(ColorMio.getVerde());
+										System.out.print("Matricula con asignatura = '" + datoDeBorrado + "' borrada");
+										System.out.println(ColorMio.getReset());
+									} else {
+										System.out.print(ColorMio.getRojo());
+										System.out.print(
+												"No existe ninguna Matricula con asignatura = '" + datoDeBorrado + "'");
+										System.out.println(ColorMio.getReset());
+									}
+								}
+
+								System.out.println();
+
+								opcionSubmenuB = 0;
+								opcionSubmenuA = 0;
+
+								idDeBorrado = -1;
+								datoDeBorrado = "";
+								idsMatriculas.clear();
 
 								break; // FIN 5. Por asignatura.
+							case 6: // 6. Por curso.
+								do {
+									System.out
+											.print("Introduzca el Curso de la Matricula que quiera Borrar (>= 0): ");
+									curso = leeInt(sc);
+									if (curso >= 0) {
+										datoDeBorrado = String.valueOf(curso);
+									}
+								} while (datoDeBorrado == null || datoDeBorrado.equals(""));
 
+								System.out.println();
+								System.out.println("¿Está seguro de que quiere borrar la Matricula con curso = "
+										+ datoDeBorrado + "? (s/n)");								
+
+								if (sc.nextLine().equals("s")) {
+									System.out.println();
+									
+									idsMatriculas = FuncionesMatriculas.buscaIDsPorColumna("curso", datoDeBorrado);
+
+									if (idsMatriculas.size() > 1) {
+										
+										FuncionesMatriculas.leerPorCurso(Integer.parseInt(datoDeBorrado), "=");			
+
+										System.out.print(ColorMio.getAmarillo());
+										System.out.print("Hay varias Matriculas con curso = " + datoDeBorrado);
+										System.out.println(ColorMio.getReset());
+
+										System.out.println(
+												"Escriba el id de la Matricula que desea borrar, o si lo prefiere, \"0\" para borrar a todos estas:");
+										idDeBorrado = leeLong(sc);
+
+										System.out.println();
+
+										if (idDeBorrado != 0) {
+											System.out.println("¿Está seguro de que quiere borrar la Matricula con ID = "
+													+ idDeBorrado + "? (s/n)");
+
+											if (sc.nextLine().equals("s")) {
+												System.out.println();
+												if (idsMatriculas.contains(idDeBorrado)
+														&& FuncionesMatriculas.borrarPorId(idDeBorrado)) {
+
+													System.out.print(ColorMio.getVerde());
+													System.out.print("Matricula con ID = " + idDeBorrado + " borrada");
+													System.out.println(ColorMio.getReset());
+												} else {
+													System.out.print(ColorMio.getRojo());
+													System.out.print("No existe ninguna Matricula con ID = " + idDeBorrado
+															+ " en la lista anteriormente mostrada");
+													System.out.println(ColorMio.getReset());
+												}
+											}
+
+										} else {
+											System.out.println(
+													"¿Está seguro de que quiere borrar todas estas Matriculas con curso = "
+															+ datoDeBorrado + "? (s/n)");
+
+											if (sc.nextLine().equals("s")) {
+
+												System.out.println();
+
+												for (Long id : idsMatriculas) {
+													FuncionesMatriculas.borrarPorId(id);
+												}
+												System.out.print(ColorMio.getVerde());
+												System.out.print("Todas las Matriculas con curso = "
+														+ datoDeBorrado + " han sido borradas");
+												System.out.println(ColorMio.getReset());
+											}
+
+										}
+
+									} else if (idsMatriculas.size() == 1) {
+										idDeBorrado = idsMatriculas.get(0);
+
+										FuncionesMatriculas.borrarPorId(idDeBorrado);
+
+										System.out.print(ColorMio.getVerde());
+										System.out.print("Matricula con curso = " + datoDeBorrado + " borrada");
+										System.out.println(ColorMio.getReset());
+									} else {
+										System.out.print(ColorMio.getRojo());
+										System.out.print("No existe ninguna Matricula con curso = " + datoDeBorrado);
+										System.out.println(ColorMio.getReset());
+									}
+								}
+
+								System.out.println();
+
+								opcionSubmenuB = 0;
+								opcionSubmenuA = 0;
+
+								idDeBorrado = -1;
+								datoDeBorrado = "";
+								curso = -1;
+								idsMatriculas.clear();
+
+								break; // FIN 6. Por curso.
 
 
 							case 0: // 0. Volver al Menú anterior.
