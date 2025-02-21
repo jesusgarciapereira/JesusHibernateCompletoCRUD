@@ -3271,1475 +3271,1529 @@ public class Principal {
 							} while (opcionSubmenuB != 0);
 						} else {
 							System.out.print(ColorMio.getRojo());
-							System.out.print("No existe ningún Profesor que actualizar");
-							System.out.println(ColorMio.getReset());			
+							System.out.print("No existe ningún elemento en la tabla Profesores");
+							System.out.println(ColorMio.getReset());
 							System.out.println();
-							
+
 							opcionSubmenuA = 0;
 						}
 						break; // FIN 1. Profesores.
 
 					case 2: // 2. Alumnos.
-						do {
-							Menu.subMenuElegirAlumnoActualizar();
-							opcionSubmenuB = leeInt(sc);
-							System.out.println();
-
-							switch (opcionSubmenuB) {
-							case 1: // 1. Por idAlumno.
-
-								do {
-									System.out.print("Introduzca el ID del Alumno que quiera Actualizar (> 0): ");
-									idDeCambio = leeLong(sc);
-								} while (idDeCambio <= 0);
-
+						if (!FuncionesAlumnos.buscaIDsDeTodos().isEmpty()) {
+							do {
+								Menu.subMenuElegirAlumnoActualizar();
+								opcionSubmenuB = leeInt(sc);
 								System.out.println();
 
-								do {
-									Menu.subMenuElegirColumnaModificarAlumno();
-									opcionSubmenuC = leeInt(sc);
+								switch (opcionSubmenuB) {
+								case 1: // 1. Por idAlumno.
+
+									do {
+										System.out.print("Introduzca el ID del Alumno que quiera Actualizar (> 0): ");
+										idDeCambio = leeLong(sc);
+									} while (idDeCambio <= 0);
+
 									System.out.println();
 
-									switch (opcionSubmenuC) {
-									case 1: // 1. nombre.
-										columnaCambiada = "nombre";
-										do {
-											System.out.print("Introduzca el nuevo Nombre del Alumno: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
-
-										break; // FIN 1. nombre.
-									case 2: // 2. apellidos.
-										columnaCambiada = "apellidos";
-										do {
-											System.out.print("Introduzca los nuevos Apellidos del Alumno: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
-
-										break; // FIN 2. apellidos.
-									case 3: // 3. fechaNacimiento.
-										columnaCambiada = "fechaNacimiento";
-										do {
-											do {
-												System.out.print(
-														"Introduzca el día de FechaNacimiento del Alumno (entre 1 y 31): ");
-												fechaDia = leeInt(sc);
-											} while (fechaDia < 1 || fechaDia > 31);
-
-											do {
-												System.out.print(
-														"Introduzca el mes de FechaNacimiento del Alumno (entre 1 y 12): ");
-												fechaMes = leeInt(sc);
-											} while (fechaMes < 1 || fechaMes > 12);
-
-											do {
-												System.out.print(
-														"Introduzca el año de FechaNacimiento del Alumno (>= 1000 y <= año actual): ");
-												fechaAnnio = leeInt(sc);
-											} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
-
-											datoCambiado = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
-													fechaDia);
-										} while (datoCambiado == null || datoCambiado.equals(""));
-										break; // fechaNacimiento.
-
-									case 0: // 0. Volver al Menú anterior.
-
-										break; // FIN 0. Volver al Menú anterior.
-
-									default:
-										System.out.print(ColorMio.getRojo());
-										System.out.print("Opción no disponible: ");
-										System.out.print(ColorMio.getReset());
-										System.out.println("Elija del 0 al 3");
+									do {
+										Menu.subMenuElegirColumnaModificarAlumno();
+										opcionSubmenuC = leeInt(sc);
 										System.out.println();
-										break;
-									}
+
+										switch (opcionSubmenuC) {
+										case 1: // 1. nombre.
+											columnaCambiada = "nombre";
+											do {
+												System.out.print("Introduzca el nuevo Nombre del Alumno: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+
+											break; // FIN 1. nombre.
+										case 2: // 2. apellidos.
+											columnaCambiada = "apellidos";
+											do {
+												System.out.print("Introduzca los nuevos Apellidos del Alumno: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+
+											break; // FIN 2. apellidos.
+										case 3: // 3. fechaNacimiento.
+											columnaCambiada = "fechaNacimiento";
+											do {
+												do {
+													System.out.print(
+															"Introduzca el día de FechaNacimiento del Alumno (entre 1 y 31): ");
+													fechaDia = leeInt(sc);
+												} while (fechaDia < 1 || fechaDia > 31);
+
+												do {
+													System.out.print(
+															"Introduzca el mes de FechaNacimiento del Alumno (entre 1 y 12): ");
+													fechaMes = leeInt(sc);
+												} while (fechaMes < 1 || fechaMes > 12);
+
+												do {
+													System.out.print(
+															"Introduzca el año de FechaNacimiento del Alumno (>= 1000 y <= año actual): ");
+													fechaAnnio = leeInt(sc);
+												} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
+
+												datoCambiado = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
+														fechaDia);
+											} while (datoCambiado == null || datoCambiado.equals(""));
+											break; // fechaNacimiento.
+
+										case 0: // 0. Volver al Menú anterior.
+
+											break; // FIN 0. Volver al Menú anterior.
+
+										default:
+											System.out.print(ColorMio.getRojo());
+											System.out.print("Opción no disponible: ");
+											System.out.print(ColorMio.getReset());
+											System.out.println("Elija del 0 al 3");
+											System.out.println();
+											break;
+										}
+
+										System.out.println();
+
+										if (opcionSubmenuC != 0) {
+											try {
+												if (FuncionesAlumnos.actualizarPorId(idDeCambio, columnaCambiada,
+														datoCambiado)) {
+													System.out.print(ColorMio.getVerde());
+													System.out.print("Alumno con ID = " + idDeCambio + " tiene ahora "
+															+ columnaCambiada + " = " + datoCambiado);
+													System.out.print(ColorMio.getReset());
+													System.out.println();
+												} else {
+													System.out.print(ColorMio.getRojo());
+													System.out.print("No existe ningún Alumno con ID = " + idDeCambio);
+													System.out.print(ColorMio.getReset());
+													System.out.println();
+
+												}
+											} catch (DateTimeException e) {
+												System.out.print(ColorMio.getRojo());
+												System.out.print("Fecha '" + datoCambiado + "' incorrecta");
+												System.out.println(ColorMio.getReset());
+											}
+
+											System.out.println();
+										}
+
+										opcionSubmenuC = 0;
+										opcionSubmenuB = 0;
+										opcionSubmenuA = 0;
+
+										idDeCambio = -1;
+
+										columnaCambiada = "";
+										datoCambiado = "";
+
+										fechaDia = 0;
+										fechaMes = 0;
+										fechaAnnio = 0;
+
+									} while (opcionSubmenuC != 0);
+
+									break; // FIN 1. Por idAlumno.
+								case 2: // 2. Por nombre.
+									do {
+										System.out.print("Introduzca el Nombre del Alumno que quiera Actualizar: ");
+										datoDeCambio = sc.nextLine();
+									} while (datoDeCambio == "" || datoDeCambio == null);
 
 									System.out.println();
 
-									if (opcionSubmenuC != 0) {
-										try {
-											if (FuncionesAlumnos.actualizarPorId(idDeCambio, columnaCambiada,
-													datoCambiado)) {
+									do {
+										Menu.subMenuElegirColumnaModificarAlumno();
+										opcionSubmenuC = leeInt(sc);
+										System.out.println();
+
+										switch (opcionSubmenuC) {
+										case 1: // 1. nombre.
+											columnaCambiada = "nombre";
+											do {
+												System.out.print("Introduzca el nuevo Nombre del Alumno: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+
+											break; // FIN 1. nombre.
+										case 2: // 2. apellidos.
+											columnaCambiada = "apellidos";
+											do {
+												System.out.print("Introduzca los nuevos Apellidos del Alumno: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+
+											break; // FIN 2. apellidos.
+										case 3: // 3. fechaNacimiento.
+											columnaCambiada = "fechaNacimiento";
+											do {
+												do {
+													System.out.print(
+															"Introduzca el día de FechaNacimiento del Alumno (entre 1 y 31): ");
+													fechaDia = leeInt(sc);
+												} while (fechaDia < 1 || fechaDia > 31);
+
+												do {
+													System.out.print(
+															"Introduzca el mes de FechaNacimiento del Alumno (entre 1 y 12): ");
+													fechaMes = leeInt(sc);
+												} while (fechaMes < 1 || fechaMes > 12);
+
+												do {
+													System.out.print(
+															"Introduzca el año de FechaNacimiento del Alumno (>= 1000 y <= año actual): ");
+													fechaAnnio = leeInt(sc);
+												} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
+
+												datoCambiado = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
+														fechaDia);
+											} while (datoCambiado == null || datoCambiado.equals(""));
+											break; // fechaNacimiento.
+
+										case 0: // 0. Volver al Menú anterior.
+
+											break; // FIN 0. Volver al Menú anterior.
+
+										default:
+											System.out.print(ColorMio.getRojo());
+											System.out.print("Opción no disponible: ");
+											System.out.print(ColorMio.getReset());
+											System.out.println("Elija del 0 al 3");
+											System.out.println();
+											break;
+										}
+
+										System.out.println();
+
+										idsAlumnos.clear();
+
+										if (opcionSubmenuC != 0) {
+											idsAlumnos = FuncionesAlumnos.buscaIDsPorColumna("nombre", datoDeCambio);
+
+											if (idsAlumnos.size() > 1) {
+
+												FuncionesAlumnos.leerPorNombre(datoDeCambio, "=");
+
+												System.out.print(ColorMio.getAmarillo());
+												System.out.println("Hay varios Alumnos con nombre = " + datoDeCambio);
+												System.out.print(ColorMio.getReset());
+												System.out.println();
+
+												System.out.println(
+														"Escriba el idAlumno del Alumno que desea modificar, o si lo prefiere, \"0\" para modificar a todos estos:");
+												idDeCambio = sc.nextLong();
+
+												System.out.println();
+
+												if (idDeCambio != 0) {
+
+													if (idsAlumnos.contains(idDeCambio)
+															&& FuncionesAlumnos.actualizarPorId(idDeCambio,
+																	columnaCambiada, datoCambiado)) {
+														System.out.print(ColorMio.getVerde());
+														System.out
+																.print("Alumno con ID = " + idDeCambio + " tiene ahora "
+																		+ columnaCambiada + " = " + datoCambiado);
+														System.out.print(ColorMio.getReset());
+														System.out.println();
+
+													} else {
+														System.out.print(ColorMio.getRojo());
+														System.out.print("No existe ningún Alumno con ID = "
+																+ idDeCambio + " en la lista anteriormente mostrada");
+														System.out.print(ColorMio.getReset());
+														System.out.println();
+
+													}
+												} else {
+													for (Long id : idsAlumnos) {
+														FuncionesAlumnos.actualizarPorId(id, columnaCambiada,
+																datoCambiado);
+													}
+													System.out.print(ColorMio.getVerde());
+													System.out.print("Todos los Alumnos con nombre = " + datoDeCambio
+															+ " tienen ahora " + columnaCambiada + " = "
+															+ datoCambiado);
+													System.out.print(ColorMio.getReset());
+													System.out.println();
+
+												}
+
+											} else if (idsAlumnos.size() == 1) {
+												idDeCambio = idsAlumnos.get(0);
+
+												FuncionesAlumnos.actualizarPorId(idDeCambio, columnaCambiada,
+														datoCambiado);
+
 												System.out.print(ColorMio.getVerde());
-												System.out.print("Alumno con ID = " + idDeCambio + " tiene ahora "
+												System.out.print("Alumno con nombre = " + datoDeCambio + " tiene ahora "
 														+ columnaCambiada + " = " + datoCambiado);
 												System.out.print(ColorMio.getReset());
 												System.out.println();
+
 											} else {
 												System.out.print(ColorMio.getRojo());
-												System.out.print("No existe ningún Alumno con ID = " + idDeCambio);
-												System.out.print(ColorMio.getReset());
-												System.out.println();
-
-											}
-										} catch (DateTimeException e) {
-											System.out.print(ColorMio.getRojo());
-											System.out.print("Fecha '" + datoCambiado + "' incorrecta");
-											System.out.println(ColorMio.getReset());
-										}
-
-										System.out.println();
-									}
-
-									opcionSubmenuC = 0;
-									opcionSubmenuB = 0;
-									opcionSubmenuA = 0;
-
-									idDeCambio = -1;
-
-									columnaCambiada = "";
-									datoCambiado = "";
-
-									fechaDia = 0;
-									fechaMes = 0;
-									fechaAnnio = 0;
-
-								} while (opcionSubmenuC != 0);
-
-								break; // FIN 1. Por idAlumno.
-							case 2: // 2. Por nombre.
-								do {
-									System.out.print("Introduzca el Nombre del Alumno que quiera Actualizar: ");
-									datoDeCambio = sc.nextLine();
-								} while (datoDeCambio == "" || datoDeCambio == null);
-
-								System.out.println();
-
-								do {
-									Menu.subMenuElegirColumnaModificarAlumno();
-									opcionSubmenuC = leeInt(sc);
-									System.out.println();
-
-									switch (opcionSubmenuC) {
-									case 1: // 1. nombre.
-										columnaCambiada = "nombre";
-										do {
-											System.out.print("Introduzca el nuevo Nombre del Alumno: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
-
-										break; // FIN 1. nombre.
-									case 2: // 2. apellidos.
-										columnaCambiada = "apellidos";
-										do {
-											System.out.print("Introduzca los nuevos Apellidos del Alumno: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
-
-										break; // FIN 2. apellidos.
-									case 3: // 3. fechaNacimiento.
-										columnaCambiada = "fechaNacimiento";
-										do {
-											do {
-												System.out.print(
-														"Introduzca el día de FechaNacimiento del Alumno (entre 1 y 31): ");
-												fechaDia = leeInt(sc);
-											} while (fechaDia < 1 || fechaDia > 31);
-
-											do {
-												System.out.print(
-														"Introduzca el mes de FechaNacimiento del Alumno (entre 1 y 12): ");
-												fechaMes = leeInt(sc);
-											} while (fechaMes < 1 || fechaMes > 12);
-
-											do {
-												System.out.print(
-														"Introduzca el año de FechaNacimiento del Alumno (>= 1000 y <= año actual): ");
-												fechaAnnio = leeInt(sc);
-											} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
-
-											datoCambiado = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
-													fechaDia);
-										} while (datoCambiado == null || datoCambiado.equals(""));
-										break; // fechaNacimiento.
-
-									case 0: // 0. Volver al Menú anterior.
-
-										break; // FIN 0. Volver al Menú anterior.
-
-									default:
-										System.out.print(ColorMio.getRojo());
-										System.out.print("Opción no disponible: ");
-										System.out.print(ColorMio.getReset());
-										System.out.println("Elija del 0 al 3");
-										System.out.println();
-										break;
-									}
-
-									System.out.println();
-
-									idsAlumnos.clear();
-
-									if (opcionSubmenuC != 0) {
-										idsAlumnos = FuncionesAlumnos.buscaIDsPorColumna("nombre", datoDeCambio);
-
-										if (idsAlumnos.size() > 1) {
-
-											FuncionesAlumnos.leerPorNombre(datoDeCambio, "=");
-
-											System.out.print(ColorMio.getAmarillo());
-											System.out.println("Hay varios Alumnos con nombre = " + datoDeCambio);
-											System.out.print(ColorMio.getReset());
-											System.out.println();
-
-											System.out.println(
-													"Escriba el idAlumno del Alumno que desea modificar, o si lo prefiere, \"0\" para modificar a todos estos:");
-											idDeCambio = sc.nextLong();
-
-											System.out.println();
-
-											if (idDeCambio != 0) {
-
-												if (idsAlumnos.contains(idDeCambio) && FuncionesAlumnos
-														.actualizarPorId(idDeCambio, columnaCambiada, datoCambiado)) {
-													System.out.print(ColorMio.getVerde());
-													System.out.print("Alumno con ID = " + idDeCambio + " tiene ahora "
-															+ columnaCambiada + " = " + datoCambiado);
-													System.out.print(ColorMio.getReset());
-													System.out.println();
-
-												} else {
-													System.out.print(ColorMio.getRojo());
-													System.out.print("No existe ningún Alumno con ID = " + idDeCambio
-															+ " en la lista anteriormente mostrada");
-													System.out.print(ColorMio.getReset());
-													System.out.println();
-
-												}
-											} else {
-												for (Long id : idsAlumnos) {
-													FuncionesAlumnos.actualizarPorId(id, columnaCambiada, datoCambiado);
-												}
-												System.out.print(ColorMio.getVerde());
-												System.out.print("Todos los Alumnos con nombre = " + datoDeCambio
-														+ " tienen ahora " + columnaCambiada + " = " + datoCambiado);
+												System.out
+														.print("No existe ningún Alumno con nombre = " + datoDeCambio);
 												System.out.print(ColorMio.getReset());
 												System.out.println();
 
 											}
 
-										} else if (idsAlumnos.size() == 1) {
-											idDeCambio = idsAlumnos.get(0);
+											idsAlumnos.clear();
 
-											FuncionesAlumnos.actualizarPorId(idDeCambio, columnaCambiada, datoCambiado);
+											opcionSubmenuC = 0;
+											opcionSubmenuB = 0;
+											opcionSubmenuA = 0;
 
-											System.out.print(ColorMio.getVerde());
-											System.out.print("Alumno con nombre = " + datoDeCambio + " tiene ahora "
-													+ columnaCambiada + " = " + datoCambiado);
-											System.out.print(ColorMio.getReset());
-											System.out.println();
+											idDeCambio = -1;
 
-										} else {
-											System.out.print(ColorMio.getRojo());
-											System.out.print("No existe ningún Alumno con nombre = " + datoDeCambio);
-											System.out.print(ColorMio.getReset());
-											System.out.println();
+											antiguedad = -1;
 
+											columnaCambiada = "";
+											datoCambiado = "";
+
+											fechaDia = 0;
+											fechaMes = 0;
+											fechaAnnio = 0;
 										}
+										System.out.println();
+									} while (opcionSubmenuC != 0);
+									break; // FIN 2. Por nombre.
+								case 3: // 3. Por apellidos.
+									do {
+										System.out.print("Introduzca los Apellidos del Alumno que quiera Actualizar: ");
+										datoDeCambio = sc.nextLine();
+									} while (datoDeCambio == "" || datoDeCambio == null);
+
+									System.out.println();
+
+									do {
+										Menu.subMenuElegirColumnaModificarAlumno();
+										opcionSubmenuC = leeInt(sc);
+										System.out.println();
+
+										switch (opcionSubmenuC) {
+										case 1: // 1. nombre.
+											columnaCambiada = "nombre";
+											do {
+												System.out.print("Introduzca el nuevo Nombre del Alumno: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+
+											break; // FIN 1. nombre.
+										case 2: // 2. apellidos.
+											columnaCambiada = "apellidos";
+											do {
+												System.out.print("Introduzca los nuevos Apellidos del Alumno: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+
+											break; // FIN 2. apellidos.
+										case 3: // 3. fechaNacimiento.
+											columnaCambiada = "fechaNacimiento";
+											do {
+												do {
+													System.out.print(
+															"Introduzca el día de FechaNacimiento del Alumno (entre 1 y 31): ");
+													fechaDia = leeInt(sc);
+												} while (fechaDia < 1 || fechaDia > 31);
+
+												do {
+													System.out.print(
+															"Introduzca el mes de FechaNacimiento del Alumno (entre 1 y 12): ");
+													fechaMes = leeInt(sc);
+												} while (fechaMes < 1 || fechaMes > 12);
+
+												do {
+													System.out.print(
+															"Introduzca el año de FechaNacimiento del Alumno (>= 1000 y <= año actual): ");
+													fechaAnnio = leeInt(sc);
+												} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
+
+												datoCambiado = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
+														fechaDia);
+											} while (datoCambiado == null || datoCambiado.equals(""));
+											break; // fechaNacimiento.
+
+										case 0: // 0. Volver al Menú anterior.
+
+											break; // FIN 0. Volver al Menú anterior.
+
+										default:
+											System.out.print(ColorMio.getRojo());
+											System.out.print("Opción no disponible: ");
+											System.out.print(ColorMio.getReset());
+											System.out.println("Elija del 0 al 3");
+											System.out.println();
+											break;
+										}
+
+										System.out.println();
 
 										idsAlumnos.clear();
 
-										opcionSubmenuC = 0;
-										opcionSubmenuB = 0;
-										opcionSubmenuA = 0;
+										if (opcionSubmenuC != 0) {
+											idsAlumnos = FuncionesAlumnos.buscaIDsPorColumna("apellidos", datoDeCambio);
 
-										idDeCambio = -1;
+											if (idsAlumnos.size() > 1) {
 
-										antiguedad = -1;
+												FuncionesAlumnos.leerPorApellidos(datoDeCambio, "=");
 
-										columnaCambiada = "";
-										datoCambiado = "";
+												System.out.print(ColorMio.getAmarillo());
+												System.out
+														.println("Hay varios Alumnos con apellidos = " + datoDeCambio);
+												System.out.print(ColorMio.getReset());
+												System.out.println();
 
-										fechaDia = 0;
-										fechaMes = 0;
-										fechaAnnio = 0;
-									}
-									System.out.println();
-								} while (opcionSubmenuC != 0);
-								break; // FIN 2. Por nombre.
-							case 3: // 3. Por apellidos.
-								do {
-									System.out.print("Introduzca los Apellidos del Alumno que quiera Actualizar: ");
-									datoDeCambio = sc.nextLine();
-								} while (datoDeCambio == "" || datoDeCambio == null);
+												System.out.println(
+														"Escriba el idProfesor del Alumno que desea modificar, o si lo prefiere, \"0\" para modificar a todos estos:");
+												idDeCambio = sc.nextLong();
 
-								System.out.println();
+												System.out.println();
 
-								do {
-									Menu.subMenuElegirColumnaModificarAlumno();
-									opcionSubmenuC = leeInt(sc);
-									System.out.println();
+												if (idDeCambio != 0) {
 
-									switch (opcionSubmenuC) {
-									case 1: // 1. nombre.
-										columnaCambiada = "nombre";
-										do {
-											System.out.print("Introduzca el nuevo Nombre del Alumno: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
+													if (idsAlumnos.contains(idDeCambio)
+															&& FuncionesAlumnos.actualizarPorId(idDeCambio,
+																	columnaCambiada, datoCambiado)) {
+														System.out.print(ColorMio.getVerde());
+														System.out
+																.print("Alumno con ID = " + idDeCambio + " tiene ahora "
+																		+ columnaCambiada + " = " + datoCambiado);
+														System.out.print(ColorMio.getReset());
+														System.out.println();
 
-										break; // FIN 1. nombre.
-									case 2: // 2. apellidos.
-										columnaCambiada = "apellidos";
-										do {
-											System.out.print("Introduzca los nuevos Apellidos del Alumno: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
+													} else {
+														System.out.print(ColorMio.getRojo());
+														System.out.print("No existe ningún Alumno con ID = "
+																+ idDeCambio + " en la lista anteriormente mostrada");
+														System.out.print(ColorMio.getReset());
+														System.out.println();
 
-										break; // FIN 2. apellidos.
-									case 3: // 3. fechaNacimiento.
-										columnaCambiada = "fechaNacimiento";
-										do {
-											do {
-												System.out.print(
-														"Introduzca el día de FechaNacimiento del Alumno (entre 1 y 31): ");
-												fechaDia = leeInt(sc);
-											} while (fechaDia < 1 || fechaDia > 31);
-
-											do {
-												System.out.print(
-														"Introduzca el mes de FechaNacimiento del Alumno (entre 1 y 12): ");
-												fechaMes = leeInt(sc);
-											} while (fechaMes < 1 || fechaMes > 12);
-
-											do {
-												System.out.print(
-														"Introduzca el año de FechaNacimiento del Alumno (>= 1000 y <= año actual): ");
-												fechaAnnio = leeInt(sc);
-											} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
-
-											datoCambiado = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
-													fechaDia);
-										} while (datoCambiado == null || datoCambiado.equals(""));
-										break; // fechaNacimiento.
-
-									case 0: // 0. Volver al Menú anterior.
-
-										break; // FIN 0. Volver al Menú anterior.
-
-									default:
-										System.out.print(ColorMio.getRojo());
-										System.out.print("Opción no disponible: ");
-										System.out.print(ColorMio.getReset());
-										System.out.println("Elija del 0 al 3");
-										System.out.println();
-										break;
-									}
-
-									System.out.println();
-
-									idsAlumnos.clear();
-
-									if (opcionSubmenuC != 0) {
-										idsAlumnos = FuncionesAlumnos.buscaIDsPorColumna("apellidos", datoDeCambio);
-
-										if (idsAlumnos.size() > 1) {
-
-											FuncionesAlumnos.leerPorApellidos(datoDeCambio, "=");
-
-											System.out.print(ColorMio.getAmarillo());
-											System.out.println("Hay varios Alumnos con apellidos = " + datoDeCambio);
-											System.out.print(ColorMio.getReset());
-											System.out.println();
-
-											System.out.println(
-													"Escriba el idProfesor del Alumno que desea modificar, o si lo prefiere, \"0\" para modificar a todos estos:");
-											idDeCambio = sc.nextLong();
-
-											System.out.println();
-
-											if (idDeCambio != 0) {
-
-												if (idsAlumnos.contains(idDeCambio) && FuncionesAlumnos
-														.actualizarPorId(idDeCambio, columnaCambiada, datoCambiado)) {
-													System.out.print(ColorMio.getVerde());
-													System.out.print("Alumno con ID = " + idDeCambio + " tiene ahora "
-															+ columnaCambiada + " = " + datoCambiado);
-													System.out.print(ColorMio.getReset());
-													System.out.println();
-
+													}
 												} else {
-													System.out.print(ColorMio.getRojo());
-													System.out.print("No existe ningún Alumno con ID = " + idDeCambio
-															+ " en la lista anteriormente mostrada");
+													for (Long id : idsAlumnos) {
+														FuncionesAlumnos.actualizarPorId(id, columnaCambiada,
+																datoCambiado);
+													}
+													System.out.print(ColorMio.getVerde());
+													System.out.print("Todos los Alumnos con apellidos = " + datoDeCambio
+															+ " tienen ahora " + columnaCambiada + " = "
+															+ datoCambiado);
 													System.out.print(ColorMio.getReset());
 													System.out.println();
 
 												}
-											} else {
-												for (Long id : idsAlumnos) {
-													FuncionesAlumnos.actualizarPorId(id, columnaCambiada, datoCambiado);
-												}
+
+											} else if (idsAlumnos.size() == 1) {
+												idDeCambio = idsAlumnos.get(0);
+
+												FuncionesAlumnos.actualizarPorId(idDeCambio, columnaCambiada,
+														datoCambiado);
+
 												System.out.print(ColorMio.getVerde());
-												System.out.print("Todos los Alumnos con apellidos = " + datoDeCambio
-														+ " tienen ahora " + columnaCambiada + " = " + datoCambiado);
+												System.out.print("Alumno con apellidos = " + datoDeCambio
+														+ " tiene ahora " + columnaCambiada + " = " + datoCambiado);
+												System.out.print(ColorMio.getReset());
+												System.out.println();
+
+											} else {
+												System.out.print(ColorMio.getRojo());
+												System.out.print(
+														"No existe ningún Alumno con apellidos = " + datoDeCambio);
 												System.out.print(ColorMio.getReset());
 												System.out.println();
 
 											}
 
-										} else if (idsAlumnos.size() == 1) {
-											idDeCambio = idsAlumnos.get(0);
+											idsAlumnos.clear();
 
-											FuncionesAlumnos.actualizarPorId(idDeCambio, columnaCambiada, datoCambiado);
+											opcionSubmenuC = 0;
+											opcionSubmenuB = 0;
+											opcionSubmenuA = 0;
 
-											System.out.print(ColorMio.getVerde());
-											System.out.print("Alumno con apellidos = " + datoDeCambio + " tiene ahora "
-													+ columnaCambiada + " = " + datoCambiado);
-											System.out.print(ColorMio.getReset());
-											System.out.println();
+											idDeCambio = -1;
 
-										} else {
-											System.out.print(ColorMio.getRojo());
-											System.out.print("No existe ningún Alumno con apellidos = " + datoDeCambio);
-											System.out.print(ColorMio.getReset());
-											System.out.println();
+											antiguedad = -1;
 
+											columnaCambiada = "";
+											datoCambiado = "";
+
+											fechaDia = 0;
+											fechaMes = 0;
+											fechaAnnio = 0;
 										}
-
-										idsAlumnos.clear();
-
-										opcionSubmenuC = 0;
-										opcionSubmenuB = 0;
-										opcionSubmenuA = 0;
-
-										idDeCambio = -1;
-
-										antiguedad = -1;
-
-										columnaCambiada = "";
-										datoCambiado = "";
-
-										fechaDia = 0;
-										fechaMes = 0;
-										fechaAnnio = 0;
-									}
-									System.out.println();
-								} while (opcionSubmenuC != 0);
-								break; // FIN 3. Por apellidos.
-							case 4: // 4. Por fechaNacimiento.
-								do {
-									do {
-										System.out.print(
-												"Introduzca el día de FechaNacimiento del Alumno que quiera Actualizar (entre 1 y 31): ");
-										fechaDia = leeInt(sc);
-									} while (fechaDia < 1 || fechaDia > 31);
-
-									do {
-										System.out.print(
-												"Introduzca el mes de FechaNacimiento del Alumno que quiera Actualizar (entre 1 y 12): ");
-										fechaMes = leeInt(sc);
-									} while (fechaMes < 1 || fechaMes > 12);
-
-									do {
-										System.out.print(
-												"Introduzca el año de FechaNacimiento del Alumno que quiera Actualizar (>= 1000 y <= año actual): ");
-										fechaAnnio = leeInt(sc);
-									} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
-
-									datoDeCambio = String.format("%d-%02d-%02d", fechaAnnio, fechaMes, fechaDia);
-								} while (datoDeCambio == null || datoDeCambio.equals(""));
-
-								System.out.println();
-
-								do {
-									Menu.subMenuElegirColumnaModificarAlumno();
-									opcionSubmenuC = leeInt(sc);
-									System.out.println();
-
-									switch (opcionSubmenuC) {
-									case 1: // 1. nombre.
-										columnaCambiada = "nombre";
-										do {
-											System.out.print("Introduzca el nuevo Nombre del Alumno: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
-
-										break; // FIN 1. nombre.
-									case 2: // 2. apellidos.
-										columnaCambiada = "apellidos";
-										do {
-											System.out.print("Introduzca los nuevos Apellidos del Alumno: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
-
-										break; // FIN 2. apellidos.
-									case 3: // 3. fechaNacimiento.
-										columnaCambiada = "fechaNacimiento";
-										do {
-											do {
-												System.out.print(
-														"Introduzca el día de FechaNacimiento del Alumno (entre 1 y 31): ");
-												fechaDia = leeInt(sc);
-											} while (fechaDia < 1 || fechaDia > 31);
-
-											do {
-												System.out.print(
-														"Introduzca el mes de FechaNacimiento del Alumno (entre 1 y 12): ");
-												fechaMes = leeInt(sc);
-											} while (fechaMes < 1 || fechaMes > 12);
-
-											do {
-												System.out.print(
-														"Introduzca el año de FechaNacimiento del Alumno (>= 1000 y <= año actual): ");
-												fechaAnnio = leeInt(sc);
-											} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
-
-											datoCambiado = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
-													fechaDia);
-										} while (datoCambiado == null || datoCambiado.equals(""));
-										break; // fechaNacimiento.
-
-									case 0: // 0. Volver al Menú anterior.
-
-										break; // FIN 0. Volver al Menú anterior.
-
-									default:
-										System.out.print(ColorMio.getRojo());
-										System.out.print("Opción no disponible: ");
-										System.out.print(ColorMio.getReset());
-										System.out.println("Elija del 0 al 3");
 										System.out.println();
-										break;
-									}
-
-									System.out.println();
-
-									idsAlumnos.clear();
-
-									if (opcionSubmenuC != 0) {
-										idsAlumnos = FuncionesAlumnos.buscaIDsPorColumna("fechaNacimiento",
-												datoDeCambio);
-
-										if (idsAlumnos.size() > 1) {
-
-											FuncionesAlumnos.leerPorFechaNacimiento(LocalDate.parse(datoDeCambio), "=");
-
-											System.out.print(ColorMio.getAmarillo());
-											System.out.println(
-													"Hay varios Alumnos con fechaNacimiento = " + datoDeCambio);
-											System.out.print(ColorMio.getReset());
-											System.out.println();
-
-											System.out.println(
-													"Escriba el idAlumno del Alumnos que desea modificar, o si lo prefiere, \"0\" para modificar a todos estos:");
-											idDeCambio = sc.nextLong();
-
-											System.out.println();
-
-											if (idDeCambio != 0) {
-
-												if (idsAlumnos.contains(idDeCambio) && FuncionesAlumnos
-														.actualizarPorId(idDeCambio, columnaCambiada, datoCambiado)) {
-													System.out.print(ColorMio.getVerde());
-													System.out.print("Alumno con ID = " + idDeCambio + " tiene ahora "
-															+ columnaCambiada + " = " + datoCambiado);
-													System.out.print(ColorMio.getReset());
-													System.out.println();
-
-												} else {
-													System.out.print(ColorMio.getRojo());
-													System.out.print("No existe ningún Alumno con ID = " + idDeCambio
-															+ " en la lista anteriormente mostrada");
-													System.out.print(ColorMio.getReset());
-													System.out.println();
-
-												}
-											} else {
-												for (Long id : idsAlumnos) {
-													FuncionesAlumnos.actualizarPorId(id, columnaCambiada, datoCambiado);
-												}
-												System.out.print(ColorMio.getVerde());
-												System.out.print("Todos los Alumnos con fechaNacimiento = "
-														+ datoDeCambio + " tienen ahora " + columnaCambiada + " = "
-														+ datoCambiado);
-												System.out.print(ColorMio.getReset());
-												System.out.println();
-
-											}
-
-										} else if (idsAlumnos.size() == 1) {
-											idDeCambio = idsAlumnos.get(0);
-
-											FuncionesAlumnos.actualizarPorId(idDeCambio, columnaCambiada, datoCambiado);
-
-											System.out.print(ColorMio.getVerde());
-											System.out.print("Alumno con fechaNacimiento = " + datoDeCambio
-													+ " tiene ahora " + columnaCambiada + " = " + datoCambiado);
-											System.out.print(ColorMio.getReset());
-											System.out.println();
-
-										} else {
-											System.out.print(ColorMio.getRojo());
+									} while (opcionSubmenuC != 0);
+									break; // FIN 3. Por apellidos.
+								case 4: // 4. Por fechaNacimiento.
+									do {
+										do {
 											System.out.print(
-													"No existe ningún Alumno con fechaNacimiento = " + datoDeCambio);
-											System.out.print(ColorMio.getReset());
-											System.out.println();
+													"Introduzca el día de FechaNacimiento del Alumno que quiera Actualizar (entre 1 y 31): ");
+											fechaDia = leeInt(sc);
+										} while (fechaDia < 1 || fechaDia > 31);
 
+										do {
+											System.out.print(
+													"Introduzca el mes de FechaNacimiento del Alumno que quiera Actualizar (entre 1 y 12): ");
+											fechaMes = leeInt(sc);
+										} while (fechaMes < 1 || fechaMes > 12);
+
+										do {
+											System.out.print(
+													"Introduzca el año de FechaNacimiento del Alumno que quiera Actualizar (>= 1000 y <= año actual): ");
+											fechaAnnio = leeInt(sc);
+										} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
+
+										datoDeCambio = String.format("%d-%02d-%02d", fechaAnnio, fechaMes, fechaDia);
+									} while (datoDeCambio == null || datoDeCambio.equals(""));
+
+									System.out.println();
+
+									do {
+										Menu.subMenuElegirColumnaModificarAlumno();
+										opcionSubmenuC = leeInt(sc);
+										System.out.println();
+
+										switch (opcionSubmenuC) {
+										case 1: // 1. nombre.
+											columnaCambiada = "nombre";
+											do {
+												System.out.print("Introduzca el nuevo Nombre del Alumno: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+
+											break; // FIN 1. nombre.
+										case 2: // 2. apellidos.
+											columnaCambiada = "apellidos";
+											do {
+												System.out.print("Introduzca los nuevos Apellidos del Alumno: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+
+											break; // FIN 2. apellidos.
+										case 3: // 3. fechaNacimiento.
+											columnaCambiada = "fechaNacimiento";
+											do {
+												do {
+													System.out.print(
+															"Introduzca el día de FechaNacimiento del Alumno (entre 1 y 31): ");
+													fechaDia = leeInt(sc);
+												} while (fechaDia < 1 || fechaDia > 31);
+
+												do {
+													System.out.print(
+															"Introduzca el mes de FechaNacimiento del Alumno (entre 1 y 12): ");
+													fechaMes = leeInt(sc);
+												} while (fechaMes < 1 || fechaMes > 12);
+
+												do {
+													System.out.print(
+															"Introduzca el año de FechaNacimiento del Alumno (>= 1000 y <= año actual): ");
+													fechaAnnio = leeInt(sc);
+												} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
+
+												datoCambiado = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
+														fechaDia);
+											} while (datoCambiado == null || datoCambiado.equals(""));
+											break; // fechaNacimiento.
+
+										case 0: // 0. Volver al Menú anterior.
+
+											break; // FIN 0. Volver al Menú anterior.
+
+										default:
+											System.out.print(ColorMio.getRojo());
+											System.out.print("Opción no disponible: ");
+											System.out.print(ColorMio.getReset());
+											System.out.println("Elija del 0 al 3");
+											System.out.println();
+											break;
 										}
+
+										System.out.println();
 
 										idsAlumnos.clear();
 
-										opcionSubmenuC = 0;
-										opcionSubmenuB = 0;
-										opcionSubmenuA = 0;
+										if (opcionSubmenuC != 0) {
+											idsAlumnos = FuncionesAlumnos.buscaIDsPorColumna("fechaNacimiento",
+													datoDeCambio);
 
-										idDeCambio = -1;
+											if (idsAlumnos.size() > 1) {
 
-										antiguedad = -1;
+												FuncionesAlumnos.leerPorFechaNacimiento(LocalDate.parse(datoDeCambio),
+														"=");
 
-										columnaCambiada = "";
-										datoCambiado = "";
+												System.out.print(ColorMio.getAmarillo());
+												System.out.println(
+														"Hay varios Alumnos con fechaNacimiento = " + datoDeCambio);
+												System.out.print(ColorMio.getReset());
+												System.out.println();
 
-										fechaDia = 0;
-										fechaMes = 0;
-										fechaAnnio = 0;
-									}
+												System.out.println(
+														"Escriba el idAlumno del Alumnos que desea modificar, o si lo prefiere, \"0\" para modificar a todos estos:");
+												idDeCambio = sc.nextLong();
+
+												System.out.println();
+
+												if (idDeCambio != 0) {
+
+													if (idsAlumnos.contains(idDeCambio)
+															&& FuncionesAlumnos.actualizarPorId(idDeCambio,
+																	columnaCambiada, datoCambiado)) {
+														System.out.print(ColorMio.getVerde());
+														System.out
+																.print("Alumno con ID = " + idDeCambio + " tiene ahora "
+																		+ columnaCambiada + " = " + datoCambiado);
+														System.out.print(ColorMio.getReset());
+														System.out.println();
+
+													} else {
+														System.out.print(ColorMio.getRojo());
+														System.out.print("No existe ningún Alumno con ID = "
+																+ idDeCambio + " en la lista anteriormente mostrada");
+														System.out.print(ColorMio.getReset());
+														System.out.println();
+
+													}
+												} else {
+													for (Long id : idsAlumnos) {
+														FuncionesAlumnos.actualizarPorId(id, columnaCambiada,
+																datoCambiado);
+													}
+													System.out.print(ColorMio.getVerde());
+													System.out.print("Todos los Alumnos con fechaNacimiento = "
+															+ datoDeCambio + " tienen ahora " + columnaCambiada + " = "
+															+ datoCambiado);
+													System.out.print(ColorMio.getReset());
+													System.out.println();
+
+												}
+
+											} else if (idsAlumnos.size() == 1) {
+												idDeCambio = idsAlumnos.get(0);
+
+												FuncionesAlumnos.actualizarPorId(idDeCambio, columnaCambiada,
+														datoCambiado);
+
+												System.out.print(ColorMio.getVerde());
+												System.out.print("Alumno con fechaNacimiento = " + datoDeCambio
+														+ " tiene ahora " + columnaCambiada + " = " + datoCambiado);
+												System.out.print(ColorMio.getReset());
+												System.out.println();
+
+											} else {
+												System.out.print(ColorMio.getRojo());
+												System.out.print("No existe ningún Alumno con fechaNacimiento = "
+														+ datoDeCambio);
+												System.out.print(ColorMio.getReset());
+												System.out.println();
+
+											}
+
+											idsAlumnos.clear();
+
+											opcionSubmenuC = 0;
+											opcionSubmenuB = 0;
+											opcionSubmenuA = 0;
+
+											idDeCambio = -1;
+
+											antiguedad = -1;
+
+											columnaCambiada = "";
+											datoCambiado = "";
+
+											fechaDia = 0;
+											fechaMes = 0;
+											fechaAnnio = 0;
+										}
+										System.out.println();
+									} while (opcionSubmenuC != 0);
+									break; // FIN 4. Por fechaNacimiento.
+								case 0: // 0. Volver al Menú anterior.
+
+									break; // FIN 0. Volver al Menú anterior.
+
+								default:
+									System.out.print(ColorMio.getRojo());
+									System.out.print("Opción no disponible: ");
+									System.out.print(ColorMio.getReset());
+									System.out.println("Elija del 0 al 4");
 									System.out.println();
-								} while (opcionSubmenuC != 0);
-								break; // FIN 4. Por fechaNacimiento.
-							case 0: // 0. Volver al Menú anterior.
+									break;
+								}
+							} while (opcionSubmenuB != 0);
+						} else {
+							System.out.print(ColorMio.getRojo());
+							System.out.print("No existe ningún elemento en la tabla Alumnos");
+							System.out.println(ColorMio.getReset());
+							System.out.println();
 
-								break; // FIN 0. Volver al Menú anterior.
-
-							default:
-								System.out.print(ColorMio.getRojo());
-								System.out.print("Opción no disponible: ");
-								System.out.print(ColorMio.getReset());
-								System.out.println("Elija del 0 al 4");
-								System.out.println();
-								break;
-							}
-						} while (opcionSubmenuB != 0);
-
+							opcionSubmenuA = 0;
+						}
 						break; // FIN 2. Alumnos.
 					case 3: // 3. Matriculas.
-						do {
-							Menu.subMenuElegirMatriculaActualizar();
-							opcionSubmenuB = leeInt(sc);
+						if (!FuncionesMatriculas.buscaIDsDeTodos().isEmpty()) {
+							do {
+								Menu.subMenuElegirMatriculaActualizar();
+								opcionSubmenuB = leeInt(sc);
+								System.out.println();
+
+								switch (opcionSubmenuB) {
+								case 1: // 1. Por idMatricula.
+
+									do {
+										System.out.print(
+												"Introduzca el ID de la Matricula que quiera Actualizar (> 0): ");
+										idDeCambio = leeLong(sc);
+									} while (idDeCambio <= 0);
+
+									System.out.println();
+
+									do {
+										Menu.subMenuElegirColumnaModificarMatricula();
+										opcionSubmenuC = leeInt(sc);
+										System.out.println();
+
+										switch (opcionSubmenuC) {
+										case 1: // 1. idProfesor.
+											columnaCambiada = "idProfesor";
+											do {
+												System.out.print("Introduzca el nuevo idProfesor de la Matricula: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+
+											break; // FIN 1. idProfesor.
+										case 2: // 2. idAlumno.
+											columnaCambiada = "idAlumno";
+											do {
+												System.out.print("Introduzca el nuevo idAlumno de la Matricula: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+											break; // FIN 2. idAlumno.
+										case 3: // 3. asignatura.
+											columnaCambiada = "asignatura";
+											do {
+												System.out.print("Introduzca la nueva Asignatura de la Matricula: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+											break; // FIN 3. asignatura.
+										case 4: // 4. curso.
+											columnaCambiada = "curso";
+											do {
+												System.out.print("Introduzca el nuevo Curso de la Matricula: ");
+												curso = leeInt(sc);
+												if (curso >= 0) {
+													datoCambiado = String.valueOf(curso);
+												}
+											} while (datoCambiado == null || datoCambiado.equals(""));
+											break; // FIN 4. curso.
+
+										case 0: // 0. Volver al Menú anterior.
+
+											break; // FIN 0. Volver al Menú anterior.
+
+										default:
+											System.out.print(ColorMio.getRojo());
+											System.out.print("Opción no disponible: ");
+											System.out.print(ColorMio.getReset());
+											System.out.println("Elija del 0 al 4");
+											System.out.println();
+											break;
+										}
+
+										System.out.println();
+
+										if (opcionSubmenuC != 0) {
+
+											if (!FuncionesMatriculas.buscaIDsDeTodos().contains(idDeCambio)) {
+												System.out.print(ColorMio.getRojo());
+												System.out.print("No existe ninguna Matricula con ID = " + idDeCambio);
+												System.out.print(ColorMio.getReset());
+												System.out.println();
+											} else {
+												if (columnaCambiada.equals("idProfesor") && !FuncionesProfesores
+														.buscaIDsDeTodos().contains(Long.valueOf(datoCambiado))) {
+													System.out.print(ColorMio.getRojo());
+													System.out.print(
+															"No existe ningún Profesor con ID = " + datoCambiado);
+													System.out.print(ColorMio.getReset());
+													System.out.println();
+												} else if (columnaCambiada.equals("idAlumno") && !FuncionesAlumnos
+														.buscaIDsDeTodos().contains(Long.valueOf(datoCambiado))) {
+													System.out.print(ColorMio.getRojo());
+													System.out
+															.print("No existe ningún Alumno con ID = " + datoCambiado);
+													System.out.print(ColorMio.getReset());
+													System.out.println();
+												} else {
+													FuncionesMatriculas.actualizarPorId(idDeCambio, columnaCambiada,
+															datoCambiado);
+													System.out.print(ColorMio.getVerde());
+													System.out.print("Matricula con ID = " + idDeCambio
+															+ " tiene ahora " + columnaCambiada + " = " + datoCambiado);
+													System.out.print(ColorMio.getReset());
+													System.out.println();
+												}
+											}
+											System.out.println();
+										}
+
+										opcionSubmenuC = 0;
+										opcionSubmenuB = 0;
+										opcionSubmenuA = 0;
+
+										idDeCambio = -1;
+
+										columnaCambiada = "";
+										datoCambiado = "";
+										curso = -1;
+
+									} while (opcionSubmenuC != 0);
+									break; // FIN 1. Por idMatricula.
+								case 2: // 2. Por idProfesor.
+									do {
+										System.out.print(
+												"Introduzca el idProfesor de la Matricula que quiera Actualizar (> 0): ");
+										idProfesor = leeLong(sc);
+									} while (idProfesor <= 0);
+
+									System.out.println();
+
+									datoDeCambio = String.valueOf(idProfesor);
+
+									do {
+										idsMatriculas.clear();
+
+										Menu.subMenuElegirColumnaModificarMatricula();
+										opcionSubmenuC = leeInt(sc);
+										System.out.println();
+
+										switch (opcionSubmenuC) {
+										case 1: // 1. idProfesor.
+											columnaCambiada = "idProfesor";
+											do {
+												System.out.print("Introduzca el nuevo idProfesor de la Matricula: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+
+											break; // FIN 1. idProfesor.
+										case 2: // 2. idAlumno.
+											columnaCambiada = "idAlumno";
+											do {
+												System.out.print("Introduzca el nuevo idAlumno de la Matricula: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+											break; // FIN 2. idAlumno.
+										case 3: // 3. asignatura.
+											columnaCambiada = "asignatura";
+											do {
+												System.out.print("Introduzca la nueva Asignatura de la Matricula: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+											break; // FIN 3. asignatura.
+										case 4: // 4. curso.
+											columnaCambiada = "curso";
+											do {
+												System.out.print("Introduzca el nuevo Curso de la Matricula: ");
+												curso = leeInt(sc);
+												if (curso >= 0) {
+													datoCambiado = String.valueOf(curso);
+												}
+											} while (datoCambiado == null || datoCambiado.equals(""));
+											break; // FIN 4. curso.
+
+										case 0: // 0. Volver al Menú anterior.
+
+											break; // FIN 0. Volver al Menú anterior.
+
+										default:
+											System.out.print(ColorMio.getRojo());
+											System.out.print("Opción no disponible: ");
+											System.out.print(ColorMio.getReset());
+											System.out.println("Elija del 0 al 4");
+											System.out.println();
+											break;
+										}
+
+										System.out.println();
+										if (opcionSubmenuC != 0) {
+
+											idsMatriculas = FuncionesMatriculas.buscaIDsPorColumna("idProfesor",
+													datoDeCambio);
+
+											if (idsMatriculas.size() > 1) {
+												cabecera = " Matricula(s) con Profesor con idProfesor = " + idProfesor
+														+ "\t";
+
+												FuncionesMatriculas.leerPorProfesor(FuncionesProfesores
+														.getProfesorPorId(Long.valueOf(datoDeCambio)), cabecera);
+
+												System.out.print(ColorMio.getAmarillo());
+												System.out.print(
+														"Hay varias Matriculas con idProfesor = " + datoDeCambio);
+												System.out.print(ColorMio.getReset());
+												System.out.println();
+
+												System.out.println();
+
+												System.out.println(
+														"Escriba el idMatricula de la Matricula que desea modificar, o si lo prefiere, \"0\" para modificar a todas estas:");
+												idDeCambio = sc.nextLong();
+
+												System.out.println();
+
+												if (idDeCambio != 0) {
+													if (idsMatriculas.contains(idDeCambio)
+															&& FuncionesMatriculas.actualizarPorId(idDeCambio,
+																	columnaCambiada, datoCambiado)) {
+
+														System.out.print(ColorMio.getVerde());
+														System.out.print(
+																"Matricula con ID = " + idDeCambio + " tiene ahora "
+																		+ columnaCambiada + " = " + datoCambiado);
+														System.out.print(ColorMio.getReset());
+														System.out.println();
+													} else {
+														System.out.print(ColorMio.getRojo());
+														System.out.print("No existe ninguna Matricula con ID = "
+																+ idDeCambio + " en la lista anteriormente mostrada");
+														System.out.print(ColorMio.getReset());
+														System.out.println();
+													}
+												} else {
+													for (Long id : idsMatriculas) {
+														FuncionesMatriculas.actualizarPorId(id, columnaCambiada,
+																datoCambiado);
+													}
+													System.out.print(ColorMio.getVerde());
+													System.out.print("Todas las Matriculas con idProfesor = "
+															+ datoDeCambio + " tienen ahora " + columnaCambiada + " = "
+															+ datoCambiado);
+													System.out.print(ColorMio.getReset());
+													System.out.println();
+
+												}
+
+											} else if (idsMatriculas.size() == 1) {
+												idDeCambio = idsMatriculas.get(0);
+
+												if (FuncionesMatriculas.actualizarPorId(idDeCambio, columnaCambiada,
+														datoCambiado)) {
+													System.out.print(ColorMio.getVerde());
+													System.out.print("Matricula con idProfesor = " + datoDeCambio
+															+ " tiene ahora " + columnaCambiada + " = " + datoCambiado);
+													System.out.print(ColorMio.getReset());
+													System.out.println();
+
+												} else {
+													if (columnaCambiada.equals("idProfesor")) {
+
+														System.out.print(ColorMio.getRojo());
+														System.out.print("No existe ningún Profesor con idProfesor = "
+																+ datoCambiado);
+														System.out.print(ColorMio.getReset());
+														System.out.println();
+
+													} else if (columnaCambiada.equals("idAlumno")) {
+														System.out.print(ColorMio.getRojo());
+														System.out.println("No existe ningún Alumno con idAlumno = "
+																+ datoCambiado);
+														System.out.print(ColorMio.getReset());
+														System.out.println();
+													}
+												}
+
+											} else {
+												System.out.print(ColorMio.getRojo());
+												System.out.print(
+														"No existe ninguna Matricula con idProfesor = " + datoDeCambio);
+												System.out.print(ColorMio.getReset());
+												System.out.println();
+
+											}
+
+											idsMatriculas.clear();
+
+											opcionSubmenuC = 0;
+											opcionSubmenuB = 0;
+											opcionSubmenuA = 0;
+
+											idDeCambio = -1;
+											idProfesor = -1;
+
+											columnaCambiada = "";
+											datoCambiado = "";
+											curso = -1;
+										}
+
+										System.out.println();
+
+									} while (opcionSubmenuC != 0);
+									break; // FIN 2. Por idProfesor.
+								case 3: // 3. Por idAlumno.
+									do {
+										System.out.print(
+												"Introduzca el idAlumno de la Matricula que quiera Actualizar (> 0): ");
+										idAlumno = leeLong(sc);
+									} while (idAlumno <= 0);
+
+									System.out.println();
+
+									datoDeCambio = String.valueOf(idAlumno);
+
+									do {
+										idsMatriculas.clear();
+
+										Menu.subMenuElegirColumnaModificarMatricula();
+										opcionSubmenuC = leeInt(sc);
+										System.out.println();
+
+										switch (opcionSubmenuC) {
+										case 1: // 1. idProfesor.
+											columnaCambiada = "idProfesor";
+											do {
+												System.out.print("Introduzca el nuevo idProfesor de la Matricula: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+
+											break; // FIN 1. idProfesor.
+										case 2: // 2. idAlumno.
+											columnaCambiada = "idAlumno";
+											do {
+												System.out.print("Introduzca el nuevo idAlumno de la Matricula: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+											break; // FIN 2. idAlumno.
+										case 3: // 3. asignatura.
+											columnaCambiada = "asignatura";
+											do {
+												System.out.print("Introduzca la nueva Asignatura de la Matricula: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+											break; // FIN 3. asignatura.
+										case 4: // 4. curso.
+											columnaCambiada = "curso";
+											do {
+												System.out.print("Introduzca el nuevo Curso de la Matricula: ");
+												curso = leeInt(sc);
+												if (curso >= 0) {
+													datoCambiado = String.valueOf(curso);
+												}
+											} while (datoCambiado == null || datoCambiado.equals(""));
+											break; // FIN 4. curso.
+
+										case 0: // 0. Volver al Menú anterior.
+
+											break; // FIN 0. Volver al Menú anterior.
+
+										default:
+											System.out.print(ColorMio.getRojo());
+											System.out.print("Opción no disponible: ");
+											System.out.print(ColorMio.getReset());
+											System.out.println("Elija del 0 al 4");
+											System.out.println();
+											break;
+										}
+
+										System.out.println();
+										if (opcionSubmenuC != 0) {
+
+											idsMatriculas = FuncionesMatriculas.buscaIDsPorColumna("idAlumno",
+													datoDeCambio);
+
+											if (idsMatriculas.size() > 1) {
+												cabecera = " Matricula(s) con Alumno con idAlumno = " + idAlumno + "\t";
+
+												FuncionesMatriculas.leerPorAlumno(
+														FuncionesAlumnos.getAlumnoPorId(Long.valueOf(datoDeCambio)),
+														cabecera);
+
+												System.out.print(ColorMio.getAmarillo());
+												System.out
+														.print("Hay varias Matriculas con idAlumno = " + datoDeCambio);
+												System.out.print(ColorMio.getReset());
+												System.out.println();
+
+												System.out.println();
+
+												System.out.println(
+														"Escriba el idMatricula de la Matricula que desea modificar, o si lo prefiere, \"0\" para modificar a todas estas:");
+												idDeCambio = sc.nextLong();
+
+												System.out.println();
+
+												if (idDeCambio != 0) {
+													if (idsMatriculas.contains(idDeCambio)
+															&& FuncionesMatriculas.actualizarPorId(idDeCambio,
+																	columnaCambiada, datoCambiado)) {
+
+														System.out.print(ColorMio.getVerde());
+														System.out.print(
+																"Matricula con ID = " + idDeCambio + " tiene ahora "
+																		+ columnaCambiada + " = " + datoCambiado);
+														System.out.print(ColorMio.getReset());
+														System.out.println();
+													} else {
+														System.out.print(ColorMio.getRojo());
+														System.out.print("No existe ninguna Matricula con ID = "
+																+ idDeCambio + " en la lista anteriormente mostrada");
+														System.out.print(ColorMio.getReset());
+														System.out.println();
+													}
+												} else {
+													for (Long id : idsMatriculas) {
+														FuncionesMatriculas.actualizarPorId(id, columnaCambiada,
+																datoCambiado);
+													}
+													System.out.print(ColorMio.getVerde());
+													System.out.print("Todas las Matriculas con idAlumno = "
+															+ datoDeCambio + " tienen ahora " + columnaCambiada + " = "
+															+ datoCambiado);
+													System.out.print(ColorMio.getReset());
+													System.out.println();
+
+												}
+
+											} else if (idsMatriculas.size() == 1) {
+												idDeCambio = idsMatriculas.get(0);
+
+												if (FuncionesMatriculas.actualizarPorId(idDeCambio, columnaCambiada,
+														datoCambiado)) {
+													System.out.print(ColorMio.getVerde());
+													System.out.print("Matricula con idAlumno = " + datoDeCambio
+															+ " tiene ahora " + columnaCambiada + " = " + datoCambiado);
+													System.out.print(ColorMio.getReset());
+													System.out.println();
+
+												} else {
+													if (columnaCambiada.equals("idProfesor")) {
+
+														System.out.print(ColorMio.getRojo());
+														System.out.print("No existe ningún Profesor con idProfesor = "
+																+ datoCambiado);
+														System.out.print(ColorMio.getReset());
+														System.out.println();
+
+													} else if (columnaCambiada.equals("idAlumno")) {
+														System.out.print(ColorMio.getRojo());
+														System.out.println("No existe ningún Alumno con idAlumno = "
+																+ datoCambiado);
+														System.out.print(ColorMio.getReset());
+														System.out.println();
+													}
+												}
+
+											} else {
+												System.out.print(ColorMio.getRojo());
+												System.out.print(
+														"No existe ninguna Matricula con idAlumno = " + datoDeCambio);
+												System.out.print(ColorMio.getReset());
+												System.out.println();
+
+											}
+
+											idsMatriculas.clear();
+
+											opcionSubmenuC = 0;
+											opcionSubmenuB = 0;
+											opcionSubmenuA = 0;
+
+											idDeCambio = -1;
+											idAlumno = -1;
+
+											columnaCambiada = "";
+											datoCambiado = "";
+											curso = -1;
+										}
+
+										System.out.println();
+
+									} while (opcionSubmenuC != 0);
+									break; // FIN 3. Por Alumno.
+								case 4: // 4. Por asignatura.
+									do {
+										System.out.print(
+												"Introduzca la asignatura de la Matricula que quiera Actualizar: ");
+										asignatura = sc.nextLine();
+									} while (asignatura == "" || asignatura == null);
+
+									System.out.println();
+
+									datoDeCambio = asignatura;
+
+									do {
+										idsMatriculas.clear();
+
+										Menu.subMenuElegirColumnaModificarMatricula();
+										opcionSubmenuC = leeInt(sc);
+										System.out.println();
+
+										switch (opcionSubmenuC) {
+										case 1: // 1. idProfesor.
+											columnaCambiada = "idProfesor";
+											do {
+												System.out.print("Introduzca el nuevo idProfesor de la Matricula: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+
+											break; // FIN 1. idProfesor.
+										case 2: // 2. idAlumno.
+											columnaCambiada = "idAlumno";
+											do {
+												System.out.print("Introduzca el nuevo idAlumno de la Matricula: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+											break; // FIN 2. idAlumno.
+										case 3: // 3. asignatura.
+											columnaCambiada = "asignatura";
+											do {
+												System.out.print("Introduzca la nueva Asignatura de la Matricula: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+											break; // FIN 3. asignatura.
+										case 4: // 4. curso.
+											columnaCambiada = "curso";
+											do {
+												System.out.print("Introduzca el nuevo Curso de la Matricula: ");
+												curso = leeInt(sc);
+												if (curso >= 0) {
+													datoCambiado = String.valueOf(curso);
+												}
+											} while (datoCambiado == null || datoCambiado.equals(""));
+											break; // FIN 4. curso.
+
+										case 0: // 0. Volver al Menú anterior.
+
+											break; // FIN 0. Volver al Menú anterior.
+
+										default:
+											System.out.print(ColorMio.getRojo());
+											System.out.print("Opción no disponible: ");
+											System.out.print(ColorMio.getReset());
+											System.out.println("Elija del 0 al 4");
+											System.out.println();
+											break;
+										}
+
+										System.out.println();
+										if (opcionSubmenuC != 0) {
+
+											idsMatriculas = FuncionesMatriculas.buscaIDsPorColumna("asignatura",
+													datoDeCambio);
+
+											if (idsMatriculas.size() > 1) {
+
+												FuncionesMatriculas.leerPorAsignatura(asignatura, "=");
+
+												System.out.print(ColorMio.getAmarillo());
+												System.out.print(
+														"Hay varias Matriculas con asignatura = " + datoDeCambio);
+												System.out.print(ColorMio.getReset());
+												System.out.println();
+
+												System.out.println();
+
+												System.out.println(
+														"Escriba el idMatricula de la Matricula que desea modificar, o si lo prefiere, \"0\" para modificar a todas estas:");
+												idDeCambio = sc.nextLong();
+
+												System.out.println();
+
+												if (idDeCambio != 0) {
+													if (idsMatriculas.contains(idDeCambio)
+															&& FuncionesMatriculas.actualizarPorId(idDeCambio,
+																	columnaCambiada, datoCambiado)) {
+
+														System.out.print(ColorMio.getVerde());
+														System.out.print(
+																"Matricula con ID = " + idDeCambio + " tiene ahora "
+																		+ columnaCambiada + " = " + datoCambiado);
+														System.out.print(ColorMio.getReset());
+														System.out.println();
+													} else {
+														System.out.print(ColorMio.getRojo());
+														System.out.print("No existe ninguna Matricula con ID = "
+																+ idDeCambio + " en la lista anteriormente mostrada");
+														System.out.print(ColorMio.getReset());
+														System.out.println();
+													}
+												} else {
+													for (Long id : idsMatriculas) {
+														FuncionesMatriculas.actualizarPorId(id, columnaCambiada,
+																datoCambiado);
+													}
+													System.out.print(ColorMio.getVerde());
+													System.out.print("Todas las Matriculas con asignatura = "
+															+ datoDeCambio + " tienen ahora " + columnaCambiada + " = "
+															+ datoCambiado);
+													System.out.print(ColorMio.getReset());
+													System.out.println();
+
+												}
+
+											} else if (idsMatriculas.size() == 1) {
+												idDeCambio = idsMatriculas.get(0);
+
+												if (FuncionesMatriculas.actualizarPorId(idDeCambio, columnaCambiada,
+														datoCambiado)) {
+													System.out.print(ColorMio.getVerde());
+													System.out.print("Matricula con asignatura = " + datoDeCambio
+															+ " tiene ahora " + columnaCambiada + " = " + datoCambiado);
+													System.out.print(ColorMio.getReset());
+													System.out.println();
+
+												} else {
+													if (columnaCambiada.equals("idProfesor")) {
+
+														System.out.print(ColorMio.getRojo());
+														System.out.print("No existe ningún Profesor con idProfesor = "
+																+ datoCambiado);
+														System.out.print(ColorMio.getReset());
+														System.out.println();
+
+													} else if (columnaCambiada.equals("idAlumno")) {
+														System.out.print(ColorMio.getRojo());
+														System.out.println("No existe ningún Alumno con idAlumno = "
+																+ datoCambiado);
+														System.out.print(ColorMio.getReset());
+														System.out.println();
+													}
+												}
+
+											} else {
+												System.out.print(ColorMio.getRojo());
+												System.out.print(
+														"No existe ninguna Matricula con asignatura = " + datoDeCambio);
+												System.out.print(ColorMio.getReset());
+												System.out.println();
+
+											}
+
+											idsMatriculas.clear();
+
+											opcionSubmenuC = 0;
+											opcionSubmenuB = 0;
+											opcionSubmenuA = 0;
+
+											idDeCambio = -1;
+											asignatura = "";
+
+											columnaCambiada = "";
+											datoCambiado = "";
+											curso = -1;
+										}
+
+										System.out.println();
+
+									} while (opcionSubmenuC != 0);
+									break; // FIN 4. Por asignatura.
+								case 5: // 5. Por curso.
+									do {
+										System.out.print(
+												"Introduzca el curso de la Matricula que quiera Actualizar (>0): ");
+										curso = leeInt(sc);
+									} while (curso <= 0);
+
+									System.out.println();
+
+									String.valueOf(idAlumno);
+
+									datoDeCambio = String.valueOf(curso);
+
+									do {
+										idsMatriculas.clear();
+
+										Menu.subMenuElegirColumnaModificarMatricula();
+										opcionSubmenuC = leeInt(sc);
+										System.out.println();
+
+										switch (opcionSubmenuC) {
+										case 1: // 1. idProfesor.
+											columnaCambiada = "idProfesor";
+											do {
+												System.out.print("Introduzca el nuevo idProfesor de la Matricula: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+
+											break; // FIN 1. idProfesor.
+										case 2: // 2. idAlumno.
+											columnaCambiada = "idAlumno";
+											do {
+												System.out.print("Introduzca el nuevo idAlumno de la Matricula: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+											break; // FIN 2. idAlumno.
+										case 3: // 3. asignatura.
+											columnaCambiada = "asignatura";
+											do {
+												System.out.print("Introduzca la nueva Asignatura de la Matricula: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+											break; // FIN 3. asignatura.
+										case 4: // 4. curso.
+											columnaCambiada = "curso";
+											do {
+												System.out.print("Introduzca el nuevo Curso de la Matricula: ");
+												curso = leeInt(sc);
+												if (curso >= 0) {
+													datoCambiado = String.valueOf(curso);
+												}
+											} while (datoCambiado == null || datoCambiado.equals(""));
+											break; // FIN 4. curso.
+
+										case 0: // 0. Volver al Menú anterior.
+
+											break; // FIN 0. Volver al Menú anterior.
+
+										default:
+											System.out.print(ColorMio.getRojo());
+											System.out.print("Opción no disponible: ");
+											System.out.print(ColorMio.getReset());
+											System.out.println("Elija del 0 al 4");
+											System.out.println();
+											break;
+										}
+
+										System.out.println();
+										if (opcionSubmenuC != 0) {
+
+											idsMatriculas = FuncionesMatriculas.buscaIDsPorColumna("curso",
+													datoDeCambio);
+
+											if (idsMatriculas.size() > 1) {
+												FuncionesMatriculas.leerPorCurso(curso, "=");
+
+												System.out.print(ColorMio.getAmarillo());
+												System.out.print("Hay varias Matriculas con curso = " + datoDeCambio);
+												System.out.print(ColorMio.getReset());
+												System.out.println();
+
+												System.out.println();
+
+												System.out.println(
+														"Escriba el idMatricula de la Matricula que desea modificar, o si lo prefiere, \"0\" para modificar a todas estas:");
+												idDeCambio = sc.nextLong();
+
+												System.out.println();
+
+												if (idDeCambio != 0) {
+													if (idsMatriculas.contains(idDeCambio)
+															&& FuncionesMatriculas.actualizarPorId(idDeCambio,
+																	columnaCambiada, datoCambiado)) {
+
+														System.out.print(ColorMio.getVerde());
+														System.out.print(
+																"Matricula con ID = " + idDeCambio + " tiene ahora "
+																		+ columnaCambiada + " = " + datoCambiado);
+														System.out.print(ColorMio.getReset());
+														System.out.println();
+													} else {
+														System.out.print(ColorMio.getRojo());
+														System.out.print("No existe ninguna Matricula con ID = "
+																+ idDeCambio + " en la lista anteriormente mostrada");
+														System.out.print(ColorMio.getReset());
+														System.out.println();
+													}
+												} else {
+													for (Long id : idsMatriculas) {
+														FuncionesMatriculas.actualizarPorId(id, columnaCambiada,
+																datoCambiado);
+													}
+													System.out.print(ColorMio.getVerde());
+													System.out.print("Todas las Matriculas con curso = " + datoDeCambio
+															+ " tienen ahora " + columnaCambiada + " = "
+															+ datoCambiado);
+													System.out.print(ColorMio.getReset());
+													System.out.println();
+
+												}
+
+											} else if (idsMatriculas.size() == 1) {
+												idDeCambio = idsMatriculas.get(0);
+
+												if (FuncionesMatriculas.actualizarPorId(idDeCambio, columnaCambiada,
+														datoCambiado)) {
+													System.out.print(ColorMio.getVerde());
+													System.out.print("Matricula con curso = " + datoDeCambio
+															+ " tiene ahora " + columnaCambiada + " = " + datoCambiado);
+													System.out.print(ColorMio.getReset());
+													System.out.println();
+
+												} else {
+													if (columnaCambiada.equals("idProfesor")) {
+
+														System.out.print(ColorMio.getRojo());
+														System.out.print("No existe ningún Profesor con idProfesor = "
+																+ datoCambiado);
+														System.out.print(ColorMio.getReset());
+														System.out.println();
+
+													} else if (columnaCambiada.equals("idAlumno")) {
+														System.out.print(ColorMio.getRojo());
+														System.out.println("No existe ningún Alumno con idAlumno = "
+																+ datoCambiado);
+														System.out.print(ColorMio.getReset());
+														System.out.println();
+													}
+												}
+
+											} else {
+												System.out.print(ColorMio.getRojo());
+												System.out.print(
+														"No existe ninguna Matricula con curso = " + datoDeCambio);
+												System.out.print(ColorMio.getReset());
+												System.out.println();
+
+											}
+
+											idsMatriculas.clear();
+
+											opcionSubmenuC = 0;
+											opcionSubmenuB = 0;
+											opcionSubmenuA = 0;
+
+											idDeCambio = -1;
+
+											columnaCambiada = "";
+											datoCambiado = "";
+											curso = -1;
+										}
+
+										System.out.println();
+
+									} while (opcionSubmenuC != 0);
+									break; // FIN 5. Por curso.
+								case 0: // 0. Volver al Menú anterior.
+
+									break; // FIN 0. Volver al Menú anterior.
+
+								default:
+									System.out.print(ColorMio.getRojo());
+									System.out.print("Opción no disponible: ");
+									System.out.print(ColorMio.getReset());
+									System.out.println("Elija del 0 al 5");
+									System.out.println();
+									break;
+								}
+							} while (opcionSubmenuB != 0);
+						} else {
+							System.out.print(ColorMio.getRojo());
+							System.out.print("No existe ningún elemento en la tabla Matriculas");
+							System.out.println(ColorMio.getReset());
 							System.out.println();
 
-							switch (opcionSubmenuB) {
-							case 1: // 1. Por idMatricula.
-
-								do {
-									System.out.print("Introduzca el ID de la Matricula que quiera Actualizar (> 0): ");
-									idDeCambio = leeLong(sc);
-								} while (idDeCambio <= 0);
-
-								System.out.println();
-
-								do {
-									Menu.subMenuElegirColumnaModificarMatricula();
-									opcionSubmenuC = leeInt(sc);
-									System.out.println();
-
-									switch (opcionSubmenuC) {
-									case 1: // 1. idProfesor.
-										columnaCambiada = "idProfesor";
-										do {
-											System.out.print("Introduzca el nuevo idProfesor de la Matricula: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
-
-										break; // FIN 1. idProfesor.
-									case 2: // 2. idAlumno.
-										columnaCambiada = "idAlumno";
-										do {
-											System.out.print("Introduzca el nuevo idAlumno de la Matricula: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
-										break; // FIN 2. idAlumno.
-									case 3: // 3. asignatura.
-										columnaCambiada = "asignatura";
-										do {
-											System.out.print("Introduzca la nueva Asignatura de la Matricula: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
-										break; // FIN 3. asignatura.
-									case 4: // 4. curso.
-										columnaCambiada = "curso";
-										do {
-											System.out.print("Introduzca el nuevo Curso de la Matricula: ");
-											curso = leeInt(sc);
-											if (curso >= 0) {
-												datoCambiado = String.valueOf(curso);
-											}
-										} while (datoCambiado == null || datoCambiado.equals(""));
-										break; // FIN 4. curso.
-
-									case 0: // 0. Volver al Menú anterior.
-
-										break; // FIN 0. Volver al Menú anterior.
-
-									default:
-										System.out.print(ColorMio.getRojo());
-										System.out.print("Opción no disponible: ");
-										System.out.print(ColorMio.getReset());
-										System.out.println("Elija del 0 al 4");
-										System.out.println();
-										break;
-									}
-
-									System.out.println();
-
-									if (opcionSubmenuC != 0) {
-
-										if (!FuncionesMatriculas.buscaIDsDeTodos().contains(idDeCambio)) {
-											System.out.print(ColorMio.getRojo());
-											System.out.print("No existe ninguna Matricula con ID = " + idDeCambio);
-											System.out.print(ColorMio.getReset());
-											System.out.println();
-										} else {
-											if (columnaCambiada.equals("idProfesor") && !FuncionesProfesores
-													.buscaIDsDeTodos().contains(Long.valueOf(datoCambiado))) {
-												System.out.print(ColorMio.getRojo());
-												System.out.print("No existe ningún Profesor con ID = " + datoCambiado);
-												System.out.print(ColorMio.getReset());
-												System.out.println();
-											} else if (columnaCambiada.equals("idAlumno") && !FuncionesAlumnos
-													.buscaIDsDeTodos().contains(Long.valueOf(datoCambiado))) {
-												System.out.print(ColorMio.getRojo());
-												System.out.print("No existe ningún Alumno con ID = " + datoCambiado);
-												System.out.print(ColorMio.getReset());
-												System.out.println();
-											} else {
-												FuncionesMatriculas.actualizarPorId(idDeCambio, columnaCambiada,
-														datoCambiado);
-												System.out.print(ColorMio.getVerde());
-												System.out.print("Matricula con ID = " + idDeCambio + " tiene ahora "
-														+ columnaCambiada + " = " + datoCambiado);
-												System.out.print(ColorMio.getReset());
-												System.out.println();
-											}
-										}
-										System.out.println();
-									}
-
-									opcionSubmenuC = 0;
-									opcionSubmenuB = 0;
-									opcionSubmenuA = 0;
-
-									idDeCambio = -1;
-
-									columnaCambiada = "";
-									datoCambiado = "";
-									curso = -1;
-
-								} while (opcionSubmenuC != 0);
-								break; // FIN 1. Por idMatricula.
-							case 2: // 2. Por idProfesor.
-								do {
-									System.out.print(
-											"Introduzca el idProfesor de la Matricula que quiera Actualizar (> 0): ");
-									idProfesor = leeLong(sc);
-								} while (idProfesor <= 0);
-
-								System.out.println();
-
-								datoDeCambio = String.valueOf(idProfesor);
-
-								do {
-									idsMatriculas.clear();
-
-									Menu.subMenuElegirColumnaModificarMatricula();
-									opcionSubmenuC = leeInt(sc);
-									System.out.println();
-
-									switch (opcionSubmenuC) {
-									case 1: // 1. idProfesor.
-										columnaCambiada = "idProfesor";
-										do {
-											System.out.print("Introduzca el nuevo idProfesor de la Matricula: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
-
-										break; // FIN 1. idProfesor.
-									case 2: // 2. idAlumno.
-										columnaCambiada = "idAlumno";
-										do {
-											System.out.print("Introduzca el nuevo idAlumno de la Matricula: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
-										break; // FIN 2. idAlumno.
-									case 3: // 3. asignatura.
-										columnaCambiada = "asignatura";
-										do {
-											System.out.print("Introduzca la nueva Asignatura de la Matricula: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
-										break; // FIN 3. asignatura.
-									case 4: // 4. curso.
-										columnaCambiada = "curso";
-										do {
-											System.out.print("Introduzca el nuevo Curso de la Matricula: ");
-											curso = leeInt(sc);
-											if (curso >= 0) {
-												datoCambiado = String.valueOf(curso);
-											}
-										} while (datoCambiado == null || datoCambiado.equals(""));
-										break; // FIN 4. curso.
-
-									case 0: // 0. Volver al Menú anterior.
-
-										break; // FIN 0. Volver al Menú anterior.
-
-									default:
-										System.out.print(ColorMio.getRojo());
-										System.out.print("Opción no disponible: ");
-										System.out.print(ColorMio.getReset());
-										System.out.println("Elija del 0 al 4");
-										System.out.println();
-										break;
-									}
-
-									System.out.println();
-									if (opcionSubmenuC != 0) {
-
-										idsMatriculas = FuncionesMatriculas.buscaIDsPorColumna("idProfesor",
-												datoDeCambio);
-
-										if (idsMatriculas.size() > 1) {
-											cabecera = " Matricula(s) con Profesor con idProfesor = " + idProfesor
-													+ "\t";
-
-											FuncionesMatriculas.leerPorProfesor(
-													FuncionesProfesores.getProfesorPorId(Long.valueOf(datoDeCambio)),
-													cabecera);
-
-											System.out.print(ColorMio.getAmarillo());
-											System.out.print("Hay varias Matriculas con idProfesor = " + datoDeCambio);
-											System.out.print(ColorMio.getReset());
-											System.out.println();
-
-											System.out.println();
-
-											System.out.println(
-													"Escriba el idMatricula de la Matricula que desea modificar, o si lo prefiere, \"0\" para modificar a todas estas:");
-											idDeCambio = sc.nextLong();
-
-											System.out.println();
-
-											if (idDeCambio != 0) {
-												if (idsMatriculas.contains(idDeCambio) && FuncionesMatriculas
-														.actualizarPorId(idDeCambio, columnaCambiada, datoCambiado)) {
-
-													System.out.print(ColorMio.getVerde());
-													System.out.print("Matricula con ID = " + idDeCambio
-															+ " tiene ahora " + columnaCambiada + " = " + datoCambiado);
-													System.out.print(ColorMio.getReset());
-													System.out.println();
-												} else {
-													System.out.print(ColorMio.getRojo());
-													System.out.print("No existe ninguna Matricula con ID = "
-															+ idDeCambio + " en la lista anteriormente mostrada");
-													System.out.print(ColorMio.getReset());
-													System.out.println();
-												}
-											} else {
-												for (Long id : idsMatriculas) {
-													FuncionesMatriculas.actualizarPorId(id, columnaCambiada,
-															datoCambiado);
-												}
-												System.out.print(ColorMio.getVerde());
-												System.out.print("Todas las Matriculas con idProfesor = " + datoDeCambio
-														+ " tienen ahora " + columnaCambiada + " = " + datoCambiado);
-												System.out.print(ColorMio.getReset());
-												System.out.println();
-
-											}
-
-										} else if (idsMatriculas.size() == 1) {
-											idDeCambio = idsMatriculas.get(0);
-
-											if (FuncionesMatriculas.actualizarPorId(idDeCambio, columnaCambiada,
-													datoCambiado)) {
-												System.out.print(ColorMio.getVerde());
-												System.out.print("Matricula con idProfesor = " + datoDeCambio
-														+ " tiene ahora " + columnaCambiada + " = " + datoCambiado);
-												System.out.print(ColorMio.getReset());
-												System.out.println();
-
-											} else {
-												if (columnaCambiada.equals("idProfesor")) {
-
-													System.out.print(ColorMio.getRojo());
-													System.out.print("No existe ningún Profesor con idProfesor = "
-															+ datoCambiado);
-													System.out.print(ColorMio.getReset());
-													System.out.println();
-
-												} else if (columnaCambiada.equals("idAlumno")) {
-													System.out.print(ColorMio.getRojo());
-													System.out.println(
-															"No existe ningún Alumno con idAlumno = " + datoCambiado);
-													System.out.print(ColorMio.getReset());
-													System.out.println();
-												}
-											}
-
-										} else {
-											System.out.print(ColorMio.getRojo());
-											System.out.print(
-													"No existe ninguna Matricula con idProfesor = " + datoDeCambio);
-											System.out.print(ColorMio.getReset());
-											System.out.println();
-
-										}
-
-										idsMatriculas.clear();
-
-										opcionSubmenuC = 0;
-										opcionSubmenuB = 0;
-										opcionSubmenuA = 0;
-
-										idDeCambio = -1;
-										idProfesor = -1;
-
-										columnaCambiada = "";
-										datoCambiado = "";
-										curso = -1;
-									}
-
-									System.out.println();
-
-								} while (opcionSubmenuC != 0);
-								break; // FIN 2. Por idProfesor.
-							case 3: // 3. Por idAlumno.
-								do {
-									System.out.print(
-											"Introduzca el idAlumno de la Matricula que quiera Actualizar (> 0): ");
-									idAlumno = leeLong(sc);
-								} while (idAlumno <= 0);
-
-								System.out.println();
-
-								datoDeCambio = String.valueOf(idAlumno);
-
-								do {
-									idsMatriculas.clear();
-
-									Menu.subMenuElegirColumnaModificarMatricula();
-									opcionSubmenuC = leeInt(sc);
-									System.out.println();
-
-									switch (opcionSubmenuC) {
-									case 1: // 1. idProfesor.
-										columnaCambiada = "idProfesor";
-										do {
-											System.out.print("Introduzca el nuevo idProfesor de la Matricula: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
-
-										break; // FIN 1. idProfesor.
-									case 2: // 2. idAlumno.
-										columnaCambiada = "idAlumno";
-										do {
-											System.out.print("Introduzca el nuevo idAlumno de la Matricula: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
-										break; // FIN 2. idAlumno.
-									case 3: // 3. asignatura.
-										columnaCambiada = "asignatura";
-										do {
-											System.out.print("Introduzca la nueva Asignatura de la Matricula: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
-										break; // FIN 3. asignatura.
-									case 4: // 4. curso.
-										columnaCambiada = "curso";
-										do {
-											System.out.print("Introduzca el nuevo Curso de la Matricula: ");
-											curso = leeInt(sc);
-											if (curso >= 0) {
-												datoCambiado = String.valueOf(curso);
-											}
-										} while (datoCambiado == null || datoCambiado.equals(""));
-										break; // FIN 4. curso.
-
-									case 0: // 0. Volver al Menú anterior.
-
-										break; // FIN 0. Volver al Menú anterior.
-
-									default:
-										System.out.print(ColorMio.getRojo());
-										System.out.print("Opción no disponible: ");
-										System.out.print(ColorMio.getReset());
-										System.out.println("Elija del 0 al 4");
-										System.out.println();
-										break;
-									}
-
-									System.out.println();
-									if (opcionSubmenuC != 0) {
-
-										idsMatriculas = FuncionesMatriculas.buscaIDsPorColumna("idAlumno",
-												datoDeCambio);
-
-										if (idsMatriculas.size() > 1) {
-											cabecera = " Matricula(s) con Alumno con idAlumno = " + idAlumno + "\t";
-
-											FuncionesMatriculas.leerPorAlumno(
-													FuncionesAlumnos.getAlumnoPorId(Long.valueOf(datoDeCambio)),
-													cabecera);
-
-											System.out.print(ColorMio.getAmarillo());
-											System.out.print("Hay varias Matriculas con idAlumno = " + datoDeCambio);
-											System.out.print(ColorMio.getReset());
-											System.out.println();
-
-											System.out.println();
-
-											System.out.println(
-													"Escriba el idMatricula de la Matricula que desea modificar, o si lo prefiere, \"0\" para modificar a todas estas:");
-											idDeCambio = sc.nextLong();
-
-											System.out.println();
-
-											if (idDeCambio != 0) {
-												if (idsMatriculas.contains(idDeCambio) && FuncionesMatriculas
-														.actualizarPorId(idDeCambio, columnaCambiada, datoCambiado)) {
-
-													System.out.print(ColorMio.getVerde());
-													System.out.print("Matricula con ID = " + idDeCambio
-															+ " tiene ahora " + columnaCambiada + " = " + datoCambiado);
-													System.out.print(ColorMio.getReset());
-													System.out.println();
-												} else {
-													System.out.print(ColorMio.getRojo());
-													System.out.print("No existe ninguna Matricula con ID = "
-															+ idDeCambio + " en la lista anteriormente mostrada");
-													System.out.print(ColorMio.getReset());
-													System.out.println();
-												}
-											} else {
-												for (Long id : idsMatriculas) {
-													FuncionesMatriculas.actualizarPorId(id, columnaCambiada,
-															datoCambiado);
-												}
-												System.out.print(ColorMio.getVerde());
-												System.out.print("Todas las Matriculas con idAlumno = " + datoDeCambio
-														+ " tienen ahora " + columnaCambiada + " = " + datoCambiado);
-												System.out.print(ColorMio.getReset());
-												System.out.println();
-
-											}
-
-										} else if (idsMatriculas.size() == 1) {
-											idDeCambio = idsMatriculas.get(0);
-
-											if (FuncionesMatriculas.actualizarPorId(idDeCambio, columnaCambiada,
-													datoCambiado)) {
-												System.out.print(ColorMio.getVerde());
-												System.out.print("Matricula con idAlumno = " + datoDeCambio
-														+ " tiene ahora " + columnaCambiada + " = " + datoCambiado);
-												System.out.print(ColorMio.getReset());
-												System.out.println();
-
-											} else {
-												if (columnaCambiada.equals("idProfesor")) {
-
-													System.out.print(ColorMio.getRojo());
-													System.out.print("No existe ningún Profesor con idProfesor = "
-															+ datoCambiado);
-													System.out.print(ColorMio.getReset());
-													System.out.println();
-
-												} else if (columnaCambiada.equals("idAlumno")) {
-													System.out.print(ColorMio.getRojo());
-													System.out.println(
-															"No existe ningún Alumno con idAlumno = " + datoCambiado);
-													System.out.print(ColorMio.getReset());
-													System.out.println();
-												}
-											}
-
-										} else {
-											System.out.print(ColorMio.getRojo());
-											System.out.print(
-													"No existe ninguna Matricula con idAlumno = " + datoDeCambio);
-											System.out.print(ColorMio.getReset());
-											System.out.println();
-
-										}
-
-										idsMatriculas.clear();
-
-										opcionSubmenuC = 0;
-										opcionSubmenuB = 0;
-										opcionSubmenuA = 0;
-
-										idDeCambio = -1;
-										idAlumno = -1;
-
-										columnaCambiada = "";
-										datoCambiado = "";
-										curso = -1;
-									}
-
-									System.out.println();
-
-								} while (opcionSubmenuC != 0);
-								break; // FIN 3. Por Alumno.
-							case 4: // 4. Por asignatura.
-								do {
-									System.out
-											.print("Introduzca la asignatura de la Matricula que quiera Actualizar: ");
-									asignatura = sc.nextLine();
-								} while (asignatura == "" || asignatura == null);
-
-								System.out.println();
-
-								datoDeCambio = asignatura;
-
-								do {
-									idsMatriculas.clear();
-
-									Menu.subMenuElegirColumnaModificarMatricula();
-									opcionSubmenuC = leeInt(sc);
-									System.out.println();
-
-									switch (opcionSubmenuC) {
-									case 1: // 1. idProfesor.
-										columnaCambiada = "idProfesor";
-										do {
-											System.out.print("Introduzca el nuevo idProfesor de la Matricula: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
-
-										break; // FIN 1. idProfesor.
-									case 2: // 2. idAlumno.
-										columnaCambiada = "idAlumno";
-										do {
-											System.out.print("Introduzca el nuevo idAlumno de la Matricula: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
-										break; // FIN 2. idAlumno.
-									case 3: // 3. asignatura.
-										columnaCambiada = "asignatura";
-										do {
-											System.out.print("Introduzca la nueva Asignatura de la Matricula: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
-										break; // FIN 3. asignatura.
-									case 4: // 4. curso.
-										columnaCambiada = "curso";
-										do {
-											System.out.print("Introduzca el nuevo Curso de la Matricula: ");
-											curso = leeInt(sc);
-											if (curso >= 0) {
-												datoCambiado = String.valueOf(curso);
-											}
-										} while (datoCambiado == null || datoCambiado.equals(""));
-										break; // FIN 4. curso.
-
-									case 0: // 0. Volver al Menú anterior.
-
-										break; // FIN 0. Volver al Menú anterior.
-
-									default:
-										System.out.print(ColorMio.getRojo());
-										System.out.print("Opción no disponible: ");
-										System.out.print(ColorMio.getReset());
-										System.out.println("Elija del 0 al 4");
-										System.out.println();
-										break;
-									}
-
-									System.out.println();
-									if (opcionSubmenuC != 0) {
-
-										idsMatriculas = FuncionesMatriculas.buscaIDsPorColumna("asignatura",
-												datoDeCambio);
-
-										if (idsMatriculas.size() > 1) {
-
-											FuncionesMatriculas.leerPorAsignatura(asignatura, "=");
-
-											System.out.print(ColorMio.getAmarillo());
-											System.out.print("Hay varias Matriculas con asignatura = " + datoDeCambio);
-											System.out.print(ColorMio.getReset());
-											System.out.println();
-
-											System.out.println();
-
-											System.out.println(
-													"Escriba el idMatricula de la Matricula que desea modificar, o si lo prefiere, \"0\" para modificar a todas estas:");
-											idDeCambio = sc.nextLong();
-
-											System.out.println();
-
-											if (idDeCambio != 0) {
-												if (idsMatriculas.contains(idDeCambio) && FuncionesMatriculas
-														.actualizarPorId(idDeCambio, columnaCambiada, datoCambiado)) {
-
-													System.out.print(ColorMio.getVerde());
-													System.out.print("Matricula con ID = " + idDeCambio
-															+ " tiene ahora " + columnaCambiada + " = " + datoCambiado);
-													System.out.print(ColorMio.getReset());
-													System.out.println();
-												} else {
-													System.out.print(ColorMio.getRojo());
-													System.out.print("No existe ninguna Matricula con ID = "
-															+ idDeCambio + " en la lista anteriormente mostrada");
-													System.out.print(ColorMio.getReset());
-													System.out.println();
-												}
-											} else {
-												for (Long id : idsMatriculas) {
-													FuncionesMatriculas.actualizarPorId(id, columnaCambiada,
-															datoCambiado);
-												}
-												System.out.print(ColorMio.getVerde());
-												System.out.print("Todas las Matriculas con asignatura = " + datoDeCambio
-														+ " tienen ahora " + columnaCambiada + " = " + datoCambiado);
-												System.out.print(ColorMio.getReset());
-												System.out.println();
-
-											}
-
-										} else if (idsMatriculas.size() == 1) {
-											idDeCambio = idsMatriculas.get(0);
-
-											if (FuncionesMatriculas.actualizarPorId(idDeCambio, columnaCambiada,
-													datoCambiado)) {
-												System.out.print(ColorMio.getVerde());
-												System.out.print("Matricula con asignatura = " + datoDeCambio
-														+ " tiene ahora " + columnaCambiada + " = " + datoCambiado);
-												System.out.print(ColorMio.getReset());
-												System.out.println();
-
-											} else {
-												if (columnaCambiada.equals("idProfesor")) {
-
-													System.out.print(ColorMio.getRojo());
-													System.out.print("No existe ningún Profesor con idProfesor = "
-															+ datoCambiado);
-													System.out.print(ColorMio.getReset());
-													System.out.println();
-
-												} else if (columnaCambiada.equals("idAlumno")) {
-													System.out.print(ColorMio.getRojo());
-													System.out.println(
-															"No existe ningún Alumno con idAlumno = " + datoCambiado);
-													System.out.print(ColorMio.getReset());
-													System.out.println();
-												}
-											}
-
-										} else {
-											System.out.print(ColorMio.getRojo());
-											System.out.print(
-													"No existe ninguna Matricula con asignatura = " + datoDeCambio);
-											System.out.print(ColorMio.getReset());
-											System.out.println();
-
-										}
-
-										idsMatriculas.clear();
-
-										opcionSubmenuC = 0;
-										opcionSubmenuB = 0;
-										opcionSubmenuA = 0;
-
-										idDeCambio = -1;
-										asignatura = "";
-
-										columnaCambiada = "";
-										datoCambiado = "";
-										curso = -1;
-									}
-
-									System.out.println();
-
-								} while (opcionSubmenuC != 0);
-								break; // FIN 4. Por asignatura.
-							case 5: // 5. Por curso.
-								do {
-									System.out
-											.print("Introduzca el curso de la Matricula que quiera Actualizar (>0): ");
-									curso = leeInt(sc);
-								} while (curso <= 0);
-
-								System.out.println();
-
-								String.valueOf(idAlumno);
-
-								datoDeCambio = String.valueOf(curso);
-
-								do {
-									idsMatriculas.clear();
-
-									Menu.subMenuElegirColumnaModificarMatricula();
-									opcionSubmenuC = leeInt(sc);
-									System.out.println();
-
-									switch (opcionSubmenuC) {
-									case 1: // 1. idProfesor.
-										columnaCambiada = "idProfesor";
-										do {
-											System.out.print("Introduzca el nuevo idProfesor de la Matricula: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
-
-										break; // FIN 1. idProfesor.
-									case 2: // 2. idAlumno.
-										columnaCambiada = "idAlumno";
-										do {
-											System.out.print("Introduzca el nuevo idAlumno de la Matricula: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
-										break; // FIN 2. idAlumno.
-									case 3: // 3. asignatura.
-										columnaCambiada = "asignatura";
-										do {
-											System.out.print("Introduzca la nueva Asignatura de la Matricula: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
-										break; // FIN 3. asignatura.
-									case 4: // 4. curso.
-										columnaCambiada = "curso";
-										do {
-											System.out.print("Introduzca el nuevo Curso de la Matricula: ");
-											curso = leeInt(sc);
-											if (curso >= 0) {
-												datoCambiado = String.valueOf(curso);
-											}
-										} while (datoCambiado == null || datoCambiado.equals(""));
-										break; // FIN 4. curso.
-
-									case 0: // 0. Volver al Menú anterior.
-
-										break; // FIN 0. Volver al Menú anterior.
-
-									default:
-										System.out.print(ColorMio.getRojo());
-										System.out.print("Opción no disponible: ");
-										System.out.print(ColorMio.getReset());
-										System.out.println("Elija del 0 al 4");
-										System.out.println();
-										break;
-									}
-
-									System.out.println();
-									if (opcionSubmenuC != 0) {
-
-										idsMatriculas = FuncionesMatriculas.buscaIDsPorColumna("curso", datoDeCambio);
-
-										if (idsMatriculas.size() > 1) {
-											FuncionesMatriculas.leerPorCurso(curso, "=");
-
-											System.out.print(ColorMio.getAmarillo());
-											System.out.print("Hay varias Matriculas con curso = " + datoDeCambio);
-											System.out.print(ColorMio.getReset());
-											System.out.println();
-
-											System.out.println();
-
-											System.out.println(
-													"Escriba el idMatricula de la Matricula que desea modificar, o si lo prefiere, \"0\" para modificar a todas estas:");
-											idDeCambio = sc.nextLong();
-
-											System.out.println();
-
-											if (idDeCambio != 0) {
-												if (idsMatriculas.contains(idDeCambio) && FuncionesMatriculas
-														.actualizarPorId(idDeCambio, columnaCambiada, datoCambiado)) {
-
-													System.out.print(ColorMio.getVerde());
-													System.out.print("Matricula con ID = " + idDeCambio
-															+ " tiene ahora " + columnaCambiada + " = " + datoCambiado);
-													System.out.print(ColorMio.getReset());
-													System.out.println();
-												} else {
-													System.out.print(ColorMio.getRojo());
-													System.out.print("No existe ninguna Matricula con ID = "
-															+ idDeCambio + " en la lista anteriormente mostrada");
-													System.out.print(ColorMio.getReset());
-													System.out.println();
-												}
-											} else {
-												for (Long id : idsMatriculas) {
-													FuncionesMatriculas.actualizarPorId(id, columnaCambiada,
-															datoCambiado);
-												}
-												System.out.print(ColorMio.getVerde());
-												System.out.print("Todas las Matriculas con curso = " + datoDeCambio
-														+ " tienen ahora " + columnaCambiada + " = " + datoCambiado);
-												System.out.print(ColorMio.getReset());
-												System.out.println();
-
-											}
-
-										} else if (idsMatriculas.size() == 1) {
-											idDeCambio = idsMatriculas.get(0);
-
-											if (FuncionesMatriculas.actualizarPorId(idDeCambio, columnaCambiada,
-													datoCambiado)) {
-												System.out.print(ColorMio.getVerde());
-												System.out.print("Matricula con curso = " + datoDeCambio
-														+ " tiene ahora " + columnaCambiada + " = " + datoCambiado);
-												System.out.print(ColorMio.getReset());
-												System.out.println();
-
-											} else {
-												if (columnaCambiada.equals("idProfesor")) {
-
-													System.out.print(ColorMio.getRojo());
-													System.out.print("No existe ningún Profesor con idProfesor = "
-															+ datoCambiado);
-													System.out.print(ColorMio.getReset());
-													System.out.println();
-
-												} else if (columnaCambiada.equals("idAlumno")) {
-													System.out.print(ColorMio.getRojo());
-													System.out.println(
-															"No existe ningún Alumno con idAlumno = " + datoCambiado);
-													System.out.print(ColorMio.getReset());
-													System.out.println();
-												}
-											}
-
-										} else {
-											System.out.print(ColorMio.getRojo());
-											System.out.print("No existe ninguna Matricula con curso = " + datoDeCambio);
-											System.out.print(ColorMio.getReset());
-											System.out.println();
-
-										}
-
-										idsMatriculas.clear();
-
-										opcionSubmenuC = 0;
-										opcionSubmenuB = 0;
-										opcionSubmenuA = 0;
-
-										idDeCambio = -1;
-
-										columnaCambiada = "";
-										datoCambiado = "";
-										curso = -1;
-									}
-
-									System.out.println();
-
-								} while (opcionSubmenuC != 0);
-								break; // FIN 5. Por curso.
-							case 0: // 0. Volver al Menú anterior.
-
-								break; // FIN 0. Volver al Menú anterior.
-
-							default:
-								System.out.print(ColorMio.getRojo());
-								System.out.print("Opción no disponible: ");
-								System.out.print(ColorMio.getReset());
-								System.out.println("Elija del 0 al 5");
-								System.out.println();
-								break;
-							}
-						} while (opcionSubmenuB != 0);
+							opcionSubmenuA = 0;
+						}
 						break; // FIN 3. Matriculas.
 					case 0: // 0. Volver al Menú anterior.
 
