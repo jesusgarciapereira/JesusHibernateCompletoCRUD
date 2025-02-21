@@ -127,7 +127,7 @@ public class Principal {
 //							System.out.println();
 //							System.out.print(ColorMio.getRojo());
 //							System.out.print("Ha ocurrido un error");
-//							System.out.println(ColorMio.getReset());
+//							System.out.println(ColorMio.getReset ());
 //							System.out.println();
 						} finally {
 							opcionSubmenuA = 0;
@@ -210,12 +210,26 @@ public class Principal {
 					case 3: // 3. Matriculas.
 						if (FuncionesProfesores.buscaIDsDeTodos().isEmpty()
 								|| FuncionesAlumnos.buscaIDsDeTodos().isEmpty()) {
-							System.out.print(ColorMio.getRojo());
-							System.out.print("No existe ningún elemento en la(s) tabla(s) Profesores y/o Alumnos: ");
-							System.out.print(ColorMio.getReset());
-							System.out
-									.println("Guarde al menos un Profesor y un Alumno antes de guardar una Matricula");
-							System.out.println();
+							if (FuncionesProfesores.buscaIDsDeTodos().isEmpty()) {
+								System.out.print(ColorMio.getRojo());
+								System.out.print("No existe ningún elemento en la tabla Profesores");
+								System.out.println(ColorMio.getReset());
+								System.out.print(ColorMio.getAmarillo());
+								System.out.print("Consejo: ");
+								System.out.print(ColorMio.getReset());
+								System.out.println("Guarde al menos un Profesor antes de guardar una Matricula");
+								System.out.println();
+							}
+							if (FuncionesAlumnos.buscaIDsDeTodos().isEmpty()) {
+								System.out.print(ColorMio.getRojo());
+								System.out.print("No existe ningún elemento en la tabla Alumnos");
+								System.out.println(ColorMio.getReset());
+								System.out.print(ColorMio.getAmarillo());
+								System.out.print("Consejo: ");
+								System.out.print(ColorMio.getReset());
+								System.out.println("Guarde al menos un alumno antes de guardar una Matricula");
+								System.out.println();
+							}
 						} else {
 							do {
 
@@ -2339,6 +2353,7 @@ public class Principal {
 				// opcionMenu = -1;
 				break; // FIN 2. Obtener datos.
 			case 3: // 3. Actualizar Datos.
+
 				do {
 					Menu.subMenuActualizarDatos();
 					opcionSubmenuA = leeInt(sc);
@@ -2346,595 +2361,610 @@ public class Principal {
 
 					switch (opcionSubmenuA) {
 					case 1: // 1. Profesores.
-						do {
-							Menu.subMenuElegirProfesorActualizar();
-							opcionSubmenuB = leeInt(sc);
-							System.out.println();
-
-							switch (opcionSubmenuB) {
-							case 1: // 1. Por idProfesor.
-
-								do {
-									System.out.print("Introduzca el ID del Profesor que quiera Actualizar (> 0): ");
-									idDeCambio = leeLong(sc);
-								} while (idDeCambio <= 0);
-
+						if (!FuncionesProfesores.buscaIDsDeTodos().isEmpty()) {
+							do {
+								Menu.subMenuElegirProfesorActualizar();
+								opcionSubmenuB = leeInt(sc);
 								System.out.println();
 
-								do {
-									Menu.subMenuElegirColumnaModificarProfesor();
-									opcionSubmenuC = leeInt(sc);
+								switch (opcionSubmenuB) {
+								case 1: // 1. Por idProfesor.
+
+									do {
+										System.out.print("Introduzca el ID del Profesor que quiera Actualizar (> 0): ");
+										idDeCambio = leeLong(sc);
+									} while (idDeCambio <= 0);
+
 									System.out.println();
 
-									switch (opcionSubmenuC) {
-									case 1: // 1. nombre.
-										columnaCambiada = "nombre";
-										do {
-											System.out.print("Introduzca el nuevo Nombre del Profesor: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
-
-										break; // FIN 1. nombre.
-									case 2: // 2. apellidos.
-										columnaCambiada = "apellidos";
-										do {
-											System.out.print("Introduzca los nuevos Apellidos del Profesor: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
-
-										break; // FIN 2. apellidos.
-									case 3: // 3. fechaNacimiento.
-										columnaCambiada = "fechaNacimiento";
-										do {
-											do {
-												System.out.print(
-														"Introduzca el día de FechaNacimiento del Profesor (entre 1 y 31): ");
-												fechaDia = leeInt(sc);
-											} while (fechaDia < 1 || fechaDia > 31);
-
-											do {
-												System.out.print(
-														"Introduzca el mes de FechaNacimiento del Profesor (entre 1 y 12): ");
-												fechaMes = leeInt(sc);
-											} while (fechaMes < 1 || fechaMes > 12);
-
-											do {
-												System.out.print(
-														"Introduzca el año de FechaNacimiento del Profesor (>= 1000 y <= año actual): ");
-												fechaAnnio = leeInt(sc);
-											} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
-
-											datoCambiado = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
-													fechaDia);
-										} while (datoCambiado == null || datoCambiado.equals(""));
-										break; // fechaNacimiento.
-									case 4: // 4. antiguedad.
-										columnaCambiada = "antiguedad";
-										do {
-											System.out.print("Introduzca la nueva Antiguedad del Profesor (>= 0): ");
-											antiguedad = leeInt(sc);
-											if (antiguedad >= 0) {
-												datoCambiado = String.valueOf(antiguedad);
-											}
-										} while (datoCambiado == null || datoCambiado.equals(""));
-										break; // FIN 4. antiguedad.
-
-									case 0: // 0. Volver al Menú anterior.
-
-										break; // FIN 0. Volver al Menú anterior.
-
-									default:
-										System.out.print(ColorMio.getRojo());
-										System.out.print("Opción no disponible: ");
-										System.out.print(ColorMio.getReset());
-										System.out.println("Elija del 0 al 4");
+									do {
+										Menu.subMenuElegirColumnaModificarProfesor();
+										opcionSubmenuC = leeInt(sc);
 										System.out.println();
-										break;
-									}
+
+										switch (opcionSubmenuC) {
+										case 1: // 1. nombre.
+											columnaCambiada = "nombre";
+											do {
+												System.out.print("Introduzca el nuevo Nombre del Profesor: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+
+											break; // FIN 1. nombre.
+										case 2: // 2. apellidos.
+											columnaCambiada = "apellidos";
+											do {
+												System.out.print("Introduzca los nuevos Apellidos del Profesor: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+
+											break; // FIN 2. apellidos.
+										case 3: // 3. fechaNacimiento.
+											columnaCambiada = "fechaNacimiento";
+											do {
+												do {
+													System.out.print(
+															"Introduzca el día de FechaNacimiento del Profesor (entre 1 y 31): ");
+													fechaDia = leeInt(sc);
+												} while (fechaDia < 1 || fechaDia > 31);
+
+												do {
+													System.out.print(
+															"Introduzca el mes de FechaNacimiento del Profesor (entre 1 y 12): ");
+													fechaMes = leeInt(sc);
+												} while (fechaMes < 1 || fechaMes > 12);
+
+												do {
+													System.out.print(
+															"Introduzca el año de FechaNacimiento del Profesor (>= 1000 y <= año actual): ");
+													fechaAnnio = leeInt(sc);
+												} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
+
+												datoCambiado = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
+														fechaDia);
+											} while (datoCambiado == null || datoCambiado.equals(""));
+											break; // fechaNacimiento.
+										case 4: // 4. antiguedad.
+											columnaCambiada = "antiguedad";
+											do {
+												System.out
+														.print("Introduzca la nueva Antiguedad del Profesor (>= 0): ");
+												antiguedad = leeInt(sc);
+												if (antiguedad >= 0) {
+													datoCambiado = String.valueOf(antiguedad);
+												}
+											} while (datoCambiado == null || datoCambiado.equals(""));
+											break; // FIN 4. antiguedad.
+
+										case 0: // 0. Volver al Menú anterior.
+
+											break; // FIN 0. Volver al Menú anterior.
+
+										default:
+											System.out.print(ColorMio.getRojo());
+											System.out.print("Opción no disponible: ");
+											System.out.print(ColorMio.getReset());
+											System.out.println("Elija del 0 al 4");
+											System.out.println();
+											break;
+										}
+
+										System.out.println();
+
+										if (opcionSubmenuC != 0) {
+											try {
+												if (FuncionesProfesores.actualizarPorId(idDeCambio, columnaCambiada,
+														datoCambiado)) {
+													System.out.print(ColorMio.getVerde());
+													System.out.print("Profesor con ID = " + idDeCambio + " tiene ahora "
+															+ columnaCambiada + " = " + datoCambiado);
+													System.out.print(ColorMio.getReset());
+													System.out.println();
+												} else {
+													System.out.print(ColorMio.getRojo());
+													System.out
+															.print("No existe ningún Profesor con ID = " + idDeCambio);
+													System.out.print(ColorMio.getReset());
+													System.out.println();
+
+												}
+											} catch (DateTimeException e) {
+												System.out.print(ColorMio.getRojo());
+												System.out.print("Fecha '" + datoCambiado + "' incorrecta");
+												System.out.println(ColorMio.getReset());
+											}
+
+											System.out.println();
+										}
+
+										opcionSubmenuC = 0;
+										opcionSubmenuB = 0;
+										opcionSubmenuA = 0;
+
+										idDeCambio = -1;
+
+										antiguedad = -1;
+
+										columnaCambiada = "";
+										datoCambiado = "";
+
+										fechaDia = 0;
+										fechaMes = 0;
+										fechaAnnio = 0;
+
+									} while (opcionSubmenuC != 0);
+
+									break; // FIN 1. Por idProfesor.
+								case 2: // 2. Por nombre.
+									do {
+										System.out.print("Introduzca el Nombre del Profesor que quiera Actualizar: ");
+										datoDeCambio = sc.nextLine();
+									} while (datoDeCambio == "" || datoDeCambio == null);
 
 									System.out.println();
 
-									if (opcionSubmenuC != 0) {
-										try {
-											if (FuncionesProfesores.actualizarPorId(idDeCambio, columnaCambiada,
-													datoCambiado)) {
-												System.out.print(ColorMio.getVerde());
-												System.out.print("Profesor con ID = " + idDeCambio + " tiene ahora "
-														+ columnaCambiada + " = " + datoCambiado);
+									do {
+										Menu.subMenuElegirColumnaModificarProfesor();
+										opcionSubmenuC = leeInt(sc);
+										System.out.println();
+
+										switch (opcionSubmenuC) {
+										case 1: // 1. nombre.
+											columnaCambiada = "nombre";
+											do {
+												System.out.print("Introduzca el nuevo Nombre del Profesor: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+
+											break; // FIN 1. nombre.
+										case 2: // 2. apellidos.
+											columnaCambiada = "apellidos";
+											do {
+												System.out.print("Introduzca los nuevos Apellidos del Profesor: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+
+											break; // FIN 2. apellidos.
+										case 3: // 3. fechaNacimiento.
+											columnaCambiada = "fechaNacimiento";
+											do {
+												do {
+													System.out.print(
+															"Introduzca el día de FechaNacimiento del Profesor (entre 1 y 31): ");
+													fechaDia = leeInt(sc);
+												} while (fechaDia < 1 || fechaDia > 31);
+
+												do {
+													System.out.print(
+															"Introduzca el mes de FechaNacimiento del Profesor (entre 1 y 12): ");
+													fechaMes = leeInt(sc);
+												} while (fechaMes < 1 || fechaMes > 12);
+
+												do {
+													System.out.print(
+															"Introduzca el año de FechaNacimiento del Profesor (>= 1000 y <= año actual): ");
+													fechaAnnio = leeInt(sc);
+												} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
+
+												datoCambiado = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
+														fechaDia);
+											} while (datoCambiado == null || datoCambiado.equals(""));
+											break; // fechaNacimiento.
+										case 4: // 4. antiguedad.
+											columnaCambiada = "antiguedad";
+											do {
+												System.out
+														.print("Introduzca la nueva Antiguedad del Profesor (>= 0): ");
+												antiguedad = leeInt(sc);
+												if (antiguedad >= 0) {
+													datoCambiado = String.valueOf(antiguedad);
+												}
+											} while (datoCambiado == null || datoCambiado.equals(""));
+											break; // FIN 4. antiguedad.
+
+										case 0: // 0. Volver al Menú anterior.
+
+											break; // FIN 0. Volver al Menú anterior.
+
+										default:
+											System.out.print(ColorMio.getRojo());
+											System.out.print("Opción no disponible: ");
+											System.out.print(ColorMio.getReset());
+											System.out.println("Elija del 0 al 4");
+											System.out.println();
+											break;
+										}
+
+										System.out.println();
+
+										idsProfesores.clear();
+
+										if (opcionSubmenuC != 0) {
+											idsProfesores = FuncionesProfesores.buscaIDsPorColumna("nombre",
+													datoDeCambio);
+
+											if (idsProfesores.size() > 1) {
+
+												FuncionesProfesores.leerPorNombre(datoDeCambio, "=");
+
+												System.out.print(ColorMio.getAmarillo());
+												System.out.println(
+
+														"Hay varios Profesores con nombre = " + datoDeCambio);
 												System.out.print(ColorMio.getReset());
 												System.out.println();
+
+												System.out.println(
+														"Escriba el idProfesor del Profesor que desea modificar, o si lo prefiere, \"0\" para modificar a todos estos:");
+												idDeCambio = sc.nextLong();
+
+												System.out.println();
+
+												if (idDeCambio != 0) {
+
+													if (idsProfesores.contains(idDeCambio)
+															&& FuncionesProfesores.actualizarPorId(idDeCambio,
+																	columnaCambiada, datoCambiado)) {
+														System.out.print(ColorMio.getVerde());
+														System.out.print(
+																"Profesor con ID = " + idDeCambio + " tiene ahora "
+																		+ columnaCambiada + " = " + datoCambiado);
+														System.out.print(ColorMio.getReset());
+														System.out.println();
+
+													} else {
+														System.out.print(ColorMio.getRojo());
+														System.out.print("No existe ningún Profesor con ID = "
+																+ idDeCambio + " en la lista anteriormente mostrada");
+														System.out.print(ColorMio.getReset());
+														System.out.println();
+
+													}
+												} else {
+													for (Long id : idsProfesores) {
+														FuncionesProfesores.actualizarPorId(id, columnaCambiada,
+																datoCambiado);
+													}
+													System.out.print(ColorMio.getVerde());
+													System.out.print("Todos los Profesores con nombre = " + datoDeCambio
+															+ " tienen ahora " + columnaCambiada + " = "
+															+ datoCambiado);
+													System.out.print(ColorMio.getReset());
+													System.out.println();
+
+												}
+
+											} else if (idsProfesores.size() == 1) {
+												idDeCambio = idsProfesores.get(0);
+
+												FuncionesProfesores.actualizarPorId(idDeCambio, columnaCambiada,
+														datoCambiado);
+
+												System.out.print(ColorMio.getVerde());
+												System.out.print("Profesor con nombre = " + datoDeCambio
+														+ " tiene ahora " + columnaCambiada + " = " + datoCambiado);
+												System.out.print(ColorMio.getReset());
+												System.out.println();
+
 											} else {
 												System.out.print(ColorMio.getRojo());
-												System.out.print("No existe ningún Profesor con ID = " + idDeCambio);
-												System.out.print(ColorMio.getReset());
-												System.out.println();
-
-											}
-										} catch (DateTimeException e) {
-											System.out.print(ColorMio.getRojo());
-											System.out.print("Fecha '" + datoCambiado + "' incorrecta");
-											System.out.println(ColorMio.getReset());
-										}
-
-										System.out.println();
-									}
-
-									opcionSubmenuC = 0;
-									opcionSubmenuB = 0;
-									opcionSubmenuA = 0;
-
-									idDeCambio = -1;
-
-									antiguedad = -1;
-
-									columnaCambiada = "";
-									datoCambiado = "";
-
-									fechaDia = 0;
-									fechaMes = 0;
-									fechaAnnio = 0;
-
-								} while (opcionSubmenuC != 0);
-
-								break; // FIN 1. Por idProfesor.
-							case 2: // 2. Por nombre.
-								do {
-									System.out.print("Introduzca el Nombre del Profesor que quiera Actualizar: ");
-									datoDeCambio = sc.nextLine();
-								} while (datoDeCambio == "" || datoDeCambio == null);
-
-								System.out.println();
-
-								do {
-									Menu.subMenuElegirColumnaModificarProfesor();
-									opcionSubmenuC = leeInt(sc);
-									System.out.println();
-
-									switch (opcionSubmenuC) {
-									case 1: // 1. nombre.
-										columnaCambiada = "nombre";
-										do {
-											System.out.print("Introduzca el nuevo Nombre del Profesor: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
-
-										break; // FIN 1. nombre.
-									case 2: // 2. apellidos.
-										columnaCambiada = "apellidos";
-										do {
-											System.out.print("Introduzca los nuevos Apellidos del Profesor: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
-
-										break; // FIN 2. apellidos.
-									case 3: // 3. fechaNacimiento.
-										columnaCambiada = "fechaNacimiento";
-										do {
-											do {
 												System.out.print(
-														"Introduzca el día de FechaNacimiento del Profesor (entre 1 y 31): ");
-												fechaDia = leeInt(sc);
-											} while (fechaDia < 1 || fechaDia > 31);
-
-											do {
-												System.out.print(
-														"Introduzca el mes de FechaNacimiento del Profesor (entre 1 y 12): ");
-												fechaMes = leeInt(sc);
-											} while (fechaMes < 1 || fechaMes > 12);
-
-											do {
-												System.out.print(
-														"Introduzca el año de FechaNacimiento del Profesor (>= 1000 y <= año actual): ");
-												fechaAnnio = leeInt(sc);
-											} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
-
-											datoCambiado = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
-													fechaDia);
-										} while (datoCambiado == null || datoCambiado.equals(""));
-										break; // fechaNacimiento.
-									case 4: // 4. antiguedad.
-										columnaCambiada = "antiguedad";
-										do {
-											System.out.print("Introduzca la nueva Antiguedad del Profesor (>= 0): ");
-											antiguedad = leeInt(sc);
-											if (antiguedad >= 0) {
-												datoCambiado = String.valueOf(antiguedad);
-											}
-										} while (datoCambiado == null || datoCambiado.equals(""));
-										break; // FIN 4. antiguedad.
-
-									case 0: // 0. Volver al Menú anterior.
-
-										break; // FIN 0. Volver al Menú anterior.
-
-									default:
-										System.out.print(ColorMio.getRojo());
-										System.out.print("Opción no disponible: ");
-										System.out.print(ColorMio.getReset());
-										System.out.println("Elija del 0 al 4");
-										System.out.println();
-										break;
-									}
-
-									System.out.println();
-
-									idsProfesores.clear();
-
-									if (opcionSubmenuC != 0) {
-										idsProfesores = FuncionesProfesores.buscaIDsPorColumna("nombre", datoDeCambio);
-
-										if (idsProfesores.size() > 1) {
-
-											FuncionesProfesores.leerPorNombre(datoDeCambio, "=");
-
-											System.out.print(ColorMio.getAmarillo());
-											System.out.println(
-
-													"Hay varios Profesores con nombre = " + datoDeCambio);
-											System.out.print(ColorMio.getReset());
-											System.out.println();
-
-											System.out.println(
-													"Escriba el idProfesor del Profesor que desea modificar, o si lo prefiere, \"0\" para modificar a todos estos:");
-											idDeCambio = sc.nextLong();
-
-											System.out.println();
-
-											if (idDeCambio != 0) {
-
-												if (idsProfesores.contains(idDeCambio) && FuncionesProfesores
-														.actualizarPorId(idDeCambio, columnaCambiada, datoCambiado)) {
-													System.out.print(ColorMio.getVerde());
-													System.out.print("Profesor con ID = " + idDeCambio + " tiene ahora "
-															+ columnaCambiada + " = " + datoCambiado);
-													System.out.print(ColorMio.getReset());
-													System.out.println();
-
-												} else {
-													System.out.print(ColorMio.getRojo());
-													System.out.print("No existe ningún Profesor con ID = " + idDeCambio
-															+ " en la lista anteriormente mostrada");
-													System.out.print(ColorMio.getReset());
-													System.out.println();
-
-												}
-											} else {
-												for (Long id : idsProfesores) {
-													FuncionesProfesores.actualizarPorId(id, columnaCambiada,
-															datoCambiado);
-												}
-												System.out.print(ColorMio.getVerde());
-												System.out.print("Todos los Profesores con nombre = " + datoDeCambio
-														+ " tienen ahora " + columnaCambiada + " = " + datoCambiado);
+														"No existe ningún Profesor con nombre = " + datoDeCambio);
 												System.out.print(ColorMio.getReset());
 												System.out.println();
 
 											}
 
-										} else if (idsProfesores.size() == 1) {
-											idDeCambio = idsProfesores.get(0);
+											idsProfesores.clear();
 
-											FuncionesProfesores.actualizarPorId(idDeCambio, columnaCambiada,
-													datoCambiado);
+											opcionSubmenuC = 0;
+											opcionSubmenuB = 0;
+											opcionSubmenuA = 0;
 
-											System.out.print(ColorMio.getVerde());
-											System.out.print("Profesor con nombre = " + datoDeCambio + " tiene ahora "
-													+ columnaCambiada + " = " + datoCambiado);
-											System.out.print(ColorMio.getReset());
-											System.out.println();
+											idDeCambio = -1;
 
-										} else {
-											System.out.print(ColorMio.getRojo());
-											System.out.print("No existe ningún Profesor con nombre = " + datoDeCambio);
-											System.out.print(ColorMio.getReset());
-											System.out.println();
+											antiguedad = -1;
 
+											columnaCambiada = "";
+											datoCambiado = "";
+
+											fechaDia = 0;
+											fechaMes = 0;
+											fechaAnnio = 0;
 										}
+										System.out.println();
+									} while (opcionSubmenuC != 0);
+									break; // FIN 2. Por nombre.
+								case 3: // 3. Por apellidos.
+									do {
+										System.out
+												.print("Introduzca los Apellidos del Profesor que quiera Actualizar: ");
+										datoDeCambio = sc.nextLine();
+									} while (datoDeCambio == "" || datoDeCambio == null);
+
+									System.out.println();
+
+									do {
+										Menu.subMenuElegirColumnaModificarProfesor();
+										opcionSubmenuC = leeInt(sc);
+										System.out.println();
+
+										switch (opcionSubmenuC) {
+										case 1: // 1. nombre.
+											columnaCambiada = "nombre";
+											do {
+												System.out.print("Introduzca el nuevo Nombre del Profesor: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+
+											break; // FIN 1. nombre.
+										case 2: // 2. apellidos.
+											columnaCambiada = "apellidos";
+											do {
+												System.out.print("Introduzca los nuevos Apellidos del Profesor: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+
+											break; // FIN 2. apellidos.
+										case 3: // 3. fechaNacimiento.
+											columnaCambiada = "fechaNacimiento";
+											do {
+												do {
+													System.out.print(
+															"Introduzca el día de FechaNacimiento del Profesor (entre 1 y 31): ");
+													fechaDia = leeInt(sc);
+												} while (fechaDia < 1 || fechaDia > 31);
+
+												do {
+													System.out.print(
+															"Introduzca el mes de FechaNacimiento del Profesor (entre 1 y 12): ");
+													fechaMes = leeInt(sc);
+												} while (fechaMes < 1 || fechaMes > 12);
+
+												do {
+													System.out.print(
+															"Introduzca el año de FechaNacimiento del Profesor (>= 1000 y <= año actual): ");
+													fechaAnnio = leeInt(sc);
+												} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
+
+												datoCambiado = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
+														fechaDia);
+											} while (datoCambiado == null || datoCambiado.equals(""));
+											break; // fechaNacimiento.
+										case 4: // 4. antiguedad.
+											columnaCambiada = "antiguedad";
+											do {
+												System.out
+														.print("Introduzca la nueva Antiguedad del Profesor (>= 0): ");
+												antiguedad = leeInt(sc);
+												if (antiguedad >= 0) {
+													datoCambiado = String.valueOf(antiguedad);
+												}
+											} while (datoCambiado == null || datoCambiado.equals(""));
+											break; // FIN 4. antiguedad.
+
+										case 0: // 0. Volver al Menú anterior.
+
+											break; // FIN 0. Volver al Menú anterior.
+
+										default:
+											System.out.print(ColorMio.getRojo());
+											System.out.print("Opción no disponible: ");
+											System.out.print(ColorMio.getReset());
+											System.out.println("Elija del 0 al 4");
+											System.out.println();
+											break;
+										}
+
+										System.out.println();
 
 										idsProfesores.clear();
 
-										opcionSubmenuC = 0;
-										opcionSubmenuB = 0;
-										opcionSubmenuA = 0;
+										if (opcionSubmenuC != 0) {
+											idsProfesores = FuncionesProfesores.buscaIDsPorColumna("apellidos",
+													datoDeCambio);
 
-										idDeCambio = -1;
+											if (idsProfesores.size() > 1) {
 
-										antiguedad = -1;
+												FuncionesProfesores.leerPorApellidos(datoDeCambio, "=");
 
-										columnaCambiada = "";
-										datoCambiado = "";
+												System.out.print(ColorMio.getAmarillo());
+												System.out.println(
 
-										fechaDia = 0;
-										fechaMes = 0;
-										fechaAnnio = 0;
-									}
-									System.out.println();
-								} while (opcionSubmenuC != 0);
-								break; // FIN 2. Por nombre.
-							case 3: // 3. Por apellidos.
-								do {
-									System.out.print("Introduzca los Apellidos del Profesor que quiera Actualizar: ");
-									datoDeCambio = sc.nextLine();
-								} while (datoDeCambio == "" || datoDeCambio == null);
+														"Hay varios Profesores con apellidos = " + datoDeCambio);
+												System.out.print(ColorMio.getReset());
+												System.out.println();
 
-								System.out.println();
+												System.out.println(
+														"Escriba el idProfesor del Profesor que desea modificar, o si lo prefiere, \"0\" para modificar a todos estos:");
+												idDeCambio = sc.nextLong();
 
-								do {
-									Menu.subMenuElegirColumnaModificarProfesor();
-									opcionSubmenuC = leeInt(sc);
-									System.out.println();
+												System.out.println();
 
-									switch (opcionSubmenuC) {
-									case 1: // 1. nombre.
-										columnaCambiada = "nombre";
-										do {
-											System.out.print("Introduzca el nuevo Nombre del Profesor: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
+												if (idDeCambio != 0) {
 
-										break; // FIN 1. nombre.
-									case 2: // 2. apellidos.
-										columnaCambiada = "apellidos";
-										do {
-											System.out.print("Introduzca los nuevos Apellidos del Profesor: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
+													if (idsProfesores.contains(idDeCambio)
+															&& FuncionesProfesores.actualizarPorId(idDeCambio,
+																	columnaCambiada, datoCambiado)) {
+														System.out.print(ColorMio.getVerde());
+														System.out.print(
+																"Profesor con ID = " + idDeCambio + " tiene ahora "
+																		+ columnaCambiada + " = " + datoCambiado);
+														System.out.print(ColorMio.getReset());
+														System.out.println();
 
-										break; // FIN 2. apellidos.
-									case 3: // 3. fechaNacimiento.
-										columnaCambiada = "fechaNacimiento";
-										do {
-											do {
-												System.out.print(
-														"Introduzca el día de FechaNacimiento del Profesor (entre 1 y 31): ");
-												fechaDia = leeInt(sc);
-											} while (fechaDia < 1 || fechaDia > 31);
+													} else {
+														System.out.print(ColorMio.getRojo());
+														System.out.print("No existe ningún Profesor con ID = "
+																+ idDeCambio + " en la lista anteriormente mostrada");
+														System.out.print(ColorMio.getReset());
+														System.out.println();
 
-											do {
-												System.out.print(
-														"Introduzca el mes de FechaNacimiento del Profesor (entre 1 y 12): ");
-												fechaMes = leeInt(sc);
-											} while (fechaMes < 1 || fechaMes > 12);
-
-											do {
-												System.out.print(
-														"Introduzca el año de FechaNacimiento del Profesor (>= 1000 y <= año actual): ");
-												fechaAnnio = leeInt(sc);
-											} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
-
-											datoCambiado = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
-													fechaDia);
-										} while (datoCambiado == null || datoCambiado.equals(""));
-										break; // fechaNacimiento.
-									case 4: // 4. antiguedad.
-										columnaCambiada = "antiguedad";
-										do {
-											System.out.print("Introduzca la nueva Antiguedad del Profesor (>= 0): ");
-											antiguedad = leeInt(sc);
-											if (antiguedad >= 0) {
-												datoCambiado = String.valueOf(antiguedad);
-											}
-										} while (datoCambiado == null || datoCambiado.equals(""));
-										break; // FIN 4. antiguedad.
-
-									case 0: // 0. Volver al Menú anterior.
-
-										break; // FIN 0. Volver al Menú anterior.
-
-									default:
-										System.out.print(ColorMio.getRojo());
-										System.out.print("Opción no disponible: ");
-										System.out.print(ColorMio.getReset());
-										System.out.println("Elija del 0 al 4");
-										System.out.println();
-										break;
-									}
-
-									System.out.println();
-
-									idsProfesores.clear();
-
-									if (opcionSubmenuC != 0) {
-										idsProfesores = FuncionesProfesores.buscaIDsPorColumna("apellidos",
-												datoDeCambio);
-
-										if (idsProfesores.size() > 1) {
-
-											FuncionesProfesores.leerPorApellidos(datoDeCambio, "=");
-
-											System.out.print(ColorMio.getAmarillo());
-											System.out.println(
-
-													"Hay varios Profesores con apellidos = " + datoDeCambio);
-											System.out.print(ColorMio.getReset());
-											System.out.println();
-
-											System.out.println(
-													"Escriba el idProfesor del Profesor que desea modificar, o si lo prefiere, \"0\" para modificar a todos estos:");
-											idDeCambio = sc.nextLong();
-
-											System.out.println();
-
-											if (idDeCambio != 0) {
-
-												if (idsProfesores.contains(idDeCambio) && FuncionesProfesores
-														.actualizarPorId(idDeCambio, columnaCambiada, datoCambiado)) {
-													System.out.print(ColorMio.getVerde());
-													System.out.print("Profesor con ID = " + idDeCambio + " tiene ahora "
-															+ columnaCambiada + " = " + datoCambiado);
-													System.out.print(ColorMio.getReset());
-													System.out.println();
-
+													}
 												} else {
-													System.out.print(ColorMio.getRojo());
-													System.out.print("No existe ningún Profesor con ID = " + idDeCambio
-															+ " en la lista anteriormente mostrada");
+													for (Long id : idsProfesores) {
+														FuncionesProfesores.actualizarPorId(id, columnaCambiada,
+																datoCambiado);
+													}
+													System.out.print(ColorMio.getVerde());
+													System.out.print("Todos los Profesores con apellidos = "
+															+ datoDeCambio + " tienen ahora " + columnaCambiada + " = "
+															+ datoCambiado);
 													System.out.print(ColorMio.getReset());
 													System.out.println();
 
 												}
-											} else {
-												for (Long id : idsProfesores) {
-													FuncionesProfesores.actualizarPorId(id, columnaCambiada,
-															datoCambiado);
-												}
+
+											} else if (idsProfesores.size() == 1) {
+												idDeCambio = idsProfesores.get(0);
+
+												FuncionesProfesores.actualizarPorId(idDeCambio, columnaCambiada,
+														datoCambiado);
+
 												System.out.print(ColorMio.getVerde());
-												System.out.print("Todos los Profesores con apellidos = " + datoDeCambio
-														+ " tienen ahora " + columnaCambiada + " = " + datoCambiado);
+												System.out.print("Profesor con apellidos = " + datoDeCambio
+														+ " tiene ahora " + columnaCambiada + " = " + datoCambiado);
+												System.out.print(ColorMio.getReset());
+												System.out.println();
+
+											} else {
+												System.out.print(ColorMio.getRojo());
+												System.out.print(
+														"No existe ningún Profesor con apellidos = " + datoDeCambio);
 												System.out.print(ColorMio.getReset());
 												System.out.println();
 
 											}
 
-										} else if (idsProfesores.size() == 1) {
-											idDeCambio = idsProfesores.get(0);
+											idsProfesores.clear();
 
-											FuncionesProfesores.actualizarPorId(idDeCambio, columnaCambiada,
-													datoCambiado);
+											opcionSubmenuC = 0;
+											opcionSubmenuB = 0;
+											opcionSubmenuA = 0;
 
-											System.out.print(ColorMio.getVerde());
-											System.out.print("Profesor con apellidos = " + datoDeCambio
-													+ " tiene ahora " + columnaCambiada + " = " + datoCambiado);
-											System.out.print(ColorMio.getReset());
-											System.out.println();
+											idDeCambio = -1;
 
-										} else {
-											System.out.print(ColorMio.getRojo());
-											System.out
-													.print("No existe ningún Profesor con apellidos = " + datoDeCambio);
-											System.out.print(ColorMio.getReset());
-											System.out.println();
+											antiguedad = -1;
 
+											columnaCambiada = "";
+											datoCambiado = "";
+
+											fechaDia = 0;
+											fechaMes = 0;
+											fechaAnnio = 0;
 										}
+										System.out.println();
+									} while (opcionSubmenuC != 0);
+									break; // FIN 3. Por apellidos.
+								case 4: // 4. Por fechaNacimiento.
+									do {
+										do {
+											System.out.print(
+													"Introduzca el día de FechaNacimiento del Profesor que quiera Actualizar (entre 1 y 31): ");
+											fechaDia = leeInt(sc);
+										} while (fechaDia < 1 || fechaDia > 31);
+
+										do {
+											System.out.print(
+													"Introduzca el mes de FechaNacimiento del Profesor que quiera Actualizar (entre 1 y 12): ");
+											fechaMes = leeInt(sc);
+										} while (fechaMes < 1 || fechaMes > 12);
+
+										do {
+											System.out.print(
+													"Introduzca el año de FechaNacimiento del Profesor que quiera Actualizar (>= 1000 y <= año actual): ");
+											fechaAnnio = leeInt(sc);
+										} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
+
+										datoDeCambio = String.format("%d-%02d-%02d", fechaAnnio, fechaMes, fechaDia);
+									} while (datoDeCambio == null || datoDeCambio.equals(""));
+
+									System.out.println();
+
+									do {
+										Menu.subMenuElegirColumnaModificarProfesor();
+										opcionSubmenuC = leeInt(sc);
+										System.out.println();
+
+										switch (opcionSubmenuC) {
+										case 1: // 1. nombre.
+											columnaCambiada = "nombre";
+											do {
+												System.out.print("Introduzca el nuevo Nombre del Profesor: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+
+											break; // FIN 1. nombre.
+										case 2: // 2. apellidos.
+											columnaCambiada = "apellidos";
+											do {
+												System.out.print("Introduzca los nuevos Apellidos del Profesor: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
+
+											break; // FIN 2. apellidos.
+										case 3: // 3. fechaNacimiento.
+											columnaCambiada = "fechaNacimiento";
+											do {
+												do {
+													System.out.print(
+															"Introduzca el día de FechaNacimiento del Profesor (entre 1 y 31): ");
+													fechaDia = leeInt(sc);
+												} while (fechaDia < 1 || fechaDia > 31);
+
+												do {
+													System.out.print(
+															"Introduzca el mes de FechaNacimiento del Profesor (entre 1 y 12): ");
+													fechaMes = leeInt(sc);
+												} while (fechaMes < 1 || fechaMes > 12);
+
+												do {
+													System.out.print(
+															"Introduzca el año de FechaNacimiento del Profesor (>= 1000 y <= año actual): ");
+													fechaAnnio = leeInt(sc);
+												} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
+
+												datoCambiado = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
+														fechaDia);
+											} while (datoCambiado == null || datoCambiado.equals(""));
+											break; // fechaNacimiento.
+										case 4: // 4. antiguedad.
+											columnaCambiada = "antiguedad";
+											do {
+												System.out
+														.print("Introduzca la nueva Antiguedad del Profesor (>= 0): ");
+												antiguedad = leeInt(sc);
+												if (antiguedad >= 0) {
+													datoCambiado = String.valueOf(antiguedad);
+												}
+											} while (datoCambiado == null || datoCambiado.equals(""));
+											break; // FIN 4. antiguedad.
+
+										case 0: // 0. Volver al Menú anterior.
+
+											break; // FIN 0. Volver al Menú anterior.
+
+										default:
+											System.out.print(ColorMio.getRojo());
+											System.out.print("Opción no disponible: ");
+											System.out.print(ColorMio.getReset());
+											System.out.println("Elija del 0 al 4");
+											System.out.println();
+											break;
+										}
+
+										System.out.println();
 
 										idsProfesores.clear();
 
-										opcionSubmenuC = 0;
-										opcionSubmenuB = 0;
-										opcionSubmenuA = 0;
+										if (opcionSubmenuC != 0) {
+											idsProfesores = FuncionesProfesores.buscaIDsPorColumna("fechaNacimiento",
+													datoDeCambio);
 
-										idDeCambio = -1;
+											if (idsProfesores.size() > 1) {
 
-										antiguedad = -1;
-
-										columnaCambiada = "";
-										datoCambiado = "";
-
-										fechaDia = 0;
-										fechaMes = 0;
-										fechaAnnio = 0;
-									}
-									System.out.println();
-								} while (opcionSubmenuC != 0);
-								break; // FIN 3. Por apellidos.
-							case 4: // 4. Por fechaNacimiento.
-								do {
-									do {
-										System.out.print(
-												"Introduzca el día de FechaNacimiento del Profesor que quiera Actualizar (entre 1 y 31): ");
-										fechaDia = leeInt(sc);
-									} while (fechaDia < 1 || fechaDia > 31);
-
-									do {
-										System.out.print(
-												"Introduzca el mes de FechaNacimiento del Profesor que quiera Actualizar (entre 1 y 12): ");
-										fechaMes = leeInt(sc);
-									} while (fechaMes < 1 || fechaMes > 12);
-
-									do {
-										System.out.print(
-												"Introduzca el año de FechaNacimiento del Profesor que quiera Actualizar (>= 1000 y <= año actual): ");
-										fechaAnnio = leeInt(sc);
-									} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
-
-									datoDeCambio = String.format("%d-%02d-%02d", fechaAnnio, fechaMes, fechaDia);
-								} while (datoDeCambio == null || datoDeCambio.equals(""));
-
-								System.out.println();
-
-								do {
-									Menu.subMenuElegirColumnaModificarProfesor();
-									opcionSubmenuC = leeInt(sc);
-									System.out.println();
-
-									switch (opcionSubmenuC) {
-									case 1: // 1. nombre.
-										columnaCambiada = "nombre";
-										do {
-											System.out.print("Introduzca el nuevo Nombre del Profesor: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
-
-										break; // FIN 1. nombre.
-									case 2: // 2. apellidos.
-										columnaCambiada = "apellidos";
-										do {
-											System.out.print("Introduzca los nuevos Apellidos del Profesor: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
-
-										break; // FIN 2. apellidos.
-									case 3: // 3. fechaNacimiento.
-										columnaCambiada = "fechaNacimiento";
-										do {
-											do {
-												System.out.print(
-														"Introduzca el día de FechaNacimiento del Profesor (entre 1 y 31): ");
-												fechaDia = leeInt(sc);
-											} while (fechaDia < 1 || fechaDia > 31);
-
-											do {
-												System.out.print(
-														"Introduzca el mes de FechaNacimiento del Profesor (entre 1 y 12): ");
-												fechaMes = leeInt(sc);
-											} while (fechaMes < 1 || fechaMes > 12);
-
-											do {
-												System.out.print(
-														"Introduzca el año de FechaNacimiento del Profesor (>= 1000 y <= año actual): ");
-												fechaAnnio = leeInt(sc);
-											} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
-
-											datoCambiado = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
-													fechaDia);
-										} while (datoCambiado == null || datoCambiado.equals(""));
-										break; // fechaNacimiento.
-									case 4: // 4. antiguedad.
-										columnaCambiada = "antiguedad";
-										do {
-											System.out.print("Introduzca la nueva Antiguedad del Profesor (>= 0): ");
-											antiguedad = leeInt(sc);
-											if (antiguedad >= 0) {
-												datoCambiado = String.valueOf(antiguedad);
-											}
-										} while (datoCambiado == null || datoCambiado.equals(""));
-										break; // FIN 4. antiguedad.
-
-									case 0: // 0. Volver al Menú anterior.
-
-										break; // FIN 0. Volver al Menú anterior.
-
-									default:
-										System.out.print(ColorMio.getRojo());
-										System.out.print("Opción no disponible: ");
-										System.out.print(ColorMio.getReset());
-										System.out.println("Elija del 0 al 4");
-										System.out.println();
-										break;
-									}
-
-									System.out.println();
-
-									idsProfesores.clear();
-
-									if (opcionSubmenuC != 0) {
-										idsProfesores = FuncionesProfesores.buscaIDsPorColumna("fechaNacimiento",
-												datoDeCambio);
-
-										if (idsProfesores.size() > 1) {
-
-											FuncionesProfesores.leerPorFechaNacimiento(LocalDate.parse(datoDeCambio),
-													"=");
+												FuncionesProfesores
+														.leerPorFechaNacimiento(LocalDate.parse(datoDeCambio), "=");
 
 //												case "apellidos":
 //													FuncionesProfesores.leerPorApellidos(datoDeCambio, "=");
@@ -2952,290 +2982,303 @@ public class Principal {
 //												default:
 //													break;
 //												}
-											System.out.print(ColorMio.getAmarillo());
-											System.out.println(
+												System.out.print(ColorMio.getAmarillo());
+												System.out.println(
 
-													"Hay varios Profesores con fechaNacimiento = " + datoDeCambio);
-											System.out.print(ColorMio.getReset());
-											System.out.println();
+														"Hay varios Profesores con fechaNacimiento = " + datoDeCambio);
+												System.out.print(ColorMio.getReset());
+												System.out.println();
 
-											System.out.println(
-													"Escriba el idProfesor del Profesor que desea modificar, o si lo prefiere, \"0\" para modificar a todos estos:");
-											idDeCambio = sc.nextLong();
+												System.out.println(
+														"Escriba el idProfesor del Profesor que desea modificar, o si lo prefiere, \"0\" para modificar a todos estos:");
+												idDeCambio = sc.nextLong();
 
-											System.out.println();
+												System.out.println();
 
-											if (idDeCambio != 0) {
+												if (idDeCambio != 0) {
 
-												if (idsProfesores.contains(idDeCambio) && FuncionesProfesores
-														.actualizarPorId(idDeCambio, columnaCambiada, datoCambiado)) {
-													System.out.print(ColorMio.getVerde());
-													System.out.print("Profesor con ID = " + idDeCambio + " tiene ahora "
-															+ columnaCambiada + " = " + datoCambiado);
-													System.out.print(ColorMio.getReset());
-													System.out.println();
+													if (idsProfesores.contains(idDeCambio)
+															&& FuncionesProfesores.actualizarPorId(idDeCambio,
+																	columnaCambiada, datoCambiado)) {
+														System.out.print(ColorMio.getVerde());
+														System.out.print(
+																"Profesor con ID = " + idDeCambio + " tiene ahora "
+																		+ columnaCambiada + " = " + datoCambiado);
+														System.out.print(ColorMio.getReset());
+														System.out.println();
 
+													} else {
+														System.out.print(ColorMio.getRojo());
+														System.out.print("No existe ningún Profesor con ID = "
+																+ idDeCambio + " en la lista anteriormente mostrada");
+														System.out.print(ColorMio.getReset());
+														System.out.println();
+
+													}
 												} else {
-													System.out.print(ColorMio.getRojo());
-													System.out.print("No existe ningún Profesor con ID = " + idDeCambio
-															+ " en la lista anteriormente mostrada");
+													for (Long id : idsProfesores) {
+														FuncionesProfesores.actualizarPorId(id, columnaCambiada,
+																datoCambiado);
+													}
+													System.out.print(ColorMio.getVerde());
+													System.out.print("Todos los Profesores con fechaNacimiento = "
+															+ datoDeCambio + " tienen ahora " + columnaCambiada + " = "
+															+ datoCambiado);
 													System.out.print(ColorMio.getReset());
 													System.out.println();
 
 												}
-											} else {
-												for (Long id : idsProfesores) {
-													FuncionesProfesores.actualizarPorId(id, columnaCambiada,
-															datoCambiado);
-												}
+
+											} else if (idsProfesores.size() == 1) {
+												idDeCambio = idsProfesores.get(0);
+
+												FuncionesProfesores.actualizarPorId(idDeCambio, columnaCambiada,
+														datoCambiado);
+
 												System.out.print(ColorMio.getVerde());
-												System.out.print("Todos los Profesores con fechaNacimiento = "
-														+ datoDeCambio + " tienen ahora " + columnaCambiada + " = "
-														+ datoCambiado);
+												System.out.print("Profesor con fechaNacimiento = " + datoDeCambio
+														+ " tiene ahora " + columnaCambiada + " = " + datoCambiado);
+												System.out.print(ColorMio.getReset());
+												System.out.println();
+
+											} else {
+												System.out.print(ColorMio.getRojo());
+												System.out.print("No existe ningún Profesor con fechaNacimiento = "
+														+ datoDeCambio);
 												System.out.print(ColorMio.getReset());
 												System.out.println();
 
 											}
 
-										} else if (idsProfesores.size() == 1) {
-											idDeCambio = idsProfesores.get(0);
+											idsProfesores.clear();
 
-											FuncionesProfesores.actualizarPorId(idDeCambio, columnaCambiada,
-													datoCambiado);
+											opcionSubmenuC = 0;
+											opcionSubmenuB = 0;
+											opcionSubmenuA = 0;
 
-											System.out.print(ColorMio.getVerde());
-											System.out.print("Profesor con fechaNacimiento = " + datoDeCambio
-													+ " tiene ahora " + columnaCambiada + " = " + datoCambiado);
-											System.out.print(ColorMio.getReset());
-											System.out.println();
+											idDeCambio = -1;
 
-										} else {
-											System.out.print(ColorMio.getRojo());
-											System.out.print(
-													"No existe ningún Profesor con fechaNacimiento = " + datoDeCambio);
-											System.out.print(ColorMio.getReset());
-											System.out.println();
+											antiguedad = -1;
 
+											columnaCambiada = "";
+											datoCambiado = "";
+
+											fechaDia = 0;
+											fechaMes = 0;
+											fechaAnnio = 0;
 										}
-
-										idsProfesores.clear();
-
-										opcionSubmenuC = 0;
-										opcionSubmenuB = 0;
-										opcionSubmenuA = 0;
-
-										idDeCambio = -1;
-
-										antiguedad = -1;
-
-										columnaCambiada = "";
-										datoCambiado = "";
-
-										fechaDia = 0;
-										fechaMes = 0;
-										fechaAnnio = 0;
-									}
-									System.out.println();
-								} while (opcionSubmenuC != 0);
-								break; // FIN 4. Por fechaNacimiento.
-							case 5: // 5. Por antiguedad.
-
-								do {
-									System.out.print(
-											"Introduzca la antiguedad del Profesor que quiera Actualizar (>=0): ");
-									antiguedad = leeInt(sc);
-									if (antiguedad >= 0) {
-										datoDeCambio = String.valueOf(antiguedad);
-									}
-								} while (datoDeCambio == null || datoDeCambio.equals(""));
-
-								System.out.println();
-
-								do {
-									Menu.subMenuElegirColumnaModificarProfesor();
-									opcionSubmenuC = leeInt(sc);
-									System.out.println();
-
-									switch (opcionSubmenuC) {
-									case 1: // 1. nombre.
-										columnaCambiada = "nombre";
-										do {
-											System.out.print("Introduzca el nuevo Nombre del Profesor: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
-
-										break; // FIN 1. nombre.
-									case 2: // 2. apellidos.
-										columnaCambiada = "apellidos";
-										do {
-											System.out.print("Introduzca los nuevos Apellidos del Profesor: ");
-											datoCambiado = sc.nextLine();
-										} while (datoCambiado == null || datoCambiado.equals(""));
-
-										break; // FIN 2. apellidos.
-									case 3: // 3. fechaNacimiento.
-										columnaCambiada = "fechaNacimiento";
-										do {
-											do {
-												System.out.print(
-														"Introduzca el día de FechaNacimiento del Profesor (entre 1 y 31): ");
-												fechaDia = leeInt(sc);
-											} while (fechaDia < 1 || fechaDia > 31);
-
-											do {
-												System.out.print(
-														"Introduzca el mes de FechaNacimiento del Profesor (entre 1 y 12): ");
-												fechaMes = leeInt(sc);
-											} while (fechaMes < 1 || fechaMes > 12);
-
-											do {
-												System.out.print(
-														"Introduzca el año de FechaNacimiento del Profesor (>= 1000 y <= año actual): ");
-												fechaAnnio = leeInt(sc);
-											} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
-
-											datoCambiado = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
-													fechaDia);
-										} while (datoCambiado == null || datoCambiado.equals(""));
-										break; // fechaNacimiento.
-									case 4: // 4. antiguedad.
-										columnaCambiada = "antiguedad";
-										do {
-											System.out.print("Introduzca la nueva Antiguedad del Profesor (>= 0): ");
-											antiguedad = leeInt(sc);
-											if (antiguedad >= 0) {
-												datoCambiado = String.valueOf(antiguedad);
-											}
-										} while (datoCambiado == null || datoCambiado.equals(""));
-										break; // FIN 4. antiguedad.
-
-									case 0: // 0. Volver al Menú anterior.
-
-										break; // FIN 0. Volver al Menú anterior.
-
-									default:
-										System.out.print(ColorMio.getRojo());
-										System.out.print("Opción no disponible: ");
-										System.out.print(ColorMio.getReset());
-										System.out.println("Elija del 0 al 4");
 										System.out.println();
-										break;
-									}
+									} while (opcionSubmenuC != 0);
+									break; // FIN 4. Por fechaNacimiento.
+								case 5: // 5. Por antiguedad.
+
+									do {
+										System.out.print(
+												"Introduzca la antiguedad del Profesor que quiera Actualizar (>=0): ");
+										antiguedad = leeInt(sc);
+										if (antiguedad >= 0) {
+											datoDeCambio = String.valueOf(antiguedad);
+										}
+									} while (datoDeCambio == null || datoDeCambio.equals(""));
 
 									System.out.println();
 
-									idsProfesores.clear();
+									do {
+										Menu.subMenuElegirColumnaModificarProfesor();
+										opcionSubmenuC = leeInt(sc);
+										System.out.println();
 
-									if (opcionSubmenuC != 0) {
-										idsProfesores = FuncionesProfesores.buscaIDsPorColumna("antiguedad",
-												datoDeCambio);
+										switch (opcionSubmenuC) {
+										case 1: // 1. nombre.
+											columnaCambiada = "nombre";
+											do {
+												System.out.print("Introduzca el nuevo Nombre del Profesor: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
 
-										if (idsProfesores.size() > 1) {
+											break; // FIN 1. nombre.
+										case 2: // 2. apellidos.
+											columnaCambiada = "apellidos";
+											do {
+												System.out.print("Introduzca los nuevos Apellidos del Profesor: ");
+												datoCambiado = sc.nextLine();
+											} while (datoCambiado == null || datoCambiado.equals(""));
 
-											FuncionesProfesores.leerPorAntiguedad(Integer.parseInt(datoDeCambio), "=");
+											break; // FIN 2. apellidos.
+										case 3: // 3. fechaNacimiento.
+											columnaCambiada = "fechaNacimiento";
+											do {
+												do {
+													System.out.print(
+															"Introduzca el día de FechaNacimiento del Profesor (entre 1 y 31): ");
+													fechaDia = leeInt(sc);
+												} while (fechaDia < 1 || fechaDia > 31);
 
-											System.out.print(ColorMio.getAmarillo());
-											System.out.println(
+												do {
+													System.out.print(
+															"Introduzca el mes de FechaNacimiento del Profesor (entre 1 y 12): ");
+													fechaMes = leeInt(sc);
+												} while (fechaMes < 1 || fechaMes > 12);
 
-													"Hay varios Profesores con antiguedad = " + datoDeCambio);
+												do {
+													System.out.print(
+															"Introduzca el año de FechaNacimiento del Profesor (>= 1000 y <= año actual): ");
+													fechaAnnio = leeInt(sc);
+												} while (fechaAnnio < 1000 || fechaAnnio > LocalDate.now().getYear());
+
+												datoCambiado = String.format("%d-%02d-%02d", fechaAnnio, fechaMes,
+														fechaDia);
+											} while (datoCambiado == null || datoCambiado.equals(""));
+											break; // fechaNacimiento.
+										case 4: // 4. antiguedad.
+											columnaCambiada = "antiguedad";
+											do {
+												System.out
+														.print("Introduzca la nueva Antiguedad del Profesor (>= 0): ");
+												antiguedad = leeInt(sc);
+												if (antiguedad >= 0) {
+													datoCambiado = String.valueOf(antiguedad);
+												}
+											} while (datoCambiado == null || datoCambiado.equals(""));
+											break; // FIN 4. antiguedad.
+
+										case 0: // 0. Volver al Menú anterior.
+
+											break; // FIN 0. Volver al Menú anterior.
+
+										default:
+											System.out.print(ColorMio.getRojo());
+											System.out.print("Opción no disponible: ");
 											System.out.print(ColorMio.getReset());
+											System.out.println("Elija del 0 al 4");
 											System.out.println();
+											break;
+										}
 
-											System.out.println(
-													"Escriba el idProfesor del Profesor que desea modificar, o si lo prefiere, \"0\" para modificar a todos estos:");
-											idDeCambio = sc.nextLong();
+										System.out.println();
 
-											System.out.println();
+										idsProfesores.clear();
 
-											if (idDeCambio != 0) {
+										if (opcionSubmenuC != 0) {
+											idsProfesores = FuncionesProfesores.buscaIDsPorColumna("antiguedad",
+													datoDeCambio);
 
-												if (idsProfesores.contains(idDeCambio) && FuncionesProfesores
-														.actualizarPorId(idDeCambio, columnaCambiada, datoCambiado)) {
-													System.out.print(ColorMio.getVerde());
-													System.out.print("Profesor con ID = " + idDeCambio + " tiene ahora "
-															+ columnaCambiada + " = " + datoCambiado);
-													System.out.print(ColorMio.getReset());
-													System.out.println();
+											if (idsProfesores.size() > 1) {
 
+												FuncionesProfesores.leerPorAntiguedad(Integer.parseInt(datoDeCambio),
+														"=");
+
+												System.out.print(ColorMio.getAmarillo());
+												System.out.println(
+
+														"Hay varios Profesores con antiguedad = " + datoDeCambio);
+												System.out.print(ColorMio.getReset());
+												System.out.println();
+
+												System.out.println(
+														"Escriba el idProfesor del Profesor que desea modificar, o si lo prefiere, \"0\" para modificar a todos estos:");
+												idDeCambio = sc.nextLong();
+
+												System.out.println();
+
+												if (idDeCambio != 0) {
+
+													if (idsProfesores.contains(idDeCambio)
+															&& FuncionesProfesores.actualizarPorId(idDeCambio,
+																	columnaCambiada, datoCambiado)) {
+														System.out.print(ColorMio.getVerde());
+														System.out.print(
+																"Profesor con ID = " + idDeCambio + " tiene ahora "
+																		+ columnaCambiada + " = " + datoCambiado);
+														System.out.print(ColorMio.getReset());
+														System.out.println();
+
+													} else {
+														System.out.print(ColorMio.getRojo());
+														System.out.print("No existe ningún Profesor con ID = "
+																+ idDeCambio + " en la lista anteriormente mostrada");
+														System.out.print(ColorMio.getReset());
+														System.out.println();
+
+													}
 												} else {
-													System.out.print(ColorMio.getRojo());
-													System.out.print("No existe ningún Profesor con ID = " + idDeCambio
-															+ " en la lista anteriormente mostrada");
+													for (Long id : idsProfesores) {
+														FuncionesProfesores.actualizarPorId(id, columnaCambiada,
+																datoCambiado);
+													}
+													System.out.print(ColorMio.getVerde());
+													System.out.print("Todos los Profesores con antiguedad = "
+															+ datoDeCambio + " tienen ahora " + columnaCambiada + " = "
+															+ datoCambiado);
 													System.out.print(ColorMio.getReset());
 													System.out.println();
 
 												}
-											} else {
-												for (Long id : idsProfesores) {
-													FuncionesProfesores.actualizarPorId(id, columnaCambiada,
-															datoCambiado);
-												}
+
+											} else if (idsProfesores.size() == 1) {
+												idDeCambio = idsProfesores.get(0);
+
+												FuncionesProfesores.actualizarPorId(idDeCambio, columnaCambiada,
+														datoCambiado);
+
 												System.out.print(ColorMio.getVerde());
-												System.out.print("Todos los Profesores con antiguedad = " + datoDeCambio
-														+ " tienen ahora " + columnaCambiada + " = " + datoCambiado);
+												System.out.print("Profesor con antiguedad = " + datoDeCambio
+														+ " tiene ahora " + columnaCambiada + " = " + datoCambiado);
+												System.out.print(ColorMio.getReset());
+												System.out.println();
+
+											} else {
+												System.out.print(ColorMio.getRojo());
+												System.out.print(
+														"No existe ningún Profesor con antiguedad = " + datoDeCambio);
 												System.out.print(ColorMio.getReset());
 												System.out.println();
 
 											}
 
-										} else if (idsProfesores.size() == 1) {
-											idDeCambio = idsProfesores.get(0);
+											idsProfesores.clear();
 
-											FuncionesProfesores.actualizarPorId(idDeCambio, columnaCambiada,
-													datoCambiado);
+											opcionSubmenuC = 0;
+											opcionSubmenuB = 0;
+											opcionSubmenuA = 0;
 
-											System.out.print(ColorMio.getVerde());
-											System.out.print("Profesor con antiguedad = " + datoDeCambio
-													+ " tiene ahora " + columnaCambiada + " = " + datoCambiado);
-											System.out.print(ColorMio.getReset());
-											System.out.println();
+											idDeCambio = -1;
 
-										} else {
-											System.out.print(ColorMio.getRojo());
-											System.out.print(
-													"No existe ningún Profesor con antiguedad = " + datoDeCambio);
-											System.out.print(ColorMio.getReset());
-											System.out.println();
+											antiguedad = -1;
 
+											columnaCambiada = "";
+											datoCambiado = "";
+
+											fechaDia = 0;
+											fechaMes = 0;
+											fechaAnnio = 0;
 										}
+										System.out.println();
+									} while (opcionSubmenuC != 0);
+									break; // FIN 5. Por antiguedad.
+								case 0: // 0. Volver al Menú anterior.
 
-										idsProfesores.clear();
+									break; // FIN 0. Volver al Menú anterior.
 
-										opcionSubmenuC = 0;
-										opcionSubmenuB = 0;
-										opcionSubmenuA = 0;
-
-										idDeCambio = -1;
-
-										antiguedad = -1;
-
-										columnaCambiada = "";
-										datoCambiado = "";
-
-										fechaDia = 0;
-										fechaMes = 0;
-										fechaAnnio = 0;
-									}
+								default:
+									System.out.print(ColorMio.getRojo());
+									System.out.print("Opción no disponible: ");
+									System.out.print(ColorMio.getReset());
+									System.out.println("Elija del 0 al 5");
 									System.out.println();
-								} while (opcionSubmenuC != 0);
-								break; // FIN 5. Por antiguedad.
-							case 0: // 0. Volver al Menú anterior.
-
-								break; // FIN 0. Volver al Menú anterior.
-
-							default:
-								System.out.print(ColorMio.getRojo());
-								System.out.print("Opción no disponible: ");
-								System.out.print(ColorMio.getReset());
-								System.out.println("Elija del 0 al 5");
-								System.out.println();
-								break;
-							}
-						} while (opcionSubmenuB != 0);
-
+									break;
+								}
+							} while (opcionSubmenuB != 0);
+						} else {
+							System.out.print(ColorMio.getRojo());
+							System.out.print("No existe ningún Profesor que actualizar");
+							System.out.println(ColorMio.getReset());			
+							System.out.println();
+							
+							opcionSubmenuA = 0;
+						}
 						break; // FIN 1. Profesores.
-						
-						
+
 					case 2: // 2. Alumnos.
 						do {
 							Menu.subMenuElegirAlumnoActualizar();
@@ -4729,7 +4772,7 @@ public class Principal {
 							idsMatriculas = FuncionesMatriculas.buscaIDsDeTodos();
 							idsAlumnos = FuncionesAlumnos.buscaIDsDeTodos();
 							idsProfesores = FuncionesProfesores.buscaIDsDeTodos();
-							
+
 							if (!idsMatriculas.isEmpty()) {
 								for (Long id : idsMatriculas) {
 									FuncionesMatriculas.borrarPorId(id);
@@ -4742,7 +4785,7 @@ public class Principal {
 								System.out.print("No existen Matriculas que borrar");
 								System.out.println(ColorMio.getReset());
 							}
-							
+
 							if (!idsAlumnos.isEmpty()) {
 								for (Long id : idsAlumnos) {
 									FuncionesAlumnos.borrarPorId(id);
@@ -4755,7 +4798,7 @@ public class Principal {
 								System.out.print("No existen Alumnos que borrar");
 								System.out.println(ColorMio.getReset());
 							}
-							
+
 							if (!idsProfesores.isEmpty()) {
 								for (Long id : idsProfesores) {
 									FuncionesProfesores.borrarPorId(id);
@@ -4778,7 +4821,7 @@ public class Principal {
 						idsMatriculas.clear();
 						idsAlumnos.clear();
 						idsProfesores.clear();
-						
+
 						break; // FIN 1. Todos
 					case 2: // 2. Profesores.
 						do {
@@ -5389,8 +5432,8 @@ public class Principal {
 
 								System.out.println();
 
-								System.out.println("¿Está seguro de que quiere borrar al Alumno con ID = "
-										+ idDeBorrado + "? (s/n)");
+								System.out.println("¿Está seguro de que quiere borrar al Alumno con ID = " + idDeBorrado
+										+ "? (s/n)");
 								System.out.print(ColorMio.getAmarillo());
 								System.out.print(
 										"ADVERTENCIA: Se borrarán también las Matriculas asociadas a dicho Alumno");
@@ -5444,7 +5487,7 @@ public class Principal {
 									idsAlumnos = FuncionesAlumnos.buscaIDsPorColumna("nombre", datoDeBorrado);
 
 									if (idsAlumnos.size() > 1) {
-									
+
 										FuncionesAlumnos.leerPorNombre(datoDeBorrado, "=");
 
 										System.out.print(ColorMio.getAmarillo());
@@ -5515,8 +5558,8 @@ public class Principal {
 										System.out.println(ColorMio.getReset());
 									} else {
 										System.out.print(ColorMio.getRojo());
-										System.out.print(
-												"No existe ningún Alumno con nombre = '" + datoDeBorrado + "'");
+										System.out
+												.print("No existe ningún Alumno con nombre = '" + datoDeBorrado + "'");
 										System.out.println(ColorMio.getReset());
 									}
 								}
@@ -5559,8 +5602,7 @@ public class Principal {
 										FuncionesAlumnos.leerPorApellidos(datoDeBorrado, "=");
 
 										System.out.print(ColorMio.getAmarillo());
-										System.out
-												.print("Hay varios Alumnos con apellidos = '" + datoDeBorrado + "'");
+										System.out.print("Hay varios Alumnos con apellidos = '" + datoDeBorrado + "'");
 										System.out.println(ColorMio.getReset());
 
 										System.out.println(
@@ -5610,8 +5652,8 @@ public class Principal {
 													FuncionesAlumnos.borrarPorId(id);
 												}
 												System.out.print(ColorMio.getVerde());
-												System.out.print("Todos los Alumnos con apellidos = '"
-														+ datoDeBorrado + "' han sido borrados");
+												System.out.print("Todos los Alumnos con apellidos = '" + datoDeBorrado
+														+ "' han sido borrados");
 												System.out.println(ColorMio.getReset());
 											}
 
@@ -5667,9 +5709,8 @@ public class Principal {
 								} while (datoDeBorrado == null || datoDeBorrado.equals(""));
 
 								System.out.println();
-								System.out
-										.println("¿Está seguro de que quiere borrar al Alumno con fechaNacimiento = '"
-												+ datoDeBorrado + "'? (s/n)");
+								System.out.println("¿Está seguro de que quiere borrar al Alumno con fechaNacimiento = '"
+										+ datoDeBorrado + "'? (s/n)");
 								System.out.print(ColorMio.getAmarillo());
 								System.out.print(
 										"ADVERTENCIA: Se borrarán también las Matriculas asociadas a dicho Alumno");
@@ -5678,8 +5719,7 @@ public class Principal {
 								if (sc.nextLine().equals("s")) {
 									System.out.println();
 
-									idsAlumnos = FuncionesAlumnos.buscaIDsPorColumna("fechaNacimiento",
-											datoDeBorrado);
+									idsAlumnos = FuncionesAlumnos.buscaIDsPorColumna("fechaNacimiento", datoDeBorrado);
 
 									if (idsAlumnos.size() > 1) {
 
@@ -5750,8 +5790,8 @@ public class Principal {
 										FuncionesAlumnos.borrarPorId(idDeBorrado);
 
 										System.out.print(ColorMio.getVerde());
-										System.out.print(
-												"Alumno con fechaNacimiento = '" + datoDeBorrado + "' borrado");
+										System.out
+												.print("Alumno con fechaNacimiento = '" + datoDeBorrado + "' borrado");
 										System.out.println(ColorMio.getReset());
 									} else {
 										System.out.print(ColorMio.getRojo());
@@ -5805,8 +5845,7 @@ public class Principal {
 									System.out.println();
 
 									idsMatriculas = FuncionesMatriculas.buscaIDsDeTodos();
-								
-									
+
 									if (!idsMatriculas.isEmpty()) {
 										for (Long id : idsMatriculas) {
 											FuncionesMatriculas.borrarPorId(id);
@@ -5863,11 +5902,11 @@ public class Principal {
 								idDeBorrado = -1;
 
 								break; // FIN 2. Por idMatricula.
-								
+
 							case 3: // 3. Por idProfesor.
 								do {
-									System.out
-											.print("Introduzca el IDProfesor de la Matricula que quiera Borrar (>= 0): ");
+									System.out.print(
+											"Introduzca el IDProfesor de la Matricula que quiera Borrar (>= 0): ");
 									idProfesor = leeLong(sc);
 									if (idProfesor >= 0) {
 										datoDeBorrado = String.valueOf(idProfesor);
@@ -5876,16 +5915,16 @@ public class Principal {
 
 								System.out.println();
 								System.out.println("¿Está seguro de que quiere borrar la Matricula con idProfesor = "
-										+ datoDeBorrado + "? (s/n)");								
+										+ datoDeBorrado + "? (s/n)");
 
 								if (sc.nextLine().equals("s")) {
 									System.out.println();
-									
+
 									idsMatriculas = FuncionesMatriculas.buscaIDsPorColumna("idProfesor", datoDeBorrado);
 
 									if (idsMatriculas.size() > 1) {
-										
-										FuncionesMatriculas.leerPorIdProfesor(Long.parseLong(datoDeBorrado), "=");					
+
+										FuncionesMatriculas.leerPorIdProfesor(Long.parseLong(datoDeBorrado), "=");
 
 										System.out.print(ColorMio.getAmarillo());
 										System.out.print("Hay varias Matriculas con idProfesor = " + datoDeBorrado);
@@ -5898,8 +5937,9 @@ public class Principal {
 										System.out.println();
 
 										if (idDeBorrado != 0) {
-											System.out.println("¿Está seguro de que quiere borrar la Matricula con ID = "
-													+ idDeBorrado + "? (s/n)");
+											System.out
+													.println("¿Está seguro de que quiere borrar la Matricula con ID = "
+															+ idDeBorrado + "? (s/n)");
 
 											if (sc.nextLine().equals("s")) {
 												System.out.println();
@@ -5911,8 +5951,8 @@ public class Principal {
 													System.out.println(ColorMio.getReset());
 												} else {
 													System.out.print(ColorMio.getRojo());
-													System.out.print("No existe ninguna Matricula con ID = " + idDeBorrado
-															+ " en la lista anteriormente mostrada");
+													System.out.print("No existe ninguna Matricula con ID = "
+															+ idDeBorrado + " en la lista anteriormente mostrada");
 													System.out.println(ColorMio.getReset());
 												}
 											}
@@ -5947,7 +5987,8 @@ public class Principal {
 										System.out.println(ColorMio.getReset());
 									} else {
 										System.out.print(ColorMio.getRojo());
-										System.out.print("No existe ninguna Matricula con idProfesor = " + datoDeBorrado);
+										System.out
+												.print("No existe ninguna Matricula con idProfesor = " + datoDeBorrado);
 										System.out.println(ColorMio.getReset());
 									}
 								}
@@ -5975,16 +6016,16 @@ public class Principal {
 
 								System.out.println();
 								System.out.println("¿Está seguro de que quiere borrar la Matricula con idAlumno = "
-										+ datoDeBorrado + "? (s/n)");								
+										+ datoDeBorrado + "? (s/n)");
 
 								if (sc.nextLine().equals("s")) {
 									System.out.println();
-									
+
 									idsMatriculas = FuncionesMatriculas.buscaIDsPorColumna("idAlumno", datoDeBorrado);
 
 									if (idsMatriculas.size() > 1) {
-										
-										FuncionesMatriculas.leerPorIdAlumno(Long.parseLong(datoDeBorrado), "=");					
+
+										FuncionesMatriculas.leerPorIdAlumno(Long.parseLong(datoDeBorrado), "=");
 
 										System.out.print(ColorMio.getAmarillo());
 										System.out.print("Hay varias Matriculas con idAlumno = " + datoDeBorrado);
@@ -5997,8 +6038,9 @@ public class Principal {
 										System.out.println();
 
 										if (idDeBorrado != 0) {
-											System.out.println("¿Está seguro de que quiere borrar la Matricula con ID = "
-													+ idDeBorrado + "? (s/n)");
+											System.out
+													.println("¿Está seguro de que quiere borrar la Matricula con ID = "
+															+ idDeBorrado + "? (s/n)");
 
 											if (sc.nextLine().equals("s")) {
 												System.out.println();
@@ -6010,8 +6052,8 @@ public class Principal {
 													System.out.println(ColorMio.getReset());
 												} else {
 													System.out.print(ColorMio.getRojo());
-													System.out.print("No existe ninguna Matricula con ID = " + idDeBorrado
-															+ " en la lista anteriormente mostrada");
+													System.out.print("No existe ninguna Matricula con ID = "
+															+ idDeBorrado + " en la lista anteriormente mostrada");
 													System.out.println(ColorMio.getReset());
 												}
 											}
@@ -6029,8 +6071,8 @@ public class Principal {
 													FuncionesMatriculas.borrarPorId(id);
 												}
 												System.out.print(ColorMio.getVerde());
-												System.out.print("Todas las Matriculas con idAlumno = "
-														+ datoDeBorrado + " han sido borradas");
+												System.out.print("Todas las Matriculas con idAlumno = " + datoDeBorrado
+														+ " han sido borradas");
 												System.out.println(ColorMio.getReset());
 											}
 
@@ -6061,8 +6103,8 @@ public class Principal {
 								idAlumno = -1;
 								idsMatriculas.clear();
 
-								break; // FIN 4. Por idAlumno.													
-								
+								break; // FIN 4. Por idAlumno.
+
 							case 5: // 5. Por asignatura.
 								idsMatriculas.clear();
 
@@ -6074,7 +6116,7 @@ public class Principal {
 								System.out.println();
 
 								System.out.println("¿Está seguro de que quiere borrar la Matricula con asignatura = '"
-										+ datoDeBorrado + "'? (s/n)");				
+										+ datoDeBorrado + "'? (s/n)");
 
 								if (sc.nextLine().equals("s")) {
 									System.out.println();
@@ -6082,11 +6124,12 @@ public class Principal {
 									idsMatriculas = FuncionesMatriculas.buscaIDsPorColumna("asignatura", datoDeBorrado);
 
 									if (idsMatriculas.size() > 1) {
-										
+
 										FuncionesMatriculas.leerPorAsignatura(datoDeBorrado, "=");
 
 										System.out.print(ColorMio.getAmarillo());
-										System.out.print("Hay varias Matriculas con asignatura = '" + datoDeBorrado + "'");
+										System.out.print(
+												"Hay varias Matriculas con asignatura = '" + datoDeBorrado + "'");
 										System.out.println(ColorMio.getReset());
 
 										System.out.println(
@@ -6096,9 +6139,10 @@ public class Principal {
 										System.out.println();
 
 										if (idDeBorrado != 0) {
-											System.out.println("¿Está seguro de que quiere borrar la Matricula con ID = "
-													+ idDeBorrado + "? (s/n)");
-											
+											System.out
+													.println("¿Está seguro de que quiere borrar la Matricula con ID = "
+															+ idDeBorrado + "? (s/n)");
+
 											if (sc.nextLine().equals("s")) {
 												System.out.println();
 												if (idsMatriculas.contains(idDeBorrado)
@@ -6109,8 +6153,8 @@ public class Principal {
 													System.out.println(ColorMio.getReset());
 												} else {
 													System.out.print(ColorMio.getRojo());
-													System.out.print("No existe ninguna Matricula con ID = " + idDeBorrado
-															+ " en la lista anteriormente mostrada");
+													System.out.print("No existe ninguna Matricula con ID = "
+															+ idDeBorrado + " en la lista anteriormente mostrada");
 													System.out.println(ColorMio.getReset());
 												}
 											}
@@ -6118,7 +6162,7 @@ public class Principal {
 										} else {
 											System.out.println(
 													"¿Está seguro de que quiere borrar todas estas Matriculas con asignatura = '"
-															+ datoDeBorrado + "'? (s/n)");									
+															+ datoDeBorrado + "'? (s/n)");
 
 											if (sc.nextLine().equals("s")) {
 
@@ -6128,8 +6172,8 @@ public class Principal {
 													FuncionesMatriculas.borrarPorId(id);
 												}
 												System.out.print(ColorMio.getVerde());
-												System.out.print("Todas las Matriculas con asignatura = '" + datoDeBorrado
-														+ "' han sido borradas");
+												System.out.print("Todas las Matriculas con asignatura = '"
+														+ datoDeBorrado + "' han sido borradas");
 												System.out.println(ColorMio.getReset());
 											}
 
@@ -6163,8 +6207,7 @@ public class Principal {
 								break; // FIN 5. Por asignatura.
 							case 6: // 6. Por curso.
 								do {
-									System.out
-											.print("Introduzca el Curso de la Matricula que quiera Borrar (>= 0): ");
+									System.out.print("Introduzca el Curso de la Matricula que quiera Borrar (>= 0): ");
 									curso = leeInt(sc);
 									if (curso >= 0) {
 										datoDeBorrado = String.valueOf(curso);
@@ -6173,16 +6216,16 @@ public class Principal {
 
 								System.out.println();
 								System.out.println("¿Está seguro de que quiere borrar la Matricula con curso = "
-										+ datoDeBorrado + "? (s/n)");								
+										+ datoDeBorrado + "? (s/n)");
 
 								if (sc.nextLine().equals("s")) {
 									System.out.println();
-									
+
 									idsMatriculas = FuncionesMatriculas.buscaIDsPorColumna("curso", datoDeBorrado);
 
 									if (idsMatriculas.size() > 1) {
-										
-										FuncionesMatriculas.leerPorCurso(Integer.parseInt(datoDeBorrado), "=");			
+
+										FuncionesMatriculas.leerPorCurso(Integer.parseInt(datoDeBorrado), "=");
 
 										System.out.print(ColorMio.getAmarillo());
 										System.out.print("Hay varias Matriculas con curso = " + datoDeBorrado);
@@ -6195,8 +6238,9 @@ public class Principal {
 										System.out.println();
 
 										if (idDeBorrado != 0) {
-											System.out.println("¿Está seguro de que quiere borrar la Matricula con ID = "
-													+ idDeBorrado + "? (s/n)");
+											System.out
+													.println("¿Está seguro de que quiere borrar la Matricula con ID = "
+															+ idDeBorrado + "? (s/n)");
 
 											if (sc.nextLine().equals("s")) {
 												System.out.println();
@@ -6208,8 +6252,8 @@ public class Principal {
 													System.out.println(ColorMio.getReset());
 												} else {
 													System.out.print(ColorMio.getRojo());
-													System.out.print("No existe ninguna Matricula con ID = " + idDeBorrado
-															+ " en la lista anteriormente mostrada");
+													System.out.print("No existe ninguna Matricula con ID = "
+															+ idDeBorrado + " en la lista anteriormente mostrada");
 													System.out.println(ColorMio.getReset());
 												}
 											}
@@ -6227,8 +6271,8 @@ public class Principal {
 													FuncionesMatriculas.borrarPorId(id);
 												}
 												System.out.print(ColorMio.getVerde());
-												System.out.print("Todas las Matriculas con curso = "
-														+ datoDeBorrado + " han sido borradas");
+												System.out.print("Todas las Matriculas con curso = " + datoDeBorrado
+														+ " han sido borradas");
 												System.out.println(ColorMio.getReset());
 											}
 
@@ -6260,7 +6304,6 @@ public class Principal {
 								idsMatriculas.clear();
 
 								break; // FIN 6. Por curso.
-
 
 							case 0: // 0. Volver al Menú anterior.
 								break; // FIN 0. Volver al Menú anterior.
